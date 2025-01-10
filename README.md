@@ -25,7 +25,7 @@ https://adventofcode.com/
 
 https://adventofcode.com/2015
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐(25/25)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
 
 |Day											| Part 1 | Part 2 |
@@ -269,7 +269,7 @@ https://adventofcode.com/2021
 | [Day 20](https://adventofcode.com/2021/day/20): Trench Map				| ✔️ [F#](./AdventOfCode_2021/day20/part01/day20_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day20/part02/day20_part02.fs) |
 | [Day 21](https://adventofcode.com/2021/day/21): Dirac Dice				| ✔️ [F#](./AdventOfCode_2021/day21/part01/day21_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day21/part02/day21_part02.fs) |
 | [Day 22](https://adventofcode.com/2021/day/22): Reactor Reboot			| ✔️ [F#](./AdventOfCode_2021/day22/part01/day22_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day22/part02/day22_part02.fs) |
-| [Day 23](https://adventofcode.com/2021/day/23): Amphipod					| 💢 [F#](./AdventOfCode_2021/day23/part01/day23_part01.fs) | 💢 [F#](./AdventOfCode_2021/day23/part02/day23_part02.fs) |
+| [Day 23](https://adventofcode.com/2021/day/23): Amphipod					| ✔️ [F#](./AdventOfCode_2021/day23/part01/day23_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day23/part02/day23_part02.fs) |
 | [Day 24](https://adventofcode.com/2021/day/24): Arithmetic Logic Unit		| ✔️ [F#](./AdventOfCode_2021/day24/part01/day24_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day24/part02/day24_part02.fs) |
 | [Day 25](https://adventofcode.com/2021/day/25): Sea Cucumber				| ✔️ [F#](./AdventOfCode_2021/day25/part01/day25_part01.fs) | ✔️ |
 
@@ -278,7 +278,7 @@ https://adventofcode.com/2021
 
 https://adventofcode.com/2022
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐(25/25)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
 
 |Day								| Part 1 | Part 2 |
