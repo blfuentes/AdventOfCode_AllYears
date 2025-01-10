@@ -1,8 +1,6 @@
 ﻿module day23_part02
 
 open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
-open FSharp.Collections.ParallelSeq
 
 let path = "day23/day23_input.txt"
 let input =

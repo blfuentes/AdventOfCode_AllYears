@@ -1,19 +1,8 @@
 ﻿module day17_part01
 
 open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
 
-open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
-open System
-open System.Collections.Generic
-open FSharp.Collections.ParallelSeq
 
-open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
-open System
-open System.Collections.Generic
-open FSharp.Collections.ParallelSeq
 
 type JetsState = { Pattern: char array; Index: int }
 with member this.Next () = 

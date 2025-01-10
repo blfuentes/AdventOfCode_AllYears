@@ -3,7 +3,6 @@
 open AdventOfCode_2016.Modules
 open AdventOfCode_Utilities.Utilities
 
-open System.Collections
 open System.Collections.Generic
 
 type CellKind =

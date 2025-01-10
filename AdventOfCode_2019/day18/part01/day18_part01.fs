@@ -1,11 +1,8 @@
 ﻿module day18_part01
 
 open AdventOfCode_2019.Modules
-open AdventOfCode_Utilities
 open System.Collections.Generic
 open System
-open System.Collections.Generic
-open System.IO
 
 type Cell =
     | Entrance

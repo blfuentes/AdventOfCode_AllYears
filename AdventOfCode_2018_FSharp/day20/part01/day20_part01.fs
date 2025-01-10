@@ -1,7 +1,6 @@
 ﻿module day20_part01
 
 open AdventOfCode_2018.Modules
-open System.IO
 
 type Direction = North | South | East | West
 type Term = Start | End | Move of Direction | StartGroup | EndGroup | Alternative

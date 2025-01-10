@@ -1,7 +1,6 @@
 ﻿module day18_part01
 
 open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
 
 let parseContent(lines: string array) =
     lines

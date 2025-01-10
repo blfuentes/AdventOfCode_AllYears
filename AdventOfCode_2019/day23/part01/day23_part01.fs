@@ -2,7 +2,6 @@
 
 open Intcode
 
-open AdventOfCode_Utilities
 open AdventOfCode_2019.Modules
 
 let rec provideInput inputs =

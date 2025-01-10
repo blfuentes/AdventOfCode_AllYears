@@ -1,8 +1,6 @@
 ﻿module day24_part02
 
 open AdventOfCode_2019.Modules
-open AdventOfCode_Utilities
-open System.Numerics
 
 type Cells = int * int * int -> int
 

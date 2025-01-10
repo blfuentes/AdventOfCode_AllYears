@@ -1,6 +1,5 @@
 ﻿module day14_part02
 
-open System.Collections.Generic
 open System.Text
 
 open AdventOfCode_2016.Modules

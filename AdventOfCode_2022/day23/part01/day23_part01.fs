@@ -1,8 +1,6 @@
 ﻿module day23_part01
 
 open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
-open FSharp.Collections.ParallelSeq
 
 type Board = Set<int*int>
 

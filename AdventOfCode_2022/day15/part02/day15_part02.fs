@@ -3,10 +3,8 @@
 open AdventOfCode_2022.Modules
 open AdventOfCode_Utilities
 
-open System.Text.RegularExpressions
 open FSharp.Collections.ParallelSeq
 
-open FSharp.Collections.ParallelSeq
 
 let dim = Seq.map (fun ((x,_),d) -> (x-d),(x+d)) >> both (Seq.minBy fst >> fst) (Seq.maxBy snd >> snd)
 

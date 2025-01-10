@@ -1,7 +1,6 @@
 ﻿module day23_part02
 
 open AdventOfCode_Utilities
-open AdventOfCode_2016.Modules
 
 type operation =
     | Copy of value: int * registry: string

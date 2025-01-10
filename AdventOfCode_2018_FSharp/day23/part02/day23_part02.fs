@@ -4,8 +4,6 @@ open AdventOfCode_2018.Modules
 open AdventOfCode_Utilities
 
 open FSharpx.Collections
-open System
-open System.IO
 
 type Vec3 =
     {x: int; y: int; z: int}

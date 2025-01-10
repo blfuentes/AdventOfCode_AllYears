@@ -4,7 +4,6 @@ open AdventOfCode_Utilities
 open AdventOfCode_2018.Modules
 
 open System.Text.RegularExpressions
-open System.IO
 
 type DamageType = Slashing | Radiation | Fire | Bludgeoning | Cold
 type Team = ImmuneSystem | Infection

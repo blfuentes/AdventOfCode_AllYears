@@ -1,7 +1,6 @@
 ﻿module day19_part01
 
 open AdventOfCode_2022.Modules
-open AdventOfCode_Utilities
 open System.Text.RegularExpressions
 open System.Collections.Generic
 

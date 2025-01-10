@@ -1,7 +1,6 @@
 ﻿module day19_part01
 
 open System
-open System.IO
 open FSharp.Text.RegexProvider
 open FSharp.Text.RegexExtensions
 open FSharp.Collections.ParallelSeq

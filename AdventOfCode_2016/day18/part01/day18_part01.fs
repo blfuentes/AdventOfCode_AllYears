@@ -2,7 +2,6 @@
 
 open AdventOfCode_2016.Modules
 
-open System.Collections.Generic
 
 type TileKind =
     | SAFE

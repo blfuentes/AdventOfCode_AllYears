@@ -1,7 +1,5 @@
 ﻿module day22_part01
 
-open FSharpx.Collections
-open AdventOfCode_Utilities
 open AdventOfCode_2018.Modules
 
 open System

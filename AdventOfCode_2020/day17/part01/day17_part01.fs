@@ -1,6 +1,5 @@
 ﻿module day17_part01
 
-open System.Collections.Generic
 open AdventOfCode_2020.Modules
 
 let enumerate s = s |> Seq.zip (Seq.initInfinite (fun n -> n))
