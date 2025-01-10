@@ -1,0 +1,10 @@
+Step D must be finished before step A can begin.
+Step D must be finished before step C can begin.
+Step G must be finished before step C can begin.
+Step G must be finished before step E can begin.
+Step A must be finished before step H can begin.
+Step A must be finished before step B can begin.
+Step C must be finished before step F can begin.
+Step E must be finished before step F can begin.
+Step H must be finished before step B can begin.
+Step F must be finished before step B can begin.

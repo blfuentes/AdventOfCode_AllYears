@@ -1,0 +1,32 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="AdventOfCode_2015\AdventOfCode_2015.fsproj" />
+  <Project Path="AdventOfCode_2016\AdventOfCode_2016.fsproj" />
+  <Project Path="AdventOfCode_2017\AdventOfCode_2017.fsproj" />
+  <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018.fsproj" />
+  <Project Path="AdventOfCode_2018_Typescript\AdventOfCode_2018_Typescript.esproj" Type="54a90642-561a-4bb1-a94e-469adee60c69">
+    <Platform Project="AnyCPU" />
+    <Deploy />
+  </Project>
+  <Project Path="AdventOfCode_2019\AdventOfCode_2019.fsproj" />
+  <Project Path="AdventOfCode_2020\AdventOfCode_2020.fsproj" />
+  <Project Path="AdventOfCode_2021\AdventOfCode_2021.fsproj" />
+  <Project Path="AdventOfCode_2022\AdventOfCode_2022.fsproj" />
+  <Project Path="AdventOfCode_2023\AdventOfCode_2023.fsproj" />
+  <Project Path="AdventOfCode_2023_cpp\AdventOfCode_2023_cpp.vcxproj" />
+  <Project Path="AdventOfCode_2024\AdventOfCode_2024.fsproj" />
+  <Project Path="AdventOfCode_Base\AdventOfCode_BASE.fsproj" />
+  <Project Path="AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
+  <Project Path="AoC_Debugger\AoC_Debugger.fsproj" />
+  <Properties Name="Visual Studio">
+    <Property Name="OpenWith" Value="17" />
+  </Properties>
+</Solution>

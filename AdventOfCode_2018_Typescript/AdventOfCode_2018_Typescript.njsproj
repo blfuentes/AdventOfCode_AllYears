@@ -1,0 +1,329 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>AdventOfCode_2018_Typescript</Name>
+    <RootNamespace>AdventOfCode_2018_Typescript</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>7975e305-5013-4f7f-a76b-df113fbfc306</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>app.ts</StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>false</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="app.ts" />
+    <Content Include="day01\day01_part01_input.txt" />
+    <Content Include="day01\part1\day01_part01.js" />
+    <Content Include="day01\part1\tsconfig.json" />
+    <Content Include="day01\part2\tsconfig.json" />
+    <Content Include="day01\test02.txt" />
+    <Content Include="day01\test03.txt" />
+    <Content Include="day01\test04.txt" />
+    <Content Include="day02\day02_input.txt" />
+    <Content Include="day02\part1\test_01.txt" />
+    <Content Include="day02\part1\tsconfig.json" />
+    <Content Include="day02\part2\test_02.txt" />
+    <Content Include="day02\part2\tsconfig.json" />
+    <Content Include="day03\day03_input.txt" />
+    <Content Include="day03\part1\tsconfig.json" />
+    <Content Include="day03\part2\tsconfig.json" />
+    <Content Include="day03\test01_input.txt" />
+    <Content Include="day04\day04_input.txt" />
+    <Content Include="day04\part1\tsconfig.json" />
+    <Content Include="day04\part2\tsconfig.json" />
+    <Content Include="day04\test01_input.txt" />
+    <Content Include="day04\test02_input.txt" />
+    <Content Include="day05\day05_input.txt" />
+    <Content Include="day05\part1\tsconfig.json" />
+    <Content Include="day05\part2\tsconfig.json" />
+    <Content Include="day05\test01_input.txt" />
+    <Content Include="day06\day06_input.txt" />
+    <Content Include="day06\day06_input2.txt" />
+    <Content Include="day06\part1\tsconfig.json" />
+    <Content Include="day06\part2\tsconfig.json" />
+    <Content Include="day06\sample.xlsx" />
+    <Content Include="day06\test01_input.txt" />
+    <Content Include="day07\day07_input.txt" />
+    <Content Include="day07\Node.js" />
+    <Content Include="day07\part1\day07.js" />
+    <Content Include="day07\part1\tsconfig.json" />
+    <Content Include="day07\part2\tsconfig.json" />
+    <Content Include="day07\test01_input.txt" />
+    <Content Include="day07\test02_input.txt" />
+    <Content Include="day07\test03_input.txt" />
+    <Content Include="day08\day08_input.txt" />
+    <Content Include="day08\part1\tsconfig.json" />
+    <Content Include="day08\part2\tsconfig.json" />
+    <Content Include="day08\test01_input.txt" />
+    <Content Include="day09\day09_input.txt" />
+    <Content Include="day09\part1\tsconfig.json" />
+    <Content Include="day09\part2\tsconfig.json" />
+    <Content Include="day09\test01_input.txt" />
+    <Content Include="day09\test02_input.txt" />
+    <Content Include="day10\day10_input.txt" />
+    <Content Include="day10\part1\second 10304.txt" />
+    <Content Include="day10\part1\tsconfig.json" />
+    <Content Include="day10\part2\tsconfig.json" />
+    <Content Include="day10\test01_input.txt" />
+    <Content Include="day11\day11_input.txt" />
+    <Content Include="day11\part1\tsconfig.json" />
+    <Content Include="day11\part2\tsconfig.json" />
+    <Content Include="day12\day12_input.txt" />
+    <Content Include="day12\part1\tsconfig.json" />
+    <Content Include="day12\part2\tsconfig.json" />
+    <Content Include="day12\test12_input.txt" />
+    <Content Include="day13\day13_input.txt" />
+    <Content Include="day13\part1\tsconfig.json" />
+    <Content Include="day13\part2\tsconfig.json" />
+    <Content Include="day13\test13_input.txt" />
+    <Content Include="day13\test13_input2.txt" />
+    <Content Include="day14\part1\tsconfig.json" />
+    <Content Include="day14\part2\tsconfig.json" />
+    <Content Include="day15\basic_sample.txt" />
+    <Content Include="day15\combat_sample.txt" />
+    <Content Include="day15\combat_sample01.txt" />
+    <Content Include="day15\combat_sample02.txt" />
+    <Content Include="day15\combat_sample03.txt" />
+    <Content Include="day15\combat_sample04.txt" />
+    <Content Include="day15\combat_sample05.txt" />
+    <Content Include="day15\day15_input.txt" />
+    <Content Include="day15\movement_input.txt" />
+    <Content Include="day15\part1\tsconfig.json" />
+    <Content Include="day15\part2\tsconfig.json" />
+    <Content Include="day15\test_input.txt" />
+    <Content Include="day16\day16_input.txt" />
+    <Content Include="day16\part1\tsconfig.json" />
+    <Content Include="day16\part2\tsconfig.json" />
+    <Content Include="day16\test_input.txt" />
+    <Content Include="day17\day17_input.txt" />
+    <Content Include="day17\part1\tsconfig.json" />
+    <Content Include="day17\part2\tsconfig.json" />
+    <Content Include="day17\test_input.txt" />
+    <Content Include="day18\day18_input.txt" />
+    <Content Include="day18\part1\tsconfig.json" />
+    <Content Include="day18\part2\tsconfig.json" />
+    <Content Include="day18\test_input.txt" />
+    <Content Include="day19\day19_input.txt" />
+    <Content Include="day19\part1\tsconfig.json" />
+    <Content Include="day19\part2\tsconfig.json" />
+    <Content Include="day19\test_input.txt" />
+    <Content Include="day20\day20_input.txt" />
+    <Content Include="day20\part1\tsconfig.json" />
+    <Content Include="day20\part2\tsconfig.json" />
+    <Content Include="day20\test_input.txt" />
+    <Content Include="day21\day21_input.txt" />
+    <Content Include="day22\day22_input.txt" />
+    <Content Include="day23\day23_input.txt" />
+    <Content Include="day23\day23_input2.txt" />
+    <Content Include="day23\part1\tsconfig.json" />
+    <Content Include="day24\day24_input.txt" />
+    <Content Include="day24\part1\tsconfig.json" />
+    <Content Include="day25\day25_input.txt" />
+    <Content Include="day25\part1\tsconfig.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="day01\" />
+    <Folder Include="day01\part1\" />
+    <Folder Include="day01\part2\" />
+    <Folder Include="day02\" />
+    <Folder Include="day02\part1\" />
+    <Folder Include="day02\part2\" />
+    <Folder Include="day03\" />
+    <Folder Include="day03\part1\" />
+    <Folder Include="day03\part2\" />
+    <Folder Include="day04\" />
+    <Folder Include="day04\part1\" />
+    <Folder Include="day04\part2\" />
+    <Folder Include="day05\" />
+    <Folder Include="day05\part1\" />
+    <Folder Include="day05\part2\" />
+    <Folder Include="day06\" />
+    <Folder Include="day06\part1\" />
+    <Folder Include="day06\part2\" />
+    <Folder Include="day07\" />
+    <Folder Include="day07\part1\" />
+    <Folder Include="day07\part2\" />
+    <Folder Include="day08\" />
+    <Folder Include="day08\part1\" />
+    <Folder Include="day08\part2\" />
+    <Folder Include="day09\" />
+    <Folder Include="day09\part1\" />
+    <Folder Include="day09\part2\" />
+    <Folder Include="day10\" />
+    <Folder Include="day10\part1\" />
+    <Folder Include="day10\part2\" />
+    <Folder Include="day11\" />
+    <Folder Include="day11\part1\" />
+    <Folder Include="day11\part2\" />
+    <Folder Include="day12\" />
+    <Folder Include="day12\part1\" />
+    <Folder Include="day12\part2\" />
+    <Folder Include="day13\" />
+    <Folder Include="day13\part1\" />
+    <Folder Include="day13\part2\" />
+    <Folder Include="day14\" />
+    <Folder Include="day14\part1\" />
+    <Folder Include="day14\part2\" />
+    <Folder Include="day15\" />
+    <Folder Include="day15\part1\" />
+    <Folder Include="day15\part2\" />
+    <Folder Include="day16\" />
+    <Folder Include="day16\part1\" />
+    <Folder Include="day16\part2\" />
+    <Folder Include="day17\" />
+    <Folder Include="day17\part1\" />
+    <Folder Include="day17\part2\" />
+    <Folder Include="day18\" />
+    <Folder Include="day18\part1\" />
+    <Folder Include="day18\part2\" />
+    <Folder Include="day19\" />
+    <Folder Include="day19\part1\" />
+    <Folder Include="day19\part2\" />
+    <Folder Include="day20\" />
+    <Folder Include="day20\part1\" />
+    <Folder Include="day20\part2\" />
+    <Folder Include="day21\" />
+    <Folder Include="day21\part2\" />
+    <Folder Include="day21\part1\" />
+    <Folder Include="day22\part1\" />
+    <Folder Include="day22\part2\" />
+    <Folder Include="day23\" />
+    <Folder Include="day23\part2\" />
+    <Folder Include="day23\part1\" />
+    <Folder Include="day24\" />
+    <Folder Include="day24\part1\" />
+    <Folder Include="day24\part2\" />
+    <Folder Include="day25\" />
+    <Folder Include="day25\part1\" />
+    <Folder Include="day22\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="day01\part1\day01_part01.ts" />
+    <TypeScriptCompile Include="day01\part2\day01_part02.ts" />
+    <TypeScriptCompile Include="day02\part1\day02_part01.ts" />
+    <TypeScriptCompile Include="day02\part2\day02_part02.ts" />
+    <TypeScriptCompile Include="day03\Claim.ts" />
+    <TypeScriptCompile Include="day03\part1\day03_part01.ts" />
+    <TypeScriptCompile Include="day03\part2\day03_part02.ts" />
+    <TypeScriptCompile Include="day04\GuardEvent.ts" />
+    <TypeScriptCompile Include="day04\part1\day04_part01.ts" />
+    <TypeScriptCompile Include="day04\part2\day04_part02.ts" />
+    <TypeScriptCompile Include="day05\part1\day05_part01.ts" />
+    <TypeScriptCompile Include="day05\part2\day05_part02.ts" />
+    <TypeScriptCompile Include="day05\part2\PolymerResult.ts" />
+    <TypeScriptCompile Include="day06\Coordinate.ts" />
+    <TypeScriptCompile Include="day06\part1\day06_part01.ts" />
+    <TypeScriptCompile Include="day06\part2\day06_part02.ts" />
+    <TypeScriptCompile Include="day07\Node.ts" />
+    <TypeScriptCompile Include="day07\part1\day07_part01.ts" />
+    <TypeScriptCompile Include="day07\part2\day07_part02.ts" />
+    <TypeScriptCompile Include="day08\part1\day08_part01.ts" />
+    <TypeScriptCompile Include="day08\part2\day08_part02.ts" />
+    <TypeScriptCompile Include="day09\MarbleNode.ts" />
+    <TypeScriptCompile Include="day09\part1\day09_part01.ts" />
+    <TypeScriptCompile Include="day09\part2\day09_part02.ts" />
+    <TypeScriptCompile Include="day10\part1\day10_part01.ts" />
+    <TypeScriptCompile Include="day10\part2\day10_part02.ts" />
+    <TypeScriptCompile Include="day10\StarPoint.ts" />
+    <TypeScriptCompile Include="day11\part1\day11_part01.ts" />
+    <TypeScriptCompile Include="day11\part2\day11_part02.ts" />
+    <TypeScriptCompile Include="day12\part1\day12_part01.ts" />
+    <TypeScriptCompile Include="day12\part2\day12_part02.ts" />
+    <TypeScriptCompile Include="day12\PotState.ts" />
+    <TypeScriptCompile Include="day13\CarPosition.ts" />
+    <TypeScriptCompile Include="day13\part1\day13_part01.ts" />
+    <TypeScriptCompile Include="day13\part2\day13_part02.ts" />
+    <TypeScriptCompile Include="day14\part1\day14_part01.ts" />
+    <TypeScriptCompile Include="day14\part2\day14_part02.ts" />
+    <TypeScriptCompile Include="day15\Coord.ts" />
+    <TypeScriptCompile Include="day15\Element.ts" />
+    <TypeScriptCompile Include="day15\maze.ts" />
+    <TypeScriptCompile Include="day15\MazeResult.ts" />
+    <TypeScriptCompile Include="day15\part1\day15_part01.ts" />
+    <TypeScriptCompile Include="day15\part2\day15_part02.ts" />
+    <TypeScriptCompile Include="day16\CheckCase.ts" />
+    <TypeScriptCompile Include="day16\Operator.ts" />
+    <TypeScriptCompile Include="day16\part1\day16_part01.ts" />
+    <TypeScriptCompile Include="day16\part2\day16_part02.ts" />
+    <TypeScriptCompile Include="day17\Coord.ts" />
+    <TypeScriptCompile Include="day17\Element.ts" />
+    <TypeScriptCompile Include="day17\part1\day17_part01.ts" />
+    <TypeScriptCompile Include="day17\part2\day17_part02.ts" />
+    <TypeScriptCompile Include="day18\part1\day18_part01.ts" />
+    <TypeScriptCompile Include="day18\part2\day18_part02.ts" />
+    <TypeScriptCompile Include="day19\part1\day19_part01.ts" />
+    <TypeScriptCompile Include="day19\part2\day19_part02.ts" />
+    <TypeScriptCompile Include="day20\part1\day20_part01.ts" />
+    <TypeScriptCompile Include="day20\part2\day20_part02.ts" />
+    <TypeScriptCompile Include="day21\part1\day21_part01.ts" />
+    <TypeScriptCompile Include="day21\part2\day21_part02.ts" />
+    <TypeScriptCompile Include="day22\part1\day22_part01.ts" />
+    <TypeScriptCompile Include="day22\part2\day22_part02.ts" />
+    <TypeScriptCompile Include="day23\part1\day23_part01.ts" />
+    <TypeScriptCompile Include="day23\part2\day23_part02.ts" />
+    <TypeScriptCompile Include="day24\part1\day24_part01.ts" />
+    <TypeScriptCompile Include="day24\part2\day24_part02.ts" />
+    <TypeScriptCompile Include="day25\part1\day25_part01.ts" />
+    <TypeScriptCompile Include="dayimports.ts" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

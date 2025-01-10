@@ -1,0 +1,27 @@
+﻿#r "System.Security.Cryptography"
+//let secretkey = "abcdef"
+//let secretkey = "pqrstuv"
+let secretkey = "yzbqklnj"
+
+let generateHash (key: string) (number: int) =
+    use md5 = System.Security.Cryptography.MD5.Create()
+    ((key + (string number).PadLeft(5, '0')))
+      |> System.Text.Encoding.ASCII.GetBytes
+      |> md5.ComputeHash
+      |> Seq.map (fun c -> c.ToString("X2"))
+      |> Seq.reduce (+)
+
+// let isValidMD5
+
+let isValidHash (hash: string) =
+    hash.StartsWith("00000")
+
+let rec findValidHash (key: string) (n: int) =
+    match (isValidHash (generateHash key n)) with
+    | true -> n
+    | false -> findValidHash key (n + 1)
+
+findValidHash secretkey 0
+
+
+//generateHash secretkey 609043

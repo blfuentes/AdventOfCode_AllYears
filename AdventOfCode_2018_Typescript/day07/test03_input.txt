@@ -1,0 +1,9 @@
+Step E must be finished before step L can begin.
+Step G must be finished before step L can begin.
+Step G must be finished before step H can begin.
+Step C must be finished before step H can begin.
+Step C must be finished before step K can begin.
+Step L must be finished before step B can begin.
+Step L must be finished before step I can begin.
+Step L must be finished before step K can begin.
+Step H must be finished before step I can begin.

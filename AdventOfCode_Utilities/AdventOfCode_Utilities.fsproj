@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Modules\Tetris.fs" />
+    <Compile Include="Modules\Tuple2.fs" />
+    <None Include="Modules\SearchAlgos\A_Star_graph.fs" />
+    <None Include="Modules\SearchAlgos\BFS.fs" />
+    <None Include="Modules\SearchAlgos\DFS.fs" />
+    <None Include="Modules\SearchAlgos\A_Star_grid.fs" />
+    <Compile Include="Modules\GridGraph.fs" />
+    <Compile Include="Modules\Graph.fs" />
+    <Compile Include="Modules\BinarySearchTree.fs" />
+    <Compile Include="Modules\Utilities.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharpPlus" Version="1.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

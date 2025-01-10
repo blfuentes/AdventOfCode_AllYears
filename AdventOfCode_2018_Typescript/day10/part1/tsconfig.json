@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "noImplicitAny" : true,
+        "strictNullChecks": true,
+        "types": ["node"], 
+        "lib":[
+            "es2018"
+        ],
+        "target": "es2018",
+        "module": "commonjs"
+    },
+    "files":[
+        "day10.ts",
+        "../StarPoint.ts"
+    ]
+}

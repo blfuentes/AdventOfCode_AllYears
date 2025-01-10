@@ -1,0 +1,14 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "noImplicitAny" : true,
+        "strictNullChecks": true,
+        "lib":[
+            "es2018"
+        ],
+        "target": "es2018"
+    },
+    "files":[
+        "day01_part01.ts"
+    ]
+  }
