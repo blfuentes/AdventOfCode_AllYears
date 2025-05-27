@@ -23,6 +23,7 @@ import (
 	"github.com/blfuentes/AdventOfCode_2024_Go/day17"
 	"github.com/blfuentes/AdventOfCode_2024_Go/day18"
 	"github.com/blfuentes/AdventOfCode_2024_Go/day19"
+	"github.com/blfuentes/AdventOfCode_2024_Go/day20"
 )
 
 func main() {
@@ -177,5 +178,13 @@ func main() {
 	fmt.Printf(" in %v\n", time.Since(timer))
 	timer = time.Now()
 	fmt.Printf("Final result Day 19 part 2: %d", day19.Executepart2())
+	fmt.Printf(" in %v\n", time.Since(timer))
+
+	// Day 20
+	timer = time.Now()
+	fmt.Printf("Final result Day 20 part 1: %v", day20.Executepart1())
+	fmt.Printf(" in %v\n", time.Since(timer))
+	timer = time.Now()
+	fmt.Printf("Final result Day 20 part 2: %d", day20.Executepart2())
 	fmt.Printf(" in %v\n", time.Since(timer))
 }
