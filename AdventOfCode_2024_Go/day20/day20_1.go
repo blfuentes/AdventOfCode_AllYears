@@ -11,8 +11,9 @@ func Executepart1() int {
 
 	if fileContent, err := utilities.ReadFileAsLines(fileName); err == nil {
 
-		themap, _, _, _ := ParseContent(fileContent)
+		themap, wallpoints, startpoint, endpoint := ParseContent(fileContent)
 		PrintMatrix(&themap)
+		result = TryToCheat(themap, wallpoints, startpoint, endpoint)
 	}
 
 	return result

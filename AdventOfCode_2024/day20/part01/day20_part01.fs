@@ -71,7 +71,9 @@ let findShortestPath (graph: Coord[,]) (wallcheat: Coord option) (visited: HashS
                 let _ = visited.Add(goal)
                 (Some(path), visited, touchedWalls)
             else
-                if not (visited.Contains(current)) && (current.Kind.IsEmpty || (wallcheat.IsSome && current.Row = wallcheat.Value.Row && current.Col = wallcheat.Value.Col)) then
+                if not (visited.Contains(current)) && 
+                    (current.Kind.IsEmpty || 
+                        (wallcheat.IsSome && current.Row = wallcheat.Value.Row && current.Col = wallcheat.Value.Col)) then
                     let _ = visited.Add(current)
 
                     let neighbours = neighbous current
