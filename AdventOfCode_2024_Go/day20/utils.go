@@ -2,7 +2,7 @@ package day20
 
 import (
 	"fmt"
-	"sort"
+	"math"
 	"strings"
 )
 
@@ -30,6 +30,10 @@ type QueueItem struct {
 type SavingGroup struct {
 	Saving int
 	Count  int
+}
+
+type BucketKey struct {
+	X, Y int
 }
 
 func ParseContent(lines []string) ([][]Coord, []Coord, Coord, Coord) {
@@ -100,6 +104,53 @@ func IsInBoundaries(row, col, maxRows, maxCols int) bool {
 	return row >= 0 && col >= 0 && row < maxRows && col < maxCols
 }
 
+func CheatLength(cStart, cEnd Coord) int {
+	return int(math.Abs(float64(cStart.Row)-float64(cEnd.Row)) + math.Abs(float64(cStart.Col)-float64(cEnd.Col)))
+}
+
+func GetBucketKey(coord Coord, size int) []int {
+	return []int{coord.Row / size, coord.Col / size}
+}
+
+func BuildSpatialRange(coords []Coord) [][2]Coord {
+	bucketSize := 20
+
+	getBucketKey := func(coord Coord) BucketKey {
+		return BucketKey{coord.Row / bucketSize, coord.Col / bucketSize}
+	}
+
+	spatialHash := make(map[BucketKey][]Coord)
+
+	for _, coord := range coords {
+		key := getBucketKey(coord)
+		spatialHash[key] = append(spatialHash[key], coord)
+	}
+
+	var result [][2]Coord
+
+	for bucketKey, points := range spatialHash {
+		bucketX, bucketY := bucketKey.X, bucketKey.Y
+
+		for dx := -1; dx <= 1; dx++ {
+			for dy := -1; dy <= 1; dy++ {
+				neighborKey := BucketKey{bucketX + dx, bucketY + dy}
+
+				if neighbors, exists := spatialHash[neighborKey]; exists {
+					for _, p1 := range points {
+						for _, p2 := range neighbors {
+							if p1 != p2 && CheatLength(p1, p2) <= 20 {
+								result = append(result, [2]Coord{p1, p2})
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return result
+}
+
 func FindShortestPath(
 	graph [][]Coord, wallcheat *Coord, visited map[Coord]bool, touchedWalls map[Coord]int, start, end Coord) (*int, map[Coord]bool, map[Coord]int, []Coord, []Coord) {
 	maxRows, maxCols := len(graph), len(graph[0])
@@ -159,65 +210,4 @@ func FindShortestPath(
 	}
 
 	return bfs(0)
-}
-
-func TryToCheat(
-	graph [][]Coord, wallpoints []Coord, start Coord, end Coord) int {
-	maxRows, maxCols := len(graph), len(graph[0])
-	touchedWalls := make(map[Coord]int)
-	initialLength, _, touchedWalls, visitedSorted, touchedWallsSorted := FindShortestPath(graph, nil, make(map[Coord]bool), touchedWalls, start, end)
-	distances := make(map[Coord]int)
-	idx := 0
-	for _, coord := range visitedSorted {
-		distances[coord] = *initialLength - idx
-		idx++
-	}
-	cheatTimes := make([]int, 0)
-	for _, cheatWall := range touchedWallsSorted {
-		possibleExits := Neighbours(cheatWall)
-		for _, exit := range possibleExits {
-			nextRow, nextCol := exit[0], exit[1]
-			if IsInBoundaries(nextRow, nextCol, maxRows, maxCols) &&
-				(graph[nextRow][nextCol].Kind == Empty || distances[Coord{Row: nextRow, Col: nextCol, Kind: graph[nextRow][nextCol].Kind}] != 0) {
-
-				neighbourCoord := Coord{Row: nextRow, Col: nextCol, Kind: graph[nextRow][nextCol].Kind}
-				if val, ok := distances[neighbourCoord]; ok {
-					wallValue := touchedWalls[cheatWall]
-					cheatTimes = append(cheatTimes, 1+wallValue+val)
-				}
-			}
-		}
-	}
-
-	groupOfSavings := make([]SavingGroup, 0)
-	savingMap := make(map[int]int)
-
-	// Map and filter
-	for _, t := range cheatTimes {
-		saving := *initialLength - t
-		if saving > 0 {
-			savingMap[saving]++
-		}
-	}
-
-	// Sort keys
-	keys := make([]int, 0, len(savingMap))
-	for k := range savingMap {
-		keys = append(keys, k)
-	}
-	sort.Ints(keys)
-
-	// Build result
-	for _, k := range keys {
-		groupOfSavings = append(groupOfSavings, SavingGroup{Saving: k, Count: savingMap[k]})
-	}
-
-	sum := 0
-	for _, group := range groupOfSavings {
-		if group.Saving >= 100 {
-			sum += group.Count
-		}
-	}
-
-	return sum
 }
