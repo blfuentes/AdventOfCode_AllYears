@@ -44,13 +44,12 @@ func ParseContent(lines []string) ([][]Coord, []Coord, Coord, Coord) {
 		for col := range maxcols {
 			value := line[col]
 			tmpCoord := Coord{row, col, Empty}
-			if value == "S" {
+			switch value {
+			case "S":
 				start.Row, start.Col = row, col
-				tmpCoord.Kind = Start
-			} else if value == "E" {
+			case "E":
 				end.Row, end.Col = row, col
-				tmpCoord.Kind = End
-			} else if value == "#" {
+			case "#":
 				wallpoints = append(wallpoints, Coord{row, col, Wall})
 				tmpCoord.Kind = Wall
 			}
@@ -91,7 +90,7 @@ func Neighbours(position Coord) [][]int {
 	}
 	neighbours := make([][]int, 0)
 	for _, dir := range directions {
-		neighbours = append(neighbours, []int{dir[0], dir[1]})
+		neighbours = append(neighbours, []int{position.Row + dir[0], position.Col + dir[1]})
 	}
 
 	return neighbours
@@ -102,92 +101,88 @@ func IsInBoundaries(row, col, maxRows, maxCols int) bool {
 }
 
 func FindShortestPath(
-	graph [][]Coord, wallcheat *Coord, visited map[Coord]bool, touchedWalls map[Coord]int, start, end Coord) (int, map[Coord]bool, map[Coord]int) {
+	graph [][]Coord, wallcheat *Coord, visited map[Coord]bool, touchedWalls map[Coord]int, start, end Coord) (*int, map[Coord]bool, map[Coord]int, []Coord, []Coord) {
 	maxRows, maxCols := len(graph), len(graph[0])
 
 	queue := make([]QueueItem, 0)
 	startingPoint := graph[start.Row][start.Col]
-	queue = append(queue, QueueItem{Coord: startingPoint, Path: nil})
+	queue = append(queue, QueueItem{Coord: startingPoint, Path: new(int)})
 
-	var bfs func(counter int) (*int, map[Coord]bool, map[Coord]int)
-	bfs = func(counter int) (*int, map[Coord]bool, map[Coord]int) {
+	touchedWallsSorted := make([]Coord, 0)
+	visitedSorted := make([]Coord, 0)
+
+	var bfs func(counter int) (*int, map[Coord]bool, map[Coord]int, []Coord, []Coord)
+	bfs = func(counter int) (*int, map[Coord]bool, map[Coord]int, []Coord, []Coord) {
 		if len(queue) == 0 {
-			return nil, visited, touchedWalls
-		} else {
-			current := queue[0]
-			queue = queue[1:]
+			return nil, visited, touchedWalls, visitedSorted, touchedWallsSorted
+		}
 
-			if current.Coord.Row == end.Row && current.Coord.Col == end.Col {
-				visited[current.Coord] = true
-				return current.Path, visited, touchedWalls
-			} else if !visited[current.Coord] &&
-				(current.Coord.Kind == Empty ||
-					(wallcheat != nil &&
-						current.Coord.Row == wallcheat.Row &&
-						current.Coord.Col == wallcheat.Col)) {
-				visited[current.Coord] = true
-				neighbours := Neighbours(current.Coord)
-				for _, n := range neighbours {
-					if IsInBoundaries(n[0], n[1], maxRows, maxCols) {
-						neighbour := graph[n[0]][n[1]]
-						if !visited[neighbour] {
-							var val int
-							if current.Path == nil {
-								val = 1
-							} else {
-								val = *current.Path + 1
-							}
-							nextPath := &val
-							queue = append(queue, QueueItem{Coord: neighbour, Path: nextPath})
-						}
-						if neighbour.Kind == Wall {
+		current := queue[0]
+		queue = queue[1:]
+
+		if current.Coord.Row == end.Row && current.Coord.Col == end.Col {
+			visited[current.Coord] = true
+			visitedSorted = append(visitedSorted, current.Coord)
+			return current.Path, visited, touchedWalls, visitedSorted, touchedWallsSorted
+		}
+
+		if !visited[current.Coord] &&
+			(current.Coord.Kind == Empty ||
+				(wallcheat != nil &&
+					current.Coord.Row == wallcheat.Row &&
+					current.Coord.Col == wallcheat.Col)) {
+			visited[current.Coord] = true
+			visitedSorted = append(visitedSorted, current.Coord)
+			neighbours := Neighbours(current.Coord)
+			for _, n := range neighbours {
+				if IsInBoundaries(n[0], n[1], maxRows, maxCols) {
+					neighbour := graph[n[0]][n[1]]
+					if !visited[neighbour] {
+						var newPath = new(int)
+						*newPath = *current.Path + 1
+						queue = append(queue, QueueItem{Coord: neighbour, Path: newPath})
+					}
+					if neighbour.Kind == Wall {
+						if _, exists := touchedWalls[neighbour]; exists {
 							if touchedWalls[neighbour] > len(visited) {
 								touchedWalls[neighbour] = len(visited)
-							} else {
-								touchedWalls[neighbour] = len(visited)
 							}
-
+						} else {
+							touchedWalls[neighbour] = len(visited)
+							touchedWallsSorted = append(touchedWallsSorted, neighbour)
 						}
 					}
 				}
-				return nil, visited, touchedWalls
 			}
-
-			return bfs(counter + 1)
 		}
+		return bfs(counter + 1)
 	}
 
-	pathPtr, visitedResult, touchedWallsResult := bfs(0)
-	var path int
-	if pathPtr != nil {
-		path = *pathPtr
-	} else {
-		path = -1 // or any default value indicating no path found
-	}
-	return path, visitedResult, touchedWallsResult
+	return bfs(0)
 }
 
 func TryToCheat(
 	graph [][]Coord, wallpoints []Coord, start Coord, end Coord) int {
 	maxRows, maxCols := len(graph), len(graph[0])
 	touchedWalls := make(map[Coord]int)
-	initialLength, visitedLengths, touchedWalls := FindShortestPath(graph, nil, make(map[Coord]bool), touchedWalls, start, end)
+	initialLength, _, touchedWalls, visitedSorted, touchedWallsSorted := FindShortestPath(graph, nil, make(map[Coord]bool), touchedWalls, start, end)
 	distances := make(map[Coord]int)
 	idx := 0
-	for coord, _ := range visitedLengths {
-		distances[coord] = initialLength - idx
+	for _, coord := range visitedSorted {
+		distances[coord] = *initialLength - idx
 		idx++
 	}
 	cheatTimes := make([]int, 0)
-	for cheatWall, wallValue := range touchedWalls {
+	for _, cheatWall := range touchedWallsSorted {
 		possibleExits := Neighbours(cheatWall)
 		for _, exit := range possibleExits {
-			nextRow, nextCol := cheatWall.Row+exit[0], cheatWall.Col+exit[1]
+			nextRow, nextCol := exit[0], exit[1]
 			if IsInBoundaries(nextRow, nextCol, maxRows, maxCols) &&
 				(graph[nextRow][nextCol].Kind == Empty || distances[Coord{Row: nextRow, Col: nextCol, Kind: graph[nextRow][nextCol].Kind}] != 0) {
 
 				neighbourCoord := Coord{Row: nextRow, Col: nextCol, Kind: graph[nextRow][nextCol].Kind}
 				if val, ok := distances[neighbourCoord]; ok {
+					wallValue := touchedWalls[cheatWall]
 					cheatTimes = append(cheatTimes, 1+wallValue+val)
 				}
 			}
@@ -199,7 +194,7 @@ func TryToCheat(
 
 	// Map and filter
 	for _, t := range cheatTimes {
-		saving := initialLength - t
+		saving := *initialLength - t
 		if saving > 0 {
 			savingMap[saving]++
 		}
