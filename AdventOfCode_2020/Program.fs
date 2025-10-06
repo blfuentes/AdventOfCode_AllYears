@@ -2,17 +2,13 @@
 
 open System
 
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
-
 [<EntryPoint>]
 let main argv =
     // DAY 01
     let resultday01Part1 = day01_part01.execute
     printfn "Final result Day 01 part 1: %i" resultday01Part1
-    let resultday02Part2 = day01_part02.execute
-    printfn "Final result Day 01 part 2: %i" resultday02Part2
+    let resultday01Part2 = day01_part02.execute
+    printfn "Final result Day 01 part 2: %i" resultday01Part2
     printfn ""
 
     // DAY 02
@@ -179,7 +175,6 @@ let main argv =
     // DAY 25
     let resultday25Part1 = day25_part01.execute
     printfn "Final result Day 25 part 1: %d" resultday25Part1
-
 
     //
     let endprogram = Console.ReadLine()

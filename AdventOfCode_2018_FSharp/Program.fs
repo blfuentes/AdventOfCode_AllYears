@@ -8,8 +8,8 @@ let main argv =
     // DAY 01
     let resultday01Part1 = day01_part01.displayValue
     printfn "Final result Day 01 part 1: %i" resultday01Part1
-    let resultday02Part2 = day01_part02.calculateDuplicatedFrecuency
-    printfn "Final result Day 01 part 2: %i" resultday02Part2
+    let resultday01Part2 = day01_part02.calculateDuplicatedFrecuency
+    printfn "Final result Day 01 part 2: %i" resultday01Part2
 
     // DAY 02
     let resultday02Part1 = day02_part01.finalValue

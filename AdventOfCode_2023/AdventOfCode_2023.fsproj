@@ -169,17 +169,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FParsec" Version="1.1.1" />
-	  <PackageReference Include="FSharpx.Collections" Version="3.1.0" />
-	  <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	  <PackageReference Include="Microsoft.Z3" Version="4.12.2" />
+		<PackageReference Include="FParsec" Version="1.1.1" />
+		<PackageReference Include="FSharpx.Collections" Version="3.1.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Z3" Version="4.12.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
+		<ProjectReference Include="..\AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
 	</ItemGroup>
 
 </Project>

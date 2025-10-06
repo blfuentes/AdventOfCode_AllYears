@@ -3,10 +3,6 @@
 open System
 open AdventOfCode_Utilities
 
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
-
 [<EntryPoint>]
 let main argv =
     // DAY 01
@@ -15,8 +11,8 @@ let main argv =
         printfn "Final result Day 01 part 1: %i" resultday01Part1
     ) |> ignore
     Utilities.duration(fun () ->
-        let resultday02Part2 = day01_part02.execute
-        printfn "Final result Day 01 part 2: %i" resultday02Part2
+        let resultDay01Part2 = day01_part02.execute
+        printfn "Final result Day 01 part 2: %i" resultDay01Part2
     ) |> ignore
 
     // DAY 02
