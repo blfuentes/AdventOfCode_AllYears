@@ -32,31 +32,6 @@
 		<Compile Include="day11\part02\day11_part02.fs" />
 		<Compile Include="day12\part01\day12_part01.fs" />
 		<Compile Include="day12\part02\day12_part02.fs" />
-		<Compile Include="day13\part01\day13_part01.fs" />
-		<Compile Include="day13\part02\day13_part02.fs" />
-		<Compile Include="day14\part01\day14_part01.fs" />
-		<Compile Include="day14\part02\day14_part02.fs" />
-		<Compile Include="day15\part01\day15_part01.fs" />
-		<Compile Include="day15\part02\day15_part02.fs" />
-		<Compile Include="day16\part01\day16_part01.fs" />
-		<Compile Include="day16\part02\day16_part02.fs" />
-		<Compile Include="day17\part01\day17_part01.fs" />
-		<Compile Include="day17\part02\day17_part02.fs" />
-		<Compile Include="day18\part01\day18_part01.fs" />
-		<Compile Include="day18\part02\day18_part02.fs" />
-		<Compile Include="day19\part01\day19_part01.fs" />
-		<Compile Include="day19\part02\day19_part02.fs" />
-		<Compile Include="day20\part01\day20_part01.fs" />
-		<Compile Include="day20\part02\day20_part02.fs" />
-		<Compile Include="day21\part01\day21_part01.fs" />
-		<Compile Include="day21\part02\day21_part02.fs" />
-		<Compile Include="day22\part01\day22_part01.fs" />
-		<Compile Include="day22\part02\day22_part02.fs" />
-		<Compile Include="day23\part01\day23_part01.fs" />
-		<Compile Include="day23\part02\day23_part02.fs" />
-		<Compile Include="day24\part01\day24_part01.fs" />
-		<Compile Include="day24\part02\day24_part02.fs" />
-		<Compile Include="day25\part01\day25_part01.fs" />
 		<Compile Include="Program.fs" />
 	</ItemGroup>
 	<ItemGroup>
@@ -86,32 +61,6 @@
 		<Content Include="day11\test_input_11.txt" />
 		<Content Include="day12\day12_input.txt" />
 		<Content Include="day12\test_input_12.txt" />
-		<Content Include="day13\day13_input.txt" />
-		<Content Include="day13\test_input_13.txt" />
-		<Content Include="day14\day14_input.txt" />
-		<Content Include="day14\test_input_14.txt" />
-		<Content Include="day15\day15_input.txt" />
-		<Content Include="day15\test_input_15.txt" />
-		<Content Include="day16\day16_input.txt" />
-		<Content Include="day16\test_input_16.txt" />
-		<Content Include="day17\day17_input.txt" />
-		<Content Include="day17\test_input_17.txt" />
-		<Content Include="day18\day18_input.txt" />
-		<Content Include="day18\test_input_18.txt" />
-		<Content Include="day19\day19_input.txt" />
-		<Content Include="day19\test_input_19.txt" />
-		<Content Include="day20\day20_input.txt" />
-		<Content Include="day20\test_input_20.txt" />
-		<Content Include="day21\day21_input.txt" />
-		<Content Include="day21\test_input_21.txt" />
-		<Content Include="day22\day22_input.txt" />
-		<Content Include="day22\test_input_22.txt" />
-		<Content Include="day23\day23_input.txt" />
-		<Content Include="day23\test_input_23.txt" />
-		<Content Include="day24\day24_input.txt" />
-		<Content Include="day24\test_input_24.txt" />
-		<Content Include="day25\day25_input.txt" />
-		<Content Include="day25\test_input_25.txt" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="day00\part01\day00_part01.fsx" />
@@ -140,31 +89,6 @@
 		<None Include="day11\part02\day11_part02.fsx" />
 		<None Include="day12\part01\day12_part01.fsx" />
 		<None Include="day12\part02\day12_part02.fsx" />
-		<None Include="day13\part01\day13_part01.fsx" />
-		<None Include="day13\part02\day13_part02.fsx" />
-		<None Include="day14\part01\day14_part01.fsx" />
-		<None Include="day14\part02\day14_part02.fsx" />
-		<None Include="day15\part01\day15_part01.fsx" />
-		<None Include="day15\part02\day15_part02.fsx" />
-		<None Include="day16\part01\day16_part01.fsx" />
-		<None Include="day16\part02\day16_part02.fsx" />
-		<None Include="day17\part01\day17_part01.fsx" />
-		<None Include="day17\part02\day17_part02.fsx" />
-		<None Include="day18\part01\day18_part01.fsx" />
-		<None Include="day18\part02\day18_part02.fsx" />
-		<None Include="day19\part01\day19_part01.fsx" />
-		<None Include="day19\part02\day19_part02.fsx" />
-		<None Include="day20\part01\day20_part01.fsx" />
-		<None Include="day20\part02\day20_part02.fsx" />
-		<None Include="day21\part01\day21_part01.fsx" />
-		<None Include="day21\part02\day21_part02.fsx" />
-		<None Include="day22\part01\day22_part01.fsx" />
-		<None Include="day22\part02\day22_part02.fsx" />
-		<None Include="day23\part01\day23_part01.fsx" />
-		<None Include="day23\part02\day23_part02.fsx" />
-		<None Include="day24\part01\day24_part01.fsx" />
-		<None Include="day24\part02\day24_part02.fsx" />
-		<None Include="day25\part01\day25_part01.fsx" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
