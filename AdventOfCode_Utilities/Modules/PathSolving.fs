@@ -45,15 +45,6 @@ let buildMaze (data: int[,]) =
 let themaze = buildMaze maze15x13
 ///////////////
 
-let getNeighbors (maze: Cell[,]) (x, y) =
-    let rows = maze.GetLength(0)
-    let cols = maze.GetLength(1)
-    [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
-    |> List.filter (fun (r, c) ->
-        r >= 0 && r < rows && c >= 0 && c < cols &&
-        match maze[r, c].Kind with Wall -> false | _ -> true
-    )
-
 let findKind (maze: Cell[,]) kind =
     maze
     |> Seq.cast<Cell>
@@ -61,8 +52,20 @@ let findKind (maze: Cell[,]) kind =
     |> fun cell -> cell.Pos
 
 
+printfn "=================== Maze Pathfinding Algorithms =================="
+printfn "::::::::::::::::::: Flood Fill :::::::::::::::::::::"
+
 // Flood fill
 let floodFill (maze: Cell[,]) : Set<Coord> =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
+
     let start = findKind maze Start
     let visited = HashSet<Coord>()
     let queue = Queue<Coord>()
@@ -81,8 +84,18 @@ let floodFill (maze: Cell[,]) : Set<Coord> =
 let resultFloodFill = floodFill themaze
 printfn "Floodfill: %A" resultFloodFill
 
+printfn "::::::::::::::::::: Flood Fill All Paths :::::::::::::::::::::"
+
 // Flood fill all paths
 let floodFillAllPaths (maze: Cell[,]) : Coord list list =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
 
@@ -106,8 +119,18 @@ allPathsFloodFill |> List.iteri(fun i p ->
         printfn "Flood fill path %A. Length: %A :: %A" (i+1) p.Length p
 )
 
+printfn "::::::::::::::::::: Flood Fill Steps :::::::::::::::::::::"
+
 // Floodfill steps
 let floodFillSteps (maze: Cell[,]) : Dictionary<Coord, int> =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
 
     let rows = maze.GetLength(0)
@@ -128,8 +151,18 @@ let floodFillSteps (maze: Cell[,]) : Dictionary<Coord, int> =
 
     steps
 
+printfn "::::::::::::::::::: Flood Fill Steps with Parents ::::::::::::::::::::"
+
 // Floodfill steps with parents
 let floodFillStepsWithParents (maze: Cell[,]) : Dictionary<Coord, int> * Dictionary<Coord, Coord> =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
 
     let rows = maze.GetLength(0)
@@ -163,8 +196,18 @@ let pathToGoal = buildPath [] goal
 printfn "Steps to goal: %d" steps.[goal]
 printfn "Path: %A" pathToGoal
 
+printfn "::::::::::::::::::: Depth-First Search :::::::::::::::::::::"
+
 // DFS
 let dfs (maze: Cell[,]) =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
     let visited = HashSet<Coord>()
@@ -193,6 +236,8 @@ let dfs (maze: Cell[,]) =
 
 let resultDFS = dfs themaze
 printfn "DFS: %A" resultDFS
+
+printfn "::::::::::::::::::: Depth-First Search All Paths :::::::::::::::::::::"
 
 // DFS All paths
 let dfsAllPaths (maze: Cell[,]) : Coord list list =
@@ -230,8 +275,18 @@ allPathdsDfs |> List.iteri(fun i p ->
         printfn "DFS path %A. Length: %A :: %A" (i+1) p.Length p
 )
 
+printfn "::::::::::::::::::: Depth-First Search Stack :::::::::::::::::::::"
+
 // Simplified DFS using an explicit stack
 let dfsStack (maze: Cell[,]) =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
     let visited = HashSet<Coord>()
@@ -261,6 +316,8 @@ let dfsStack (maze: Cell[,]) =
 let resultDFSStack = dfsStack themaze
 printfn "DFS stack: %A" resultDFSStack
 
+
+printfn "::::::::::::::::::: Depth-First Search with Explicit Stack :::::::::::::::::::::"
 
 // DFS using an explicit stack. Returns Some path from start to goal (inclusive) or None.
 let dfsWithStack (maze: Cell[,]) : Coord list option =
@@ -350,10 +407,20 @@ let printMazeWithPath (maze: Cell[,]) (pathOpt: Coord list option) =
 
 let resultDfsStack = dfsWithStack themaze
 printfn "DFS with stack: %A" resultDfsStack
-printMazeWithPath themaze resultDfsStack
+//printMazeWithPath themaze resultDfsStack
+
+printfn "::::::::::::::::::: Breadth-First Search :::::::::::::::::::::"
 
 // BFS
 let bfs (maze: Cell[,]) =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
     let visited = HashSet<Coord>()
@@ -362,28 +429,41 @@ let bfs (maze: Cell[,]) =
     queue.Enqueue(start)
     visited.Add(start) |> ignore
 
-    while queue.Count > 0 do
+    let mutable found = false
+    while queue.Count > 0 && not found do
         let current = queue.Dequeue()
-        if current = goal then queue.Clear()
-        for n in getNeighbors maze current do
-            if not (visited.Contains(n)) then
-                visited.Add(n) |> ignore
-                parent[n] <- current
-                queue.Enqueue(n)
+        if current = goal then 
+            found <- true
+        else
+            for n in getNeighbors maze current do
+                if not (visited.Contains(n)) then
+                    visited.Add(n) |> ignore
+                    parent[n] <- current
+                    queue.Enqueue(n)
 
     let rec buildPath acc pos =
         if pos = start then start :: acc
         elif parent.ContainsKey(pos) then buildPath (pos :: acc) parent[pos]
         else []
 
-    let path = buildPath [] goal
+    let path = if found then buildPath [] goal else []
     path.Length, path
 
 let resultBFS = bfs themaze
 printfn "BFS: %A" resultBFS
 
+printfn "::::::::::::::::::: Dijkstra :::::::::::::::::::::"
+
 // DIJKSTRA
 let dijkstra (maze: Cell[,]) =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
 
@@ -399,18 +479,25 @@ let dijkstra (maze: Cell[,]) =
     dist[start] <- 0
     pq.Add((0, start)) |> ignore
 
-    while pq.Count > 0 do
+    let mutable found = false
+    while pq.Count > 0 && not found do
         let (d, current) = pq.Min
         pq.Remove((d, current)) |> ignore
 
         if visited.Contains(current) then
-            () // already processed
+            () // already processed - skip duplicate
+        elif current = goal then
+            found <- true // early termination
         else
             visited.Add(current) |> ignore
 
             for neighbor in getNeighbors maze current do
                 let alt = d + 1 // uniform cost
-                if not (dist.ContainsKey(neighbor)) || alt < dist[neighbor] then
+                if not (visited.Contains(neighbor)) && 
+                   (not (dist.ContainsKey(neighbor)) || alt < dist[neighbor]) then
+                    // Remove old entry if exists (to avoid duplicates)
+                    if dist.ContainsKey(neighbor) then
+                        pq.Remove((dist[neighbor], neighbor)) |> ignore
                     dist[neighbor] <- alt
                     parent[neighbor] <- current
                     pq.Add((alt, neighbor)) |> ignore
@@ -421,7 +508,7 @@ let dijkstra (maze: Cell[,]) =
         elif parent.ContainsKey(pos) then buildPath (pos :: acc) parent[pos]
         else []
 
-    let path = buildPath [] goal
+    let path = if found then buildPath [] goal else []
     path.Length, path
 
 let resultDijkstra = dijkstra themaze
@@ -430,12 +517,24 @@ printfn "Dijkstra: %A" resultDijkstra
 // A*
 let manhattan (x1, y1) (x2, y2) = abs(x1 - x2) + abs(y1 - y2)
 
+
+printfn "::::::::::::::::::: A* Search :::::::::::::::::::::"
+
 let aStar (maze: Cell[,]) =
+    let getNeighbors (maze: Cell[,]) (x, y) =
+        let rows = maze.GetLength(0)
+        let cols = maze.GetLength(1)
+        [ (x-1, y); (x+1, y); (x, y-1); (x, y+1) ]
+        |> List.filter (fun (r, c) ->
+            r >= 0 && r < rows && c >= 0 && c < cols &&
+            match maze[r, c].Kind with Wall -> false | _ -> true
+        )
     let start = findKind maze Start
     let goal = findKind maze Goal
     let gScore = Dictionary<Coord, int>()
     let fScore = Dictionary<Coord, int>()
     let parent = Dictionary<Coord, Coord>()
+    let closedSet = HashSet<Coord>()
     let openSet = SortedSet<(int * Coord)>(Comparer<(int * Coord)>.Create(fun (f1, c1) (f2, c2) ->
         if f1 <> f2 then compare f1 f2 else compare c1 c2
     ))
@@ -444,24 +543,36 @@ let aStar (maze: Cell[,]) =
     fScore[start] <- manhattan start goal
     openSet.Add((fScore[start], start)) |> ignore
 
-    while openSet.Count > 0 do
+    let mutable found = false
+    while openSet.Count > 0 && not found do
         let (_, current) = openSet.Min
         openSet.Remove((fScore[current], current)) |> ignore
-        if current = goal then openSet.Clear()
-        for n in getNeighbors maze current do
-            let tentativeG = gScore[current] + 1
-            if not (gScore.ContainsKey(n)) || tentativeG < gScore[n] then
-                parent[n] <- current
-                gScore[n] <- tentativeG
-                fScore[n] <- tentativeG + manhattan n goal
-                openSet.Add((fScore[n], n)) |> ignore
+        
+        if closedSet.Contains(current) then
+            () // already processed - skip duplicate
+        elif current = goal then
+            found <- true // early termination
+        else
+            closedSet.Add(current) |> ignore
+            
+            for n in getNeighbors maze current do
+                if not (closedSet.Contains(n)) then
+                    let tentativeG = gScore[current] + 1
+                    if not (gScore.ContainsKey(n)) || tentativeG < gScore[n] then
+                        // Remove old entry if exists (to avoid duplicates)
+                        if fScore.ContainsKey(n) then
+                            openSet.Remove((fScore[n], n)) |> ignore
+                        parent[n] <- current
+                        gScore[n] <- tentativeG
+                        fScore[n] <- tentativeG + manhattan n goal
+                        openSet.Add((fScore[n], n)) |> ignore
 
     let rec buildPath acc pos =
         if pos = start then start :: acc
         elif parent.ContainsKey(pos) then buildPath (pos :: acc) parent[pos]
         else []
 
-    let path = buildPath [] goal
+    let path = if found then buildPath [] goal else []
     path.Length, path
 
 let resultAStar = aStar themaze
