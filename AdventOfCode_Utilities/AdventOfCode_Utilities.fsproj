@@ -4,6 +4,8 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
+		<Compile Include="Modules\GameOfLife.fs" />
+		<Compile Include="Modules\PathSolving.fs" />
 		<Compile Include="Modules\Tetris.fs" />
 		<Compile Include="Modules\Tuple2.fs" />
 		<None Include="Modules\SearchAlgos\A_Star_graph.fs" />
