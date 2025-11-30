@@ -4,6 +4,7 @@ open AdventOfCode_2025.Modules
 
 
 let execute() =
-    let path = "day02/day02_input.txt"
+    let path = "day02/test_input_02.txt"
+    //let path = "day02/day02_input.txt"
     let content = LocalHelper.GetLinesFromFile path
     0
