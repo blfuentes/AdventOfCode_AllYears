@@ -40,7 +40,7 @@ pub fn safe_mod(a: i32, b: i32) -> i32 {
 
 // Helper function for floodDiv
 pub fn floor_div(a: i32, b: i32) -> i32 {
-    (a as f64 / b as f64).floor() as i32
+    a.div_euclid(b)
 }
 
 #[cfg(test)]
