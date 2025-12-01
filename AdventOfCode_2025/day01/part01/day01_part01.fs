@@ -1,35 +1,29 @@
 ﻿module day01_part01
 
 open AdventOfCode_2025.Modules
+open AdventOfCode_Utilities
 
-type Orientation =
-    | Left
-    | Right
-
-type Movement = {
-        Orientation: Orientation
-        Steps: int
-    }
+type Movement =
+    | Left of int
+    | Right of int
 
 let parseContent (lines: string array) =
     lines
     |> Array.map (fun line ->
         match line[0] with
-        | 'L' -> { Orientation = Left; Steps = int(line[1..]) }
-        | 'R' -> { Orientation = Right; Steps = int(line[1..]) }
+        | 'L' -> Left(int(line[1..]))
+        | 'R' -> Right(int(line[1..]))
         | _ -> failwith "Invalid input"
     )
 
-let getPassword(diallectures: Movement array) =
-    let mutable initial = 50
-    let mutable count = 0
-    for diallecture in diallectures do
-        match diallecture.Orientation with
-        | Left -> initial <- (initial - diallecture.Steps) % 100
-        | Right -> initial <- (initial + diallecture.Steps) % 100
-        if initial = 0 then
-            count <- count + 1
-    count
+let getPassword (diallectures: Movement array) =
+    diallectures |> Array.fold (fun ((pos, count): int*int) (diallecture: Movement) ->
+        let newPos =
+            match diallecture with
+            | Left steps -> safeModulo(pos - steps) 100
+            | Right steps -> safeModulo(pos + steps) 100
+        (newPos, if newPos = 0 then count + 1 else count)
+    ) (50, 0) |> snd
 
 let execute() =
     //let path = "day01/test_input_01.txt"
