@@ -36,6 +36,27 @@ let getPassword rotations =
     
     rotations |> Array.fold step (50, 0) |> snd
 
+// Brute force...
+//let getPassword rotations =
+//    let step (pos, count) rotation =
+//        let movement = 
+//            match rotation with
+//            | Left steps -> -steps
+//            | Right steps -> steps
+//        let mutable newPos = pos
+//        let mutable counting = count
+//        for _ in 1 .. Math.Abs(movement) do
+//            newPos <- newPos + if movement > 0 then 1 else -1
+//            if newPos = 100 then
+//                newPos <- 0
+//            elif newPos < 0 then
+//                newPos <- 99
+//            if newPos = 0 then
+//                counting <- counting + 1
+//        (newPos, counting)
+    
+//    rotations |> Array.fold step (50, 0) |> snd
+
 let execute() =
     //let path = "day01/test_input_01.txt"
     let path = "day01/day01_input.txt"
