@@ -8,3 +8,8 @@ pub fn solve_part1() -> i32 {
 pub fn solve_part2() -> i32 {
     day01_part2::solve()
 }
+
+pub enum Rotation {
+    Left(i32),
+    Right(i32)
+}

@@ -33,6 +33,16 @@ pub fn parse_i64s_symbol(s: &str, sep: char) -> Vec<i64> {
     s.split(sep).filter_map(|t| t.parse::<i64>().ok()).collect()
 }
 
+// Helper function for modulo that handles negative numbers correctly
+pub fn safe_mod(a: i32, b: i32) -> i32 {
+    ((a % b) + b) % b
+}
+
+// Helper function for floodDiv
+pub fn floor_div(a: i32, b: i32) -> i32 {
+    (a as f64 / b as f64).floor() as i32
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

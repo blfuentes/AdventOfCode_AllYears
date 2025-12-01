@@ -16,7 +16,7 @@ pub fn solve_with_input(file_path: Option<&str>) -> i32 {
 mod tests {
     use super::*;
     #[test]
-    fn dat07_part_1_matches() {
+    fn day07_part_1_matches() {
         let result = solve_with_input(Some("day07/test_input_01"));
         assert_eq!(result, 0);
     }
