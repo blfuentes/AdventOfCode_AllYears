@@ -56,4 +56,18 @@ mod tests {
         let v = split_nonempty_lines("a\n\nb\n");
         assert_eq!(v, vec!["a", "b"]);
     }
+
+    #[test]
+    fn test_safe_mod() {
+        assert_eq!(safe_mod(5, 3), 2);
+        assert_eq!(safe_mod(-1, 3), 2);
+        assert_eq!(safe_mod(-4, 3), 2);
+    }
+
+    #[test]
+    fn test_floor_div() {
+        assert_eq!(floor_div(5, 3), 1);
+        assert_eq!(floor_div(-1, 3), -1);
+        assert_eq!(floor_div(-4, 3), -2);
+    }
 }
