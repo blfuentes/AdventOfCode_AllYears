@@ -3,7 +3,8 @@
 open AdventOfCode_2025.Modules
 
 let execute() =
-    let path = "day03/day03_input.txt"
+    let path = "day03/test_input_03.txt"
+    //let path = "day03/day03_input.txt"
     let content = LocalHelper.GetContentFromFile path
     0
     

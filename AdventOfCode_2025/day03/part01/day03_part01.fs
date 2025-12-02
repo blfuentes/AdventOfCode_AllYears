@@ -8,6 +8,7 @@ let calculateLine(part: (int*int) list) =
     |> List.reduce (+)
 
 let execute() =
-    let path = "day03/day03_input.txt"
+    let path = "day03/test_input_03.txt"
+    //let path = "day03/day03_input.txt"
     let content = LocalHelper.GetLinesFromFile path
     0
