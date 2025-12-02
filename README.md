@@ -394,7 +394,7 @@ https://adventofcode.com/2025
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2025/day/1): Secret Entrance	| ✔️ [F#](./AdventOfCode_2025/day01/part01/day01_part01.fs) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part1.rs) | ✔️ [F#](./AdventOfCode_2025/day01/part02/day01_part02.fs) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part2.rs) |
-| [Day 2](https://adventofcode.com/2025/day/2):	Gift Shop		| ✔️ [F#](./AdventOfCode_2025/day02/part01/day02_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day02/part02/day01_part02.fs) |
+| [Day 2](https://adventofcode.com/2025/day/2):	Gift Shop		| ✔️ [F#](./AdventOfCode_2025/day02/part01/day02_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day02/part02/day02_part02.fs) |
 | [Day 3](https://adventofcode.com/2025/day/3):					| ❌ | ❌ |
 | [Day 4](https://adventofcode.com/2025/day/4):					| ❌ | ❌ |
 | [Day 5](https://adventofcode.com/2025/day/5):					| ❌ | ❌ |
