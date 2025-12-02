@@ -385,7 +385,7 @@ https://adventofcode.com/2024
 
 ## Advent Of Code 2025
 
-### 2025 F#/Rust
+### 2025 F#/Go/Rust
 
 https://adventofcode.com/2025
 
@@ -393,8 +393,8 @@ https://adventofcode.com/2025
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
-| [Day 1](https://adventofcode.com/2025/day/1): Secret Entrance	| ✔️ [F#](./AdventOfCode_2025/day01/day01_part01.fs) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part1.rs) | ✔️ [F#](./AdventOfCode_2025/day01/day01_part02.fs) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part2.rs) |
-| [Day 2](https://adventofcode.com/2025/day/2):	Gift Shop		| ✔️ [F#](./AdventOfCode_2025/day02/day02_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day02/day02_part02.fs) |
+| [Day 1](https://adventofcode.com/2025/day/1): Secret Entrance	| ✔️ [F#](./AdventOfCode_2025/day01/day01_part01.fs) - [Go](./AdventOfCode_2025_Go/day01/day01_1.go) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part1.rs) | ✔️ [F#](./AdventOfCode_2025/day01/day01_part02.fs) - [Go](./AdventOfCode_2025_Go/day01/day01_2.go) - [Rust](./AdventOfCode_2025_Rust/src/day01/day01_part2.rs) |
+| [Day 2](https://adventofcode.com/2025/day/2):	Gift Shop		| ✔️ [F#](./AdventOfCode_2025/day02/day02_part01.fs) - [Go](./AdventOfCode_2025_Go/day02/day02_1.go) | ✔️ [F#](./AdventOfCode_2025/day02/day02_part02.fs) - [Go](./AdventOfCode_2025_Go/day02/day02_2.go) |
 | [Day 3](https://adventofcode.com/2025/day/3):					| ❌ | ❌ |
 | [Day 4](https://adventofcode.com/2025/day/4):					| ❌ | ❌ |
 | [Day 5](https://adventofcode.com/2025/day/5):					| ❌ | ❌ |

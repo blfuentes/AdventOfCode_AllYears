@@ -218,3 +218,15 @@ type Int64Array []int64
 func (a Int64Array) Len() int           { return len(a) }
 func (a Int64Array) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a Int64Array) Less(i, j int) bool { return a[i] < a[j] }
+
+func SafeModulo(a, b int) int {
+	result := a % b
+	if result < 0 {
+		result += b
+	}
+	return result
+}
+
+func FloorDiv(a, b int) int {
+	return int(math.Floor(float64(a) / float64(b)))
+}
