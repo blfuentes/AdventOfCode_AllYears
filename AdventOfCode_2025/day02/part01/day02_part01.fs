@@ -1,6 +1,7 @@
 ﻿module day02_part01
 
 open AdventOfCode_2025.Modules
+open System
 
 let parseContent (lines: string) =
     let parts = lines.Split(",")
@@ -9,15 +10,36 @@ let parseContent (lines: string) =
         (bigint.Parse(part.Split("-")[0]), bigint.Parse(part.Split("-")[1]))    
     )
 
+// slower...
+//let coundInvalidIds(ranges: (bigint * bigint) array) =
+//    let notValid(id: bigint) =
+//        let stringyId = id.ToString()
+//        let firstPart = stringyId.Substring(0, stringyId.Length / 2)
+//        let secondPart = stringyId.Substring(stringyId.Length / 2)
+//        firstPart = secondPart
+//    ranges
+//    |> Seq.collect(fun (start, end') ->
+//        [start..end']
+//        |> Seq.filter(fun id -> notValid(id))
+//    )
+//    |> Seq.sum
+
 let coundInvalidIds(ranges: (bigint * bigint) array) =
     let notValid(id: bigint) =
         let stringyId = id.ToString()
-        let firstPart = stringyId.Substring(0, stringyId.Length / 2)
-        let secondPart = stringyId.Substring(stringyId.Length / 2)
-        firstPart = secondPart
+        let len = stringyId.Length
+        
+        if len % 2 <> 0 then false
+        else
+            let halfLen = len / 2
+            let span = stringyId.AsSpan()
+            let firstHalf = span.Slice(0, halfLen)
+            let secondHalf = span.Slice(halfLen, halfLen)
+            firstHalf.SequenceEqual(secondHalf)
+    
     ranges
     |> Seq.collect(fun (start, end') ->
-        [start..end']
+        seq { start..end' }
         |> Seq.filter(fun id -> notValid(id))
     )
     |> Seq.sum
