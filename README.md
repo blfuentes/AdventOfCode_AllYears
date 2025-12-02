@@ -385,7 +385,7 @@ https://adventofcode.com/2024
 
 ## Advent Of Code 2025
 
-### 2025 F#
+### 2025 F#/Rust
 
 https://adventofcode.com/2025
 
