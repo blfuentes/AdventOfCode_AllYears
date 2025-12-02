@@ -66,7 +66,7 @@ let coundInvalidIds(ranges: (bigint * bigint) array) =
     ranges
     |> Seq.collect(fun (start, end') ->
         seq { start..end' }
-        |> Seq.filter(fun id -> notValid(id))
+        |> Seq.filter notValid
     )
     |> Seq.sum
 
