@@ -10,16 +10,19 @@ let parseContent (lines: string array) =
     )
 
 let findJoltage(bank: int array) =
-    let joltageParts = ResizeArray<string>()
-    let mutable init = 0
-    for i in 11 .. -1 .. 0 do
-        let part = Array.max (bank |> Array.take(bank.Length - i) |> Array.skip(init))
-        joltageParts.Add(part.ToString())
-        let idx = Array.findIndex (fun x -> x = part) (bank |> Array.skip(init))
-        init <- init + idx + 1
-    let value = (String.concat"" joltageParts)
-    //printfn "%s" value
-    bigint.Parse(value)
+    let rec findMaxValues i init acc =
+        if i < 0 then acc
+        else
+            let windowEnd = bank.Length - i
+            let slice = bank |> Array.take windowEnd |> Array.skip init
+            let maxVal = Array.max slice
+            let idx = Array.findIndex (fun x -> x = maxVal) (bank |> Array.skip init)
+            let newInit = init + idx + 1
+            findMaxValues (i - 1) newInit (maxVal :: acc)
+    
+    findMaxValues 11 0 [] 
+    |> List.rev
+    |> List.fold (fun acc digit -> acc * 10I + bigint digit) 0I
 
 let sumJoltages (banks: int array array) =
     banks
@@ -32,4 +35,3 @@ let execute() =
     let content = LocalHelper.GetLinesFromFile path
     let banks = parseContent content
     sumJoltages banks
-    

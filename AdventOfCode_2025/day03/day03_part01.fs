@@ -10,10 +10,18 @@ let parseContent (lines: string array) =
     )
 
 let findJoltage(bank: int array) =
-    let firstJoltage = Array.max (bank |> Array.take(bank.Length - 1))
-    let idx = Array.findIndex (fun x -> x = firstJoltage) bank
-    let secnodJoltage = Array.max (bank |> Array.skip(idx+1))
-    (sprintf "%d%d" firstJoltage secnodJoltage) |> int
+    let firstIdx, firstMax = 
+        bank 
+        |> Array.take(bank.Length - 1)
+        |> Array.indexed
+        |> Array.maxBy snd
+    
+    let secondMax = 
+        bank 
+        |> Array.skip(firstIdx + 1)
+        |> Array.max
+    
+    firstMax * 10 + secondMax
 
 let sumJoltages (banks: int array array) =
     banks
