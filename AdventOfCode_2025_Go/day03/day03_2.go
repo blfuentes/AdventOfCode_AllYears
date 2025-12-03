@@ -13,7 +13,6 @@ func Executepart2() int64 {
 	var fileName string = "./day03/day03.txt"
 	if fileContent, err := utilities.ReadFileAsLines(fileName); err == nil {
 		for _, line := range fileContent {
-			values := make([]int64, 12)
 			init := 0
 			for c := 11; c >= 0; c-- {
 				current := byte('0')
@@ -25,10 +24,7 @@ func Executepart2() int64 {
 						init = idx + 1
 					}
 				}
-				values[11-c] = int64(current - '0')
-			}
-			for idx, v := range values {
-				result += v * int64(math.Pow(10, float64(11-idx)))
+				result += int64(current-'0') * int64(math.Pow(10, float64(c)))
 			}
 		}
 	}
