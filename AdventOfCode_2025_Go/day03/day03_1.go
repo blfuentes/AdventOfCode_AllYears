@@ -14,20 +14,20 @@ func Executepart1() int {
 			var first byte = '0'
 			var second byte = '0'
 			found := 0
+
 			for idx := 0; idx < len(line)-1; idx++ {
-				char := line[idx]
-				if char > first {
-					first = char
+				if line[idx] > first {
+					first = line[idx]
 					found = idx
 				}
 			}
+
 			for idx := found + 1; idx < len(line); idx++ {
-				char := line[idx]
-				if char > second {
-					second = char
+				if line[idx] > second {
+					second = line[idx]
 				}
 			}
-			// fmt.Printf("%c%c\n", first, second)
+
 			result += int(first-'0')*10 + int(second-'0')
 		}
 	}
