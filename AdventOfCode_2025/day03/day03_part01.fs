@@ -1,11 +1,6 @@
 ﻿module day03_part01
 
 open AdventOfCode_2025.Modules
-  
-let calculateLine(part: (int*int) list) =
-    part
-    |> List.map(fun (a, b) -> a*b)
-    |> List.reduce (+)
 
 let parseContent (lines: string array) =
     lines
