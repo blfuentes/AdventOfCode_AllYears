@@ -47,8 +47,7 @@ func Executepart2() int {
 				}
 			}
 		}
-		for !toDelete.IsEmpty() {
-			paper, _ := toDelete.Dequeue()
+		for paper, ok := toDelete.Dequeue(); ok; paper, ok = toDelete.Dequeue() {
 			result++
 			for _, delta := range neighbors {
 				nr := paper[0] + delta[0]
