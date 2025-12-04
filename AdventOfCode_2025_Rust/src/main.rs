@@ -43,9 +43,9 @@ fn main() {
     // Day 02
     run_solution(2, 1, day02::day02_part1::solve);
     run_solution(2, 2, day02::day02_part2::solve);
-    // // Day 03
-    // run_solution(3, 1, day03::day03_part1::solve);
-    // run_solution(3, 2, day03::day03_part2::solve);
+    // Day 03
+    run_solution(3, 1, day03::day03_part1::solve);
+    run_solution(3, 2, day03::day03_part2::solve);
     // // Day 04
     // run_solution(4, 1, day04::day04_part1::solve);
     // run_solution(4, 2, day04::day04_part2::solve);
