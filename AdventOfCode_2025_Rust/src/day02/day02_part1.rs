@@ -9,7 +9,6 @@ fn is_not_valid(num: i64) -> bool {
     let mut temp = num;
     let mut digit_count = 0;
     
-    // Count digits without string allocation
     while temp > 0 {
         temp /= 10;
         digit_count += 1;

@@ -18,7 +18,6 @@ fn find_joltage(line: &str) -> i64 {
     for i in (0..12).rev() {
         let window_end = len - i;
         
-        // Find max in slice[init..window_end]
         let mut max_val = 0;
         let mut max_idx = 0;
         

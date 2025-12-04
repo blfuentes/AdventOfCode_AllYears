@@ -9,7 +9,6 @@ fn find_joltage(line: &str) -> i32 {
     let bytes = line.as_bytes();
     let len = bytes.len();
     
-    // Find first max (max value, leftmost if tie)
     let mut first_max = 0;
     let mut first_idx = 0;
     
@@ -21,7 +20,6 @@ fn find_joltage(line: &str) -> i32 {
         }
     }
     
-    // Find second max after first_idx
     let mut second_max = 0;
     for i in (first_idx + 1)..len {
         let digit = (bytes[i] - b'0') as i32;
