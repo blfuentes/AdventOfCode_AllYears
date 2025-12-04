@@ -5,7 +5,7 @@ pub fn solve() -> i32 {
 }
 
 pub fn solve_with_input(file_path: Option<&str>) -> i32 {
-    let default_path = "day08/day08_input";
+    let default_path = "day08/day08_input.txt";
     let file_path = file_path.unwrap_or(default_path);
     let input = read_day_input(file_path).expect("failed to read input");
     let lines = split_nonempty_lines(&input);
@@ -17,7 +17,7 @@ mod tests {
     use super::*;
     #[test]
     fn day08_part_1_matches() {
-        let result = solve_with_input(Some("day08/test_input_01"));
+        let result = solve_with_input(Some("day08/test_input_08.txt"));
         assert_eq!(result, 0);
     }
 }

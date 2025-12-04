@@ -4,21 +4,38 @@ pub fn solve() -> i64 {
     solve_with_input(None)
 }
 
-fn is_not_valid(num: i64) -> bool {
-    let digits = num.to_string();
-    let length = digits.len();
-    let bytes = digits.as_bytes();
+#[inline]
+fn get_digit_at(num: i64, pos: usize, total_digits: u32) -> i64 {
+    (num / 10_i64.pow(total_digits - pos as u32 - 1)) % 10
+}
 
-    for pattern_len in 1..=(length / 2) {
-        if length % pattern_len != 0 {
+#[inline]
+fn count_digits(mut num: i64) -> u32 {
+    let mut count = 0;
+    while num > 0 {
+        num /= 10;
+        count += 1;
+    }
+    count
+}
+
+fn is_not_valid(num: i64) -> bool {
+    let digit_count = count_digits(num);
+    
+    for pattern_len in 1..=(digit_count / 2) {
+        if digit_count % pattern_len != 0 {
             continue;
         }
         
-        let is_pattern = (pattern_len..length)
-            .step_by(pattern_len)
-            .all(|offset| {
-                (0..pattern_len).all(|i| bytes[i] == bytes[offset + i])
-            });
+        let mut is_pattern = true;
+        'outer: for offset in (pattern_len..digit_count).step_by(pattern_len as usize) {
+            for i in 0..pattern_len {
+                if get_digit_at(num, i as usize, digit_count) != get_digit_at(num, (offset + i) as usize, digit_count) {
+                    is_pattern = false;
+                    break 'outer;
+                }
+            }
+        }
         
         if is_pattern {
             return true;
@@ -28,7 +45,7 @@ fn is_not_valid(num: i64) -> bool {
 }
 
 pub fn solve_with_input(file_path: Option<&str>) -> i64 {
-    let input = read_day_input(file_path.unwrap_or("day02/day02_input"))
+    let input = read_day_input(file_path.unwrap_or("day02/day02_input.txt"))
         .expect("failed to read input");
     
     input
@@ -50,7 +67,7 @@ mod tests {
     
     #[test]
     fn day02_part_2_matches() {
-        let result = solve_with_input(Some("day02/test_input_02"));
+        let result = solve_with_input(Some("day02/test_input_02.txt"));
         assert_eq!(result, 4174379265);
     }
 

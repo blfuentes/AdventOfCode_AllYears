@@ -4,17 +4,32 @@ pub fn solve() -> i64 {
     solve_with_input(None)
 }
 
+#[inline]
 fn is_not_valid(num: i64) -> bool {
-    let digits = num.to_string();
-    if digits.len() % 2 != 0 {
+    let mut temp = num;
+    let mut digit_count = 0;
+    
+    // Count digits without string allocation
+    while temp > 0 {
+        temp /= 10;
+        digit_count += 1;
+    }
+    
+    if digit_count % 2 != 0 {
         return false;
     }
-    let half_len = digits.len() / 2;
-    digits[..half_len] == digits[half_len..]
+    
+    let half = digit_count / 2;
+    let divisor = 10_i64.pow(half);
+    
+    let left_half = num / divisor;
+    let right_half = num % divisor;
+    
+    left_half == right_half
 }
 
 pub fn solve_with_input(file_path: Option<&str>) -> i64 {
-    let input = read_day_input(file_path.unwrap_or("day02/day02_input"))
+    let input = read_day_input(file_path.unwrap_or("day02/day02_input.txt"))
         .expect("failed to read input");
     
     input
@@ -36,7 +51,7 @@ mod tests {
     
     #[test]
     fn day02_part_1_matches() {
-        let result = solve_with_input(Some("day02/test_input_02"));
+        let result = solve_with_input(Some("day02/test_input_02.txt"));
         assert_eq!(result, 1227775554);
     }
 

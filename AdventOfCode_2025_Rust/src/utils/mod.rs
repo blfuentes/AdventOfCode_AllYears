@@ -5,7 +5,7 @@ use std::path::PathBuf;
 /// Example: file_path = "day01/test_input_01" -> <root>/day01/test_input_01.txt
 pub fn input_path(file_path: &str) -> PathBuf {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    root.join(format!("src/{file_path}.txt"))
+    root.join(format!("src/{file_path}"))
 }
 
 pub fn read_day_input(file_path: &str) -> std::io::Result<String> {
@@ -48,7 +48,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_input_path() {
-        let p = input_path("day01/test_input_01");
+        let p = input_path("day01/test_input_01.txt");
         assert!(p.ends_with("day01/test_input_01.txt"));
     }
     #[test]
