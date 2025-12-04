@@ -8,7 +8,7 @@ import (
 	"github.com/blfuentes/AdventOfCode_2025_Go/day02"
 	"github.com/blfuentes/AdventOfCode_2025_Go/day03"
 	"github.com/blfuentes/AdventOfCode_2025_Go/day04"
-	// "github.com/blfuentes/AdventOfCode_2025_Go/day05"
+	"github.com/blfuentes/AdventOfCode_2025_Go/day05"
 	// "github.com/blfuentes/AdventOfCode_2025_Go/day06"
 	// "github.com/blfuentes/AdventOfCode_2025_Go/day07"
 	// "github.com/blfuentes/AdventOfCode_2025_Go/day08"
@@ -52,13 +52,13 @@ func main() {
 	fmt.Printf("Final result Day 04 part 2: %d", day04.Executepart2())
 	fmt.Printf(" in %v\n", time.Since(timer))
 
-	// // Day 05
-	// timer = time.Now()
-	// fmt.Printf("Final result Day 05 part 1: %d", day05.Executepart1())
-	// fmt.Printf(" in %v\n", time.Since(timer))
-	// timer = time.Now()
-	// fmt.Printf("Final result Day 05 part 2: %d", day05.Executepart2())
-	// fmt.Printf(" in %v\n", time.Since(timer))
+	// Day 05
+	timer = time.Now()
+	fmt.Printf("Final result Day 05 part 1: %d", day05.Executepart1())
+	fmt.Printf(" in %v\n", time.Since(timer))
+	timer = time.Now()
+	fmt.Printf("Final result Day 05 part 2: %d", day05.Executepart2())
+	fmt.Printf(" in %v\n", time.Since(timer))
 
 	// // Day 06
 	// timer = time.Now()

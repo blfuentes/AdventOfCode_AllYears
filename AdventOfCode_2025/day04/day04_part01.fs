@@ -26,47 +26,22 @@ let getNeighbors (row: int) (col: int) =
     |> List.filter (fun (r, c) -> r >= 0 && r <= maxRow && c >= 0 && c <= maxCol)
 
 let countAccessible(grid: char[,]) =
-    let transformaed =
-        grid
-        |> Array2D.mapi (fun row col value ->
-            if value = '.' then 
-                9 
-            else
-                let neighbors = getNeighbors row col
-                let accessibleNeighbors =
-                    neighbors
-                    |> List.filter (fun (r, c) -> grid[r, c] = '@')
-                    |> List.length
-                accessibleNeighbors
-        )
-    [
-        for row in 0 .. maxRow do
-            for col in 0 .. maxCol do
-                if transformaed[row, col] < 4 then
-                    yield (row, col, transformaed[row, col])
-    ]
-    |> Seq.length
-
-let printGrid(grid: char[,]) =
-    for row in 0 .. maxRow do
-        for col in 0 .. maxCol do
-            let char = 
-                if grid[row, col] = '.' then
-                    "."
-                else
-                    let neighbors = 
+    seq {
+        for row in 0 .. Array2D.length1 grid - 1 do
+            for col in 0 .. Array2D.length2 grid - 1 do
+                if grid[row, col] = '@' then
+                    let accessibleNeighbors =
                         getNeighbors row col
                         |> List.filter (fun (r, c) -> grid[r, c] = '@')
-                    neighbors.Length.ToString()
-
-            printf "%s" char
-            //printf "%c" grid[row, col]
-        printfn ""
+                        |> List.length
+                    if accessibleNeighbors < 4 then
+                        yield 1
+    }
+    |> Seq.sum
 
 let execute() =
     //let path = "day04/test_input_04.txt"
     let path = "day04/day04_input.txt"
     let content = LocalHelper.GetLinesFromFile path
     let grid = parseInput content
-    //printGrid grid
     countAccessible grid
