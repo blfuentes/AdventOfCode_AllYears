@@ -606,11 +606,11 @@ module Utilities =
         else input.Substring(0, index) + newValue + input.Substring(index + oldValue.Length)
     ///////////////////////////////////////////////////////////////////////////////////
     
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Formats ticks into mm:ss:ms
+    // Formats ticks into mm:ss:ms:μs
     let ms ticks =
         let timespan = (TimeSpan.FromTicks ticks)
-        sprintf "%02i:%02i.%03i" timespan.Minutes timespan.Seconds timespan.Milliseconds
+        let microseconds = (ticks % 10000L) / 10L
+        sprintf "%02i:%02i.%03i.%03i" timespan.Minutes timespan.Seconds timespan.Milliseconds microseconds
     ///////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////////////

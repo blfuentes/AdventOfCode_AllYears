@@ -25,14 +25,15 @@ where
     let result = solve_fn();
     let duration = start.elapsed();
 
-    let total_secs = duration.as_secs();
-    let minutes = total_secs / 60;
-    let seconds = total_secs % 60;
-    let micros = duration.subsec_micros();
+    let total_micros = duration.as_micros();
+    let minutes = total_micros / 60_000_000;
+    let seconds = (total_micros % 60_000_000) / 1_000_000;
+    let millis = (total_micros % 1_000_000) / 1_000;
+    let micros = total_micros % 1_000;
 
     println!(
-        "Final result Day {:02} part {}: {} in {:02}:{:02}.{:06}",
-        day, part, result, minutes, seconds, micros
+        "Final result Day {:02} part {}: {} in {:02}:{:02}:{:03}:{:03}",
+        day, part, result, minutes, seconds, millis, micros
     );
 }
 
