@@ -2,13 +2,66 @@ package utilities
 
 import (
 	"fmt"
+	"io"
 	"math"
+	"net/http"
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 
 	"github.com/fatih/color"
 )
+
+func RetrieveContent(year, day int) {
+	path := fmt.Sprintf("./day%02d/day%02d.txt", day, day)
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.WriteFile(path, []byte(""), 0644)
+	}
+
+	fileContent, err := os.ReadFile(path)
+	if err != nil || strings.TrimSpace(string(fileContent)) == "" {
+		sessionKey, err := os.ReadFile("./session.txt")
+		if err != nil {
+			fmt.Printf("Error reading session.txt: %v\n", err)
+			return
+		}
+
+		url := fmt.Sprintf("https://adventofcode.com/%d/day/%d/input", year, day)
+		client := &http.Client{}
+		req, err := http.NewRequest("GET", url, nil)
+		if err != nil {
+			fmt.Printf("Error creating request: %v\n", err)
+			return
+		}
+
+		req.Header.Add("Cookie", fmt.Sprintf("session=%s", strings.TrimSpace(string(sessionKey))))
+
+		resp, err := client.Do(req)
+		if err != nil {
+			fmt.Printf("Error making request: %v\n", err)
+			return
+		}
+		defer resp.Body.Close()
+
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Printf("Error reading response: %v\n", err)
+			return
+		}
+
+		content := string(body)
+
+		// only for windows...
+		if runtime.GOOS == "windows" && !strings.Contains(content, "\r\n") {
+			content = strings.ReplaceAll(content, "\n", "\r\n")
+			content = strings.TrimRight(content, "\r\n")
+		}
+
+		os.WriteFile(path, []byte(content), 0644)
+	}
+}
 
 func ReadFileAsText(path string) (string, error) {
 	var fileName string = path

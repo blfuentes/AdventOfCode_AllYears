@@ -14,7 +14,9 @@ let getInput year day =
         let url = sprintf "https://adventofcode.com/%d/day/%d/input" year day
         let client = new HttpClient()
         client.DefaultRequestHeaders.Add("Cookie", sprintf "session=%s" sessionKey)
-        let content = client.GetStringAsync(url).Result
+        let mutable content = client.GetStringAsync(url).Result
+        if not (content.Contains($"{System.Environment.NewLine}")) then
+            content <- content.Replace("\n", System.Environment.NewLine).TrimEnd()
         LocalHelper.WriteContentToFile(path, content)
         ignore()
 
@@ -56,7 +58,7 @@ let main argv =
     let (resultday05Part1, time05_1) = Utilities.duration day05_part01.execute
     printfn "Final result Day 05 part 1: %A in %s" resultday05Part1 (Utilities.ms time05_1)
     let (resultday05Part2, time05_2) = Utilities.duration day05_part02.execute
-    printfn "Final result Day 05 part 2: %A in %s" resultday05Part2 (Utilities.ms time05_1)
+    printfn "Final result Day 05 part 2: %A in %s" resultday05Part2 (Utilities.ms time05_2)
 
     // DAY 06
     getInput 2025 6
