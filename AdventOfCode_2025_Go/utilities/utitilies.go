@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"math"
@@ -20,13 +21,33 @@ func RetrieveContent(year, day int) {
 		os.WriteFile(path, []byte(""), 0644)
 	}
 
-	fileContent, err := os.ReadFile(path)
-	if err != nil || strings.TrimSpace(string(fileContent)) == "" {
-		sessionKey, err := os.ReadFile("./session.txt")
+	file, err := os.Open(path)
+	if err != nil {
+		fmt.Printf("Error opening file: %v\n", err)
+		return
+	}
+
+	scanner := bufio.NewScanner(file)
+	var hasContent bool
+	for scanner.Scan() {
+		if strings.TrimSpace(scanner.Text()) != "" {
+			hasContent = true
+			break
+		}
+	}
+	file.Close()
+
+	if !hasContent {
+		sessionFile, err := os.Open("./session.txt")
 		if err != nil {
 			fmt.Printf("Error reading session.txt: %v\n", err)
 			return
 		}
+		defer sessionFile.Close()
+
+		sessionScanner := bufio.NewScanner(sessionFile)
+		sessionScanner.Scan()
+		sessionKey := strings.TrimSpace(sessionScanner.Text())
 
 		url := fmt.Sprintf("https://adventofcode.com/%d/day/%d/input", year, day)
 		client := &http.Client{}
@@ -36,7 +57,7 @@ func RetrieveContent(year, day int) {
 			return
 		}
 
-		req.Header.Add("Cookie", fmt.Sprintf("session=%s", strings.TrimSpace(string(sessionKey))))
+		req.Header.Add("Cookie", fmt.Sprintf("session=%s", sessionKey))
 
 		resp, err := client.Do(req)
 		if err != nil {
@@ -64,29 +85,46 @@ func RetrieveContent(year, day int) {
 }
 
 func ReadFileAsText(path string) (string, error) {
-	var fileName string = path
-	file, err := os.ReadFile(fileName)
+	file, err := os.Open(path)
 	if err != nil {
-		fmt.Printf("Cannot read file %s", fileName)
-
+		fmt.Printf("Cannot read file %s", path)
 		return "", err
 	}
-	fileContent := string(file)
+	defer file.Close()
 
-	return fileContent, err
+	var builder strings.Builder
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		builder.WriteString(scanner.Text())
+		builder.WriteString("\n")
+	}
+
+	if err := scanner.Err(); err != nil {
+		return "", err
+	}
+
+	return strings.TrimSuffix(builder.String(), "\n"), nil
 }
 
 func ReadFileAsLines(path string) ([]string, error) {
-	var fileName string = path
-	file, err := os.ReadFile(fileName)
+	file, err := os.Open(path)
 	if err != nil {
-		fmt.Printf("Cannot read file %s", fileName)
-
+		fmt.Printf("Cannot read file %s", path)
 		return nil, err
 	}
-	fileContent := string(file)
+	defer file.Close()
 
-	return strings.Split(fileContent, "\r\n"), err
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
+	return lines, nil
 }
 
 func ReverseString(s string) string {
