@@ -4,6 +4,7 @@
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<Content Include="session.txt" />
 		<Compile Include="Modules\LocalHelper.fs" />
 		<None Include="day00\playground.fsx" />
 		<Compile Include="day00\part01\day00_part01.fs" />
