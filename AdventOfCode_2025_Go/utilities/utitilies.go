@@ -10,9 +10,19 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fatih/color"
 )
+
+func FormatDuration(d time.Duration) string {
+	totalMicros := d.Microseconds()
+	minutes := totalMicros / 60_000_000
+	seconds := (totalMicros % 60_000_000) / 1_000_000
+	millis := (totalMicros % 1_000_000) / 1_000
+	micros := totalMicros % 1_000
+	return fmt.Sprintf("%02d:%02d:%03d:%03d", minutes, seconds, millis, micros)
+}
 
 func RetrieveContent(year, day int) {
 	path := fmt.Sprintf("./day%02d/day%02d.txt", day, day)
