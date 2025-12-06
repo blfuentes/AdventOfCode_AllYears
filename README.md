@@ -16,8 +16,8 @@ https://adventofcode.com/
 |[2022](#2022-f)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2023](#2023-fc)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2024](#2024-fgo)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
-|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐❄️❄️❄️❄️❄️❄️❄️									| (10/24)	|
-|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ (97,32%)	| (510/524) |
+|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐⭐❄️❄️❄️❄️❄️❄️									| (12/24)	|
+|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ (97,71%)	| (512/524) |
 
 ## Advent Of Code 2015
 
@@ -389,7 +389,7 @@ https://adventofcode.com/2024
 
 https://adventofcode.com/2025
 
-⭐⭐⭐⭐⭐ (5/12)
+⭐⭐⭐⭐⭐⭐ (6/12)
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
@@ -398,7 +398,7 @@ https://adventofcode.com/2025
 | [Day 3](https://adventofcode.com/2025/day/3):	Lobby				| ✔️ [F#](./AdventOfCode_2025/day03/day03_part01.fs) - [Go](./AdventOfCode_2025_Go/day03/day03_1.go) - [Rust](./AdventOfCode_2025_Rust/src/day03/day03_part1.rs) | ✔️ [F#](./AdventOfCode_2025/day03/day03_part02.fs) - [Go](./AdventOfCode_2025_Go/day03/day03_2.go) - [Rust](./AdventOfCode_2025_Rust/src/day03/day03_part2.rs) |
 | [Day 4](https://adventofcode.com/2025/day/4):	Printing Department	| ✔️ [F#](./AdventOfCode_2025/day04/day04_part01.fs) - [Go](./AdventOfCode_2025_Go/day04/day04_1.go) | ✔️ [F#](./AdventOfCode_2025/day04/day04_part02.fs) - [Go](./AdventOfCode_2025_Go/day04/day04_2.go) |
 | [Day 5](https://adventofcode.com/2025/day/5):	Cafeteria			| ✔️ [F#](./AdventOfCode_2025/day05/day05_part01.fs) - [Go](./AdventOfCode_2025_Go/day05/day05_1.go) | ✔️ [F#](./AdventOfCode_2025/day05/day05_part02.fs) - [Go](./AdventOfCode_2025_Go/day05/day05_2.go) |
-| [Day 6](https://adventofcode.com/2025/day/6):						| ❌ | ❌ |
+| [Day 6](https://adventofcode.com/2025/day/6):	Trash Compactor		| ✔️ [F#](./AdventOfCode_2025/day06/day06_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day05/day05_part02.fs) |
 | [Day 7](https://adventofcode.com/2025/day/7):						| ❌ | ❌ |
 | [Day 8](https://adventofcode.com/2025/day/8):						| ❌ | ❌ |
 | [Day 9](https://adventofcode.com/2025/day/9):						| ❌ | ❌ |
