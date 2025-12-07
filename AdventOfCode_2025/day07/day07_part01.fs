@@ -22,24 +22,43 @@ let parseContent (lines: string array) =
     )
     (splitters, beamMap)
 
+// recusrsive...
+//let countSplitTimes(splitters: HashSet<(int*int)>) =
+//    let visited = new HashSet<(int*int)>()
+//    let rec goDown (position: (int*int)) =
+//        let (r, c) = position
+//        if r < 0 || r > maxRow || c < 0 || c > maxCol then
+//            ()
+//        else
+//            let nextPos = (r + 1, c)
+//            if splitters.Contains(nextPos) then
+//                if visited.Contains(nextPos) then
+//                    ()
+//                else
+//                    visited.Add(nextPos) |> ignore
+//                    goDown (r + 1, c - 1) 
+//                    goDown (r + 1, c + 1)
+//            else
+//                goDown nextPos
+//    goDown startPosition
+//    visited.Count
+
 let countSplitTimes(splitters: HashSet<(int*int)>) =
-    let visited = new HashSet<(int*int)>()
-    let rec goDown (position: (int*int)) =
+    let visited = new HashSet<(int*int)>()    
+    let toTry = new Queue<(int*int)>()
+
+    toTry.Enqueue(startPosition)
+    while toTry.Count > 0 do
+        let position = toTry.Dequeue()
         let (r, c) = position
-        if r < 0 || r > maxRow || c < 0 || c > maxCol then
-            ()
-        else
+        if r < maxRow then
             let nextPos = (r + 1, c)
             if splitters.Contains(nextPos) then
-                if visited.Contains(nextPos) then
-                    ()
-                else
-                    visited.Add(nextPos) |> ignore
-                    goDown (r + 1, c - 1) 
-                    goDown (r + 1, c + 1)
+                if visited.Add(nextPos) then
+                    toTry.Enqueue((r + 1, c - 1))
+                    toTry.Enqueue((r + 1, c + 1))
             else
-                goDown nextPos
-    goDown startPosition
+                toTry.Enqueue(nextPos)
     visited.Count
 
 let execute() =
