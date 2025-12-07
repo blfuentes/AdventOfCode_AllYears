@@ -16,7 +16,7 @@ let getInput year day =
         client.DefaultRequestHeaders.Add("Cookie", sprintf "session=%s" sessionKey)
         let mutable content = client.GetStringAsync(url).Result
         if not (content.Contains($"{System.Environment.NewLine}")) then
-            content <- content.Replace("\n", System.Environment.NewLine).TrimEnd()
+            content <- content.Replace("\n", System.Environment.NewLine)
         LocalHelper.WriteContentToFile(path, content)
         ignore()
 
