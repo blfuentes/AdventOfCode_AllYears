@@ -30,37 +30,70 @@ type Leaderboard = {
 }
 
 // https://adventofcode.com/{year}/leaderboard/private/view/{XXXXX}.json
-let getTimes year =    
-    let sessionKey = LocalHelper.GetLinesFromFile "session.txt"
-    let url = sprintf "https://adventofcode.com/%d/leaderboard/private/view/%s.json" year sessionKey[0]
-    let client = new HttpClient()
-    client.DefaultRequestHeaders.Add("Cookie", sprintf "session=%s" sessionKey[1])
-    let mutable content = client.GetStringAsync(url).Result
-    System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
+let getTimes year =   
+    let timesPath = sprintf "leaderboard_%d.json" year
+    if LocalHelper.FileExists(timesPath) then
+        let content = LocalHelper.GetContentFromFile timesPath
+        System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
+    else
+        let sessionKey = LocalHelper.GetLinesFromFile "session.txt"
+        let url = sprintf "https://adventofcode.com/%d/leaderboard/private/view/%s.json" year sessionKey[0]
+        let client = new HttpClient()
+        client.DefaultRequestHeaders.Add("Cookie", sprintf "session=%s" sessionKey[1])
+        let mutable content = client.GetStringAsync(url).Result
+        LocalHelper.WriteContentToFile(timesPath, content)
+        System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
 
 let formatTimer (ts: int64) =
     let dt = System.DateTimeOffset.FromUnixTimeSeconds(ts).ToLocalTime()
     dt.ToString("yyyy-MM-dd HH:mm:ss")
 
 let printLeaderboard (leaderboard: Leaderboard) =
-    printfn "%d days event %s" leaderboard.num_days leaderboard.event
+    System.Console.OutputEncoding <- System.Text.Encoding.UTF8
+    printfn "%s" (String.replicate 53 "=")
+    let totalWidth = 53
+    let innerWidth = totalWidth - 2  // Subtract the ‡ borders
+    let title = sprintf "Advent of Code %s" leaderboard.event
+    let centeredTitle = title.PadLeft((innerWidth + title.Length) / 2).PadRight(innerWidth)
+ 
+    printfn "‡%s‡" centeredTitle
+    printfn "%s" (String.replicate 53 "=")
+    printfn "‡%3d %-46s ‡" leaderboard.num_days  (sprintf"days event %s" leaderboard.event)
     for kvp in leaderboard.members do
         let memberId = kvp.Key
         let participant = kvp.Value
-        printfn "Member %s (ID: %d) has %d stars, last star at %s" (if participant.name <> null then participant.name else "Anonymous") participant.id participant.stars (formatTimer(participant.last_star_ts))
+        printfn "‡ Member: %-42s‡" (if participant.name <> null then participant.name else memberId.ToString())
+        printfn "‡ Stars: %-42s ‡" (sprintf "%s (%d/%d) (%d%%)" (String.replicate (participant.stars) "★") (participant.stars) (leaderboard.num_days * 2) (participant.stars * 100 / (leaderboard.num_days * 2)))
+        printfn "%s" (String.replicate 53 "=")
+        printfn "‡ %3s ‡ %-20s ‡ %-20s ‡" "Day" "1st Star" "2nd Star"
+        printfn "%s" (String.replicate 53 "=")
         let starDays = 
             kvp.Value.completion_day_level
             |> Seq.map (fun daystar -> (int)daystar.Key, daystar.Value)
             |> Seq.sortBy fst
-        for (day, dayInfo) in starDays do
-            match dayInfo.``1`` with
-            | Some star1 ->
-                printfn "  Day %d Star 1 at %s" day (formatTimer(star1.get_star_ts))
-            | None -> ()
-            match dayInfo.``2`` with
-            | Some star2 ->
-                printfn "  Day %d Star 2 at %s" day (formatTimer(star2.get_star_ts))
-            | None -> ()
+        for day in 1 .. leaderboard.num_days do
+            if starDays |> Seq.exists (fun (d, _) -> d = day) |> not then
+                printfn "‡ %3d ‡ %-20s ‡ %-20s ‡" day "" ""
+            else
+                let infoDay = starDays |> Seq.tryFind (fun (k, _) -> k = day)
+                let firstStarOutput =
+                    match infoDay with
+                    | Some (firstDay, firstDayInfo) ->
+                        match firstDayInfo.``1`` with
+                        | Some star1 ->
+                            sprintf "%s" (formatTimer(star1.get_star_ts))
+                        | None -> ""
+                    | None -> ""
+                let secondStarOutput =
+                    match infoDay with
+                    | Some (secondDay, secondDayInfo) ->
+                        match secondDayInfo.``2`` with
+                        | Some star2 ->
+                            sprintf "%s" (formatTimer(star2.get_star_ts))
+                        | None -> ""
+                    | None -> ""
+                printfn "‡ %3d ‡ %-20s ‡ %-20s ‡" (if infoDay.IsSome then fst infoDay.Value else 0) firstStarOutput secondStarOutput
+        printfn "%s" (String.replicate 53 "=")
 let leaderboard = getTimes 2025
 printLeaderboard leaderboard
 

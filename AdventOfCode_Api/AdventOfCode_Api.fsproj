@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="leaderboard_2025.json" />
     <Content Include="session.txt" />
     <Compile Include="Modules\LocalHelper.fs" />
     <Compile Include="Program.fs" />
