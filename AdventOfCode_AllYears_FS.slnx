@@ -19,6 +19,7 @@
   <Project Path="AdventOfCode_2023\AdventOfCode_2023.fsproj" />
   <Project Path="AdventOfCode_2024\AdventOfCode_2024.fsproj" />
   <Project Path="AdventOfCode_2025/AdventOfCode_2025.fsproj" Id="d8814704-29cb-4634-b143-e6438cacd251" />
+  <Project Path="AdventOfCode_Api/AdventOfCode_Api.fsproj" Id="6b5cae24-ee95-428b-98a6-38d90b6cd4af" />
   <Project Path="AdventOfCode_Base\AdventOfCode_BASE.fsproj" />
   <Project Path="AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
   <Project Path="AoC_Debugger\AoC_Debugger.fsproj" />
