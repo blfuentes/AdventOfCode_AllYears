@@ -41,6 +41,26 @@ let parseContent (lines: string array) =
 //    goDown startPosition
 //    goDownCalled
 
+//let countTimelines(splitters: HashSet<(int*int)>) =
+//    let toTry = new Queue<(int*int)>()
+
+//    let mutable uniqueTimelines = 0L
+//    toTry.Enqueue(startPosition)
+//    while toTry.Count > 0 do
+//        let position = toTry.Dequeue()
+//        if uniqueTimelines % 100000L = 0L then
+//            printfn "Unique timelines so far: %d" uniqueTimelines
+//        let (r, c) = position
+//        if r < maxRow then
+//            let nextPos = (r + 1, c)
+//            if splitters.Contains(nextPos) then
+//                uniqueTimelines <- uniqueTimelines + 2L
+//                toTry.Enqueue((r + 1, c - 1))
+//                toTry.Enqueue((r + 1, c + 1))
+//            else
+//                toTry.Enqueue(nextPos)
+//    uniqueTimelines
+
 let countTimelines (splitters: HashSet<int*int>) =
     let dp = Array.create (maxCol + 2) 1L
     
@@ -53,7 +73,7 @@ let countTimelines (splitters: HashSet<int*int>) =
         )
     )
     
-    snd startPosition |> fun startCol -> dp.[startCol + 1]
+    snd startPosition |> fun startCol -> dp[startCol + 1]
 
 let execute() =
     //let path = "day07/test_input_07.txt"
