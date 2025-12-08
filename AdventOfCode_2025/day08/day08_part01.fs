@@ -75,8 +75,7 @@ let findConnections (boxes: Box array) numPairsToProcess =
     circuitSizes.Values
     |> Seq.sortByDescending id
     |> Seq.take 3
-    |> Seq.fold (fun acc size -> acc * bigint size) bigint.One
-
+    |> Seq.reduce (*)
 
 let execute() =
     //let path = "day08/test_input_08.txt"
