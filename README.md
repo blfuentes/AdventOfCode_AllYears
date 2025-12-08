@@ -16,8 +16,8 @@ https://adventofcode.com/
 |[2022](#2022-f)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2023](#2023-fc)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2024](#2024-fgo)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
-|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐⭐⭐❄️❄️❄️❄️❄️									| (14/24)	|
-|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ (98,09%)	| (514/524) |
+|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐⭐⭐⭐❄️❄️❄️❄️									| (16/24)	|
+|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ (98,47%)	| (516/524) |
 
 ## Advent Of Code 2015
 
@@ -389,7 +389,7 @@ https://adventofcode.com/2024
 
 https://adventofcode.com/2025
 
-⭐⭐⭐⭐⭐⭐ (7/12)
+⭐⭐⭐⭐⭐⭐⭐ (8/12)
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
@@ -400,7 +400,7 @@ https://adventofcode.com/2025
 | [Day 5](https://adventofcode.com/2025/day/5):	Cafeteria			| ✔️ [F#](./AdventOfCode_2025/day05/day05_part01.fs) - [Go](./AdventOfCode_2025_Go/day05/day05_1.go) | ✔️ [F#](./AdventOfCode_2025/day05/day05_part02.fs) - [Go](./AdventOfCode_2025_Go/day05/day05_2.go) |
 | [Day 6](https://adventofcode.com/2025/day/6):	Trash Compactor		| ✔️ [F#](./AdventOfCode_2025/day06/day06_part01.fs) - [Go](./AdventOfCode_2025_Go/day06/day06_1.go) | ✔️ [F#](./AdventOfCode_2025/day06/day06_part02.fs) - [Go](./AdventOfCode_2025_Go/day06/day06_2.go) |
 | [Day 7](https://adventofcode.com/2025/day/7):	Laboratories		| ✔️ [F#](./AdventOfCode_2025/day07/day07_part01.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_1.go) | ✔️ [F#](./AdventOfCode_2025/day07/day07_part02.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_2.go) |
-| [Day 8](https://adventofcode.com/2025/day/8):						| ❌ | ❌ |
+| [Day 8](https://adventofcode.com/2025/day/8):	Playground			| ✔️ [F#](./AdventOfCode_2025/day08/day08_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day08/day08_part02.fs) |
 | [Day 9](https://adventofcode.com/2025/day/9):						| ❌ | ❌ |
 | [Day 10](https://adventofcode.com/2025/day/10):					| ❌ | ❌ |
 | [Day 11](https://adventofcode.com/2025/day/11):					| ❌ | ❌ |
