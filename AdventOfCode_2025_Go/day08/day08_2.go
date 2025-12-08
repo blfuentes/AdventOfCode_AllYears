@@ -70,17 +70,11 @@ func Executepart2() int64 {
 				// remove circuitBIdx
 				circuits = append(circuits[:circuitBIdx], circuits[circuitBIdx+1:]...)
 				// fmt.Printf("Merged circuits %d and %d\n", circuitAIdx, circuitBIdx)
-			} else if circuitAIdx == -1 && circuitBIdx == -1 {
-				newCircuit := utilities.NewSet[int]()
-				newCircuit.Add(BoxAId)
-				newCircuit.Add(BoxBId)
-				circuits = append(circuits, *newCircuit)
-				// fmt.Printf("Created new circuit with boxes %d and %d\n", BoxAId, BoxBId)
 			} else if circuitAIdx != -1 {
 				circuits[circuitAIdx].Add(BoxBId)
 				// fmt.Printf("Added boxes %d and %d to circuit %d\n", BoxAId, BoxBId, circuitAIdx)
 				// fmt.Printf("Current boxes: %v\n", circuits[circuitAIdx].Values())
-			} else if circuitBIdx != -1 && circuitAIdx != circuitBIdx {
+			} else if circuitBIdx != -1 {
 				circuits[circuitBIdx].Add(BoxAId)
 				// fmt.Printf("Added boxes %d and %d to circuit %d\n", BoxAId, BoxBId, circuitBIdx)
 				// fmt.Printf("Current boxes: %v\n", circuits[circuitBIdx].Values())
