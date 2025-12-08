@@ -44,9 +44,7 @@ func Executepart1() int64 {
 
 		circuits := make([]utilities.Set[int], 0)
 		for boxesIdx := range boxes {
-			newCircuit := utilities.NewSet[int]()
-			newCircuit.Add(boxesIdx)
-			circuits = append(circuits, *newCircuit)
+			circuits = append(circuits, *utilities.NewSetWithValues(boxesIdx))
 		}
 		for i := range numOfPairs {
 			BoxAId, BoxBId := distancePairs[i].BoxAId, distancePairs[i].BoxBId
