@@ -32,10 +32,7 @@ type Leaderboard = {
 // https://adventofcode.com/{year}/leaderboard/private/view/{XXXXX}.json
 let getTimes year =   
     let timesPath = sprintf "leaderboard_%d.json" year
-    if LocalHelper.FileExists(timesPath) then
-        let content = LocalHelper.GetContentFromFile timesPath
-        System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
-    else
+    let getFromNetwork =
         let sessionKey = LocalHelper.GetLinesFromFile "session.txt"
         let url = sprintf "https://adventofcode.com/%d/leaderboard/private/view/%s.json" year sessionKey[0]
         let client = new HttpClient()
@@ -43,6 +40,17 @@ let getTimes year =
         let mutable content = client.GetStringAsync(url).Result
         LocalHelper.WriteContentToFile(timesPath, content)
         System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
+    let leaderboard =
+        if LocalHelper.FileExists(timesPath) then
+            let content = LocalHelper.GetContentFromFile timesPath
+            if content.Length > 0 then
+                System.Text.Json.JsonSerializer.Deserialize<Leaderboard>(content)
+            else
+                getFromNetwork
+        else
+            getFromNetwork
+    leaderboard
+            
 
 let formatTimer (ts: int64) =
     let dt = System.DateTimeOffset.FromUnixTimeSeconds(ts).ToLocalTime()
@@ -63,7 +71,7 @@ let printLeaderboard (leaderboard: Leaderboard) =
         let memberId = kvp.Key
         let participant = kvp.Value
         printfn "‡ Member: %-42s‡" (if participant.name <> null then participant.name else memberId.ToString())
-        printfn "‡ Stars: %-42s ‡" (sprintf "%s (%d/%d) (%d%%)" (String.replicate (participant.stars) "★") (participant.stars) (leaderboard.num_days * 2) (participant.stars * 100 / (leaderboard.num_days * 2)))
+        printfn "‡ Stars: %-42s ‡" (sprintf "%s (%d/%d) (%d%%)" (sprintf"%s%s" (String.replicate (participant.stars) "★")(String.replicate(leaderboard.num_days * 2 - participant.stars) "*")) (participant.stars) (leaderboard.num_days * 2) (participant.stars * 100 / (leaderboard.num_days * 2)))
         printfn "%s" (String.replicate 53 "=")
         printfn "‡ %3s ‡ %-20s ‡ %-20s ‡" "Day" "1st Star" "2nd Star"
         printfn "%s" (String.replicate 53 "=")
