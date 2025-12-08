@@ -87,7 +87,6 @@ func RetrieveContent(year, day int) {
 		// only for windows...
 		if runtime.GOOS == "windows" && !strings.Contains(content, "\r\n") {
 			content = strings.ReplaceAll(content, "\n", "\r\n")
-			content = strings.TrimRight(content, "\r\n")
 		}
 
 		os.WriteFile(path, []byte(content), 0644)

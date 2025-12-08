@@ -4,6 +4,7 @@ open System
 open AdventOfCode_Utilities
 open System.Net.Http
 open AdventOfCode_2025.Modules
+open System.Net
 
 let getInput year day =
     let path = sprintf "day%02d/day%02d_input.txt" day day
@@ -14,11 +15,15 @@ let getInput year day =
         let url = sprintf "https://adventofcode.com/%d/day/%d/input" year day
         let client = new HttpClient()
         client.DefaultRequestHeaders.Add("Cookie", sprintf "session=%s" sessionKey)
-        let mutable content = client.GetStringAsync(url).Result
-        if not (content.Contains($"{System.Environment.NewLine}")) then
-            content <- content.Replace("\n", System.Environment.NewLine)
-        LocalHelper.WriteContentToFile(path, content)
-        ignore()
+        let response = client.GetAsync(url) |> Async.AwaitTask |> Async.RunSynchronously
+        match response.StatusCode with
+        | HttpStatusCode.OK ->
+            let mutable content = response.Content.ReadAsStringAsync() |> Async.AwaitTask |> Async.RunSynchronously
+            if not (content.Contains($"{System.Environment.NewLine}")) then
+                content <- content.Replace("\n", System.Environment.NewLine)
+            LocalHelper.WriteContentToFile(path, content)
+            ignore()
+        | _ -> ()
 
 [<EntryPoint>]
 let main argv =
