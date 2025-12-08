@@ -81,12 +81,12 @@ let main argv =
     let (resultday08Part2, timer08_2) = Utilities.duration day08_part02.execute
     printfn "Final result Day 08 part 2: %A in %s" resultday08Part2 (Utilities.ms timer08_2)
 
-    //// DAY 09
-    //getInput 2025 9
-    //let (resultday09Part1, time09_1) = Utilities.duration day09_part01.execute
-    //printfn "Final result Day 09 part 1: %A in %s" resultday09Part1 (Utilities.ms time09_1)
-    //let (resultday09Part2, timer09_2) = Utilities.duration day09_part02.execute
-    //printfn "Final result Day 09 part 2: %d in %s" resultday09Part2 (Utilities.ms timer09_2)
+    // DAY 09
+    getInput 2025 9
+    let (resultday09Part1, time09_1) = Utilities.duration day09_part01.execute
+    printfn "Final result Day 09 part 1: %A in %s" resultday09Part1 (Utilities.ms time09_1)
+    let (resultday09Part2, timer09_2) = Utilities.duration day09_part02.execute
+    printfn "Final result Day 09 part 2: %d in %s" resultday09Part2 (Utilities.ms timer09_2)
 
     //// DAY 10
     //getInput 2025 10
