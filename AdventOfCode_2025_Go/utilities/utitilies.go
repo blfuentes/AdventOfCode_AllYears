@@ -26,6 +26,12 @@ func FormatDuration(d time.Duration) string {
 }
 
 func RetrieveContent(year, day int) {
+	dayToRetrieve := time.Date(year, 12, day, 0, 0, 0, 0, time.UTC)
+	if time.Now().Before(dayToRetrieve) {
+		fmt.Printf("Day %d of year %d has not yet arrived.\n", day, year)
+		return
+	}
+
 	path := fmt.Sprintf("./day%02d/day%02d.txt", day, day)
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {

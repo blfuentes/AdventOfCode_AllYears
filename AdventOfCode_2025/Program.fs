@@ -7,6 +7,10 @@ open AdventOfCode_2025.Modules
 open System.Net
 
 let getInput year day =
+    let date = DateTime(year, 12, day)
+    if date > DateTime.Now then
+        printfn "Day %d of year %d is in the future. Skipping input download." day year
+        ()
     let path = sprintf "day%02d/day%02d_input.txt" day day
     if not (LocalHelper.FileExists(path)) then
         LocalHelper.WriteContentToFile(path, "")
@@ -93,12 +97,12 @@ let main argv =
     let (resultday09Part2, timer09_2) = Utilities.duration day09_part02.execute
     printfn "Final result Day 09 part 2: %A in %s" resultday09Part2 (Utilities.ms timer09_2)
 
-    //// DAY 10
-    //getInput 2025 10
-    //let (resultday10Part1, time10_1) = Utilities.duration day10_part01.execute
-    //printfn "Final result Day 10 part 1: %A in %s" resultday10Part1 (Utilities.ms time10_1)
-    //let (resultday10Part2, timer10_2) = Utilities.duration day10_part02.execute
-    //printfn "Final result Day 10 part 2: %A in %s" resultday10Part2 (Utilities.ms timer10_2)
+    // DAY 10
+    getInput 2025 10
+    let (resultday10Part1, time10_1) = Utilities.duration day10_part01.execute
+    printfn "Final result Day 10 part 1: %A in %s" resultday10Part1 (Utilities.ms time10_1)
+    let (resultday10Part2, timer10_2) = Utilities.duration day10_part02.execute
+    printfn "Final result Day 10 part 2: %A in %s" resultday10Part2 (Utilities.ms timer10_2)
 
     //// DAY 11
     //getInput 2025 11
