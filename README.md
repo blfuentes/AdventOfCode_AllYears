@@ -401,7 +401,7 @@ https://adventofcode.com/2025
 | [Day 6](https://adventofcode.com/2025/day/6):	Trash Compactor		| ✔️ [F#](./AdventOfCode_2025/day06/day06_part01.fs) - [Go](./AdventOfCode_2025_Go/day06/day06_1.go) | ✔️ [F#](./AdventOfCode_2025/day06/day06_part02.fs) - [Go](./AdventOfCode_2025_Go/day06/day06_2.go) |
 | [Day 7](https://adventofcode.com/2025/day/7):	Laboratories		| ✔️ [F#](./AdventOfCode_2025/day07/day07_part01.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_1.go) | ✔️ [F#](./AdventOfCode_2025/day07/day07_part02.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_2.go) |
 | [Day 8](https://adventofcode.com/2025/day/8):	Playground			| ✔️ [F#](./AdventOfCode_2025/day08/day08_part01.fs) - [Go](./AdventOfCode_2025_Go/day08/day08_1.go) | ✔️ [F#](./AdventOfCode_2025/day08/day08_part02.fs) - [Go](./AdventOfCode_2025_Go/day08/day08_2.go) |
-| [Day 9](https://adventofcode.com/2025/day/9):	Movie Theater		| ✔️ [F#](./AdventOfCode_2025/day09/day09_part01.fs) - [Go](./AdventOfCode_2025_Go/day09/day09_1.go) | ✔️ [F#](./AdventOfCode_2025/day09/day09_part02.fs) |
+| [Day 9](https://adventofcode.com/2025/day/9):	Movie Theater		| ✔️ [F#](./AdventOfCode_2025/day09/day09_part01.fs) - [Go](./AdventOfCode_2025_Go/day09/day09_1.go) | ✔️ [F#](./AdventOfCode_2025/day09/day09_part02.fs) - [Go](./AdventOfCode_2025_Go/day09/day09_2.go)|
 | [Day 10](https://adventofcode.com/2025/day/10):					| ❌ | ❌ |
 | [Day 11](https://adventofcode.com/2025/day/11):					| ❌ | ❌ |
 | [Day 12](https://adventofcode.com/2025/day/12):					| ❌ | ❌ |
