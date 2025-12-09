@@ -389,7 +389,7 @@ https://adventofcode.com/2024
 
 https://adventofcode.com/2025
 
-⭐⭐⭐⭐⭐⭐⭐ (9/12)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9/12)
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
