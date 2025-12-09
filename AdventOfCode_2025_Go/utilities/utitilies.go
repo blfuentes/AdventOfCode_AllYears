@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"runtime"
+	"slices"
 	"strconv"
 	"strings"
 	"time"
@@ -147,12 +148,7 @@ func ReverseString(s string) string {
 
 // Function to check if an array contains an element
 func Contains[T comparable](arr []T, target T) bool {
-	for _, value := range arr {
-		if value == target {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(arr, target)
 }
 
 func RemoveElementAt[T any](index int, report []T) []T {
