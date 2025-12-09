@@ -91,7 +91,7 @@ let main argv =
     let (resultday09Part1, time09_1) = Utilities.duration day09_part01.execute
     printfn "Final result Day 09 part 1: %A in %s" resultday09Part1 (Utilities.ms time09_1)
     let (resultday09Part2, timer09_2) = Utilities.duration day09_part02.execute
-    printfn "Final result Day 09 part 2: %d in %s" resultday09Part2 (Utilities.ms timer09_2)
+    printfn "Final result Day 09 part 2: %A in %s" resultday09Part2 (Utilities.ms timer09_2)
 
     //// DAY 10
     //getInput 2025 10
