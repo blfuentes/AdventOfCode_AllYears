@@ -14,10 +14,10 @@ let parseContent(lines: string array) =
 
 let inline sortPair x y = if x <= y then (x, y) else (y, x)
 
-let rectangleIntersectsEdge (rectX, rectY, rectU, rectV) ((p1, q1), (r1, s1)) =
-    let p, r = sortPair p1 r1
-    let q, s = sortPair q1 s1
-    rectX < r && rectU > p && rectY < s && rectV > q
+let rectangleIntersectsEdge (minX, minY, maxX, maxY) ((x1, y1), (x2, y2)) =
+    let sMinX, sMaxX = sortPair x1 x2
+    let sMinY, sMaxY = sortPair y1 y2
+    minX < sMaxX && maxX > sMinX && minY < sMaxY && maxY > sMinY
 
 let findMaxRectangle (redTiles: (bigint * bigint) array) =
     let edges = 
@@ -25,13 +25,13 @@ let findMaxRectangle (redTiles: (bigint * bigint) array) =
            yield (redTiles[redTiles.Length - 1], redTiles[0]) |]
     
     let checkRectangle (x1, y1) (x2, y2) =
-        let x1', y1' = sortPair x1 x2
-        let x2', y2' = sortPair y1 y2
-        let size = (y1' - x1' + 1I) * (y2' - x2' + 1I)
+        let minX, maxX = sortPair x1 x2
+        let minY, maxY = sortPair y1 y2
+        let size = (maxX - minX + 1I) * (maxY - minY + 1I)
         
         let intersects = 
             edges 
-            |> Array.exists (rectangleIntersectsEdge (x1', x2', y1', y2'))
+            |> Array.exists (rectangleIntersectsEdge (minX, minY, maxX, maxY))
         
         if intersects then 0I else size
     
