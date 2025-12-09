@@ -28,16 +28,18 @@ func Executepart2() int64 {
 		redTiles := make([][]int64, 0)
 		edges := make([]Edge, 0)
 
-		var initX, initY = utilities.StringToInt64(strings.Split(fileContent[0], ",")[0]),
-			utilities.StringToInt64(strings.Split(fileContent[0], ",")[1])
-		var lastX, lastY = utilities.StringToInt64(strings.Split(fileContent[len(fileContent)-1], ",")[0]),
-			utilities.StringToInt64(strings.Split(fileContent[len(fileContent)-1], ",")[1])
+		firstParts := strings.Split(fileContent[0], ",")
+		lastParts := strings.Split(fileContent[len(fileContent)-1], ",")
+		var initX, initY = utilities.StringToInt64(firstParts[0]), utilities.StringToInt64(firstParts[1])
+		var lastX, lastY = utilities.StringToInt64(lastParts[0]), utilities.StringToInt64(lastParts[1])
 
 		for fromIdx := 0; fromIdx < len(fileContent)-1; fromIdx++ {
-			fX := utilities.StringToInt64(strings.Split(fileContent[fromIdx], ",")[0])
-			fY := utilities.StringToInt64(strings.Split(fileContent[fromIdx], ",")[1])
-			tX := utilities.StringToInt64(strings.Split(fileContent[fromIdx+1], ",")[0])
-			tY := utilities.StringToInt64(strings.Split(fileContent[fromIdx+1], ",")[1])
+			fromParts := strings.Split(fileContent[fromIdx], ",")
+			toParts := strings.Split(fileContent[fromIdx+1], ",")
+			fX := utilities.StringToInt64(fromParts[0])
+			fY := utilities.StringToInt64(fromParts[1])
+			tX := utilities.StringToInt64(toParts[0])
+			tY := utilities.StringToInt64(toParts[1])
 
 			edges = append(edges, Edge{fX, fY, tX, tY})
 			redTiles = append(redTiles, []int64{fX, fY}, []int64{tX, tY})
@@ -58,16 +60,24 @@ func Executepart2() int64 {
 			return false
 		}
 
+		manhattanDistance := func(a, b []int64) int64 {
+			return abs64(a[0]-b[0]) + abs64(a[1]-b[1])
+		}
+
 		for fTIdx := 0; fTIdx < len(redTiles)-1; fTIdx++ {
 			for tTIdx := fTIdx; tTIdx < len(redTiles); tTIdx++ {
 				fromTile := redTiles[fTIdx]
 				toTile := redTiles[tTIdx]
 				minX, maxX := sort(fromTile[0], toTile[0])
 				minY, maxY := sort(fromTile[1], toTile[1])
-				if !intersections(minX, minY, maxX, maxY) {
-					area := rectangleArea(fromTile[0], fromTile[1], toTile[0], toTile[1])
-					if area > result {
-						result = area
+				// optimize with manhattan distance...
+				manhattanDistance := manhattanDistance(fromTile, toTile)
+				if manhattanDistance*manhattanDistance > result {
+					if !intersections(minX, minY, maxX, maxY) {
+						area := rectangleArea(fromTile[0], fromTile[1], toTile[0], toTile[1])
+						if area > result {
+							result = area
+						}
 					}
 				}
 			}
