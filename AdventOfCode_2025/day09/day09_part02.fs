@@ -1,7 +1,6 @@
 ﻿module day09_part02
 
 open AdventOfCode_2025.Modules
-open System.Collections.Generic
 
 let parseContent(lines: string array) =
     lines
@@ -13,6 +12,9 @@ let parseContent(lines: string array) =
     )
 
 let inline sortPair x y = if x <= y then (x, y) else (y, x)
+
+let manhattanDistance (x1, y1) (x2, y2) =
+    abs (x1 - x2) + abs (y1 - y2)
 
 let rectangleIntersectsEdge (minX, minY, maxX, maxY) ((x1, y1), (x2, y2)) =
     let sMinX, sMaxX = sortPair x1 x2
@@ -35,12 +37,30 @@ let findMaxRectangle (redTiles: (bigint * bigint) array) =
         
         if intersects then 0I else size
     
-    seq {
-        for i in 0 .. redTiles.Length - 2 do
+    let sortedPairs =
+        [| for i in 0 .. redTiles.Length - 2 do
             for j in i + 1 .. redTiles.Length - 1 do
-                yield checkRectangle redTiles[i] redTiles[j]
-    }
-    |> Seq.max
+                let p1 = redTiles[i]
+                let p2 = redTiles[j]
+                let dist = manhattanDistance p1 p2
+                yield (dist, p1, p2) |]
+        |> Array.sortByDescending (fun (dist, _, _) -> dist)
+    
+    let rec processRectangles idx maxArea =
+        if idx >= sortedPairs.Length then
+            maxArea
+        else
+            let (dist, p1, p2) = sortedPairs[idx]
+            let maxPossibleArea = dist * dist
+            
+            if maxPossibleArea <= maxArea then
+                maxArea
+            else
+                let size = checkRectangle p1 p2
+                let newMaxArea = max maxArea size
+                processRectangles (idx + 1) newMaxArea
+    
+    processRectangles 0 0I
 
 let execute() =
     //let path = "day09/test_input_09.txt"
