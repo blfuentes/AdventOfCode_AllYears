@@ -5,8 +5,8 @@ open System.Text.RegularExpressions
 
 type Machine = {
     Id: int;
-    LightDiagram: bool array;
-    Buttons: (int array) seq
+    LightDiagram: uint64
+    Buttons: uint64 array
     Joltages: int array
 }
 
@@ -16,23 +16,30 @@ let parseContent (lines: string array) =
         let id = idx
         let parts = line.Split(" ")
         let lightsRegex = Regex.Match(parts[0], @"\[([^\]]*)\]")
+        
         let lightDiagram = 
             lightsRegex.Groups[1].Value.ToCharArray() 
-            |> Array.map (fun c -> c = '#')
-        let buttons=
+            |> Array.mapi (fun i c -> if c = '#' then 1UL <<< i else 0UL)
+            |> Array.fold (|||) 0UL
+        
+        let buttons =
             parts[1..parts.Length-2]
             |> Array.map (fun btnStr ->
                 Regex.Match(btnStr, @"\(([^)]*)\)").Groups[1].Value.Split(",")
                 |> Array.map int
+                |> Array.map (fun idx -> 1UL <<< idx)
+                |> Array.fold (|||) 0UL
             )
-        let joltajes = 
+        
+        let joltages = 
             Regex.Match(parts[parts.Length-1], @"{([^>]*)}").Groups[1].Value.Split(",")
             |> Array.map int
+        
         {
             Id = id;
             LightDiagram = lightDiagram;
             Buttons = buttons;
-            Joltages = joltajes
+            Joltages = joltages
         }
     )
 
@@ -45,15 +52,11 @@ let rec combinationWithRepetition (num: int) (list: 'a list) : 'a list list =
         @ (combinationWithRepetition k xs)
 
 let findCombination (machine: Machine) =
-    let applyButton (state: bool array) (buttonIndices: int array) =
-        let newState = Array.copy state
-        for idx in buttonIndices do
-            if idx >= 0 && idx < newState.Length then
-                newState[idx] <- not newState[idx]
-        newState
+    let applyButton (state: uint64) (buttonMask: uint64) =
+        state ^^^ buttonMask  // apply XOR
     
-    let buttonIndices = [0 .. (Seq.length machine.Buttons) - 1]
-    let initialState = Array.zeroCreate<bool> machine.LightDiagram.Length
+    let buttonIndices = [0 .. machine.Buttons.Length - 1]
+    let initialState = 0UL
     
     Seq.initInfinite (fun pressCount ->
         combinationWithRepetition pressCount buttonIndices
@@ -63,7 +66,7 @@ let findCombination (machine: Machine) =
         let finalState = 
             buttonSequence 
             |> List.fold (fun state btnIdx -> 
-                applyButton state (machine.Buttons |> Seq.item btnIdx)
+                applyButton state machine.Buttons.[btnIdx]
             ) initialState
         (buttonSequence.Length, finalState)
     )

@@ -24,6 +24,26 @@ func parseNumbers(s string) []int {
 	return nums
 }
 
+func boolsToUint64(bools []bool) uint64 {
+	var result uint64
+	for i, b := range bools {
+		if b {
+			result |= (1 << i)
+		}
+	}
+	return result
+}
+
+func buttonToBitmask(buttonIndices []int, maxBits int) uint64 {
+	var mask uint64
+	for _, idx := range buttonIndices {
+		if idx >= 0 && idx < maxBits {
+			mask |= (1 << idx)
+		}
+	}
+	return mask
+}
+
 // CombinationWithRepetition generates all combinations of length num from list, with repetition allowed
 func CombinationWithRepetition[T any](num int, list []T) [][]T {
 	if num == 0 {
@@ -51,51 +71,34 @@ func CombinationWithRepetition[T any](num int, list []T) [][]T {
 	return result
 }
 
-func applyButton(state []bool, buttonIndices []int) []bool {
-	newState := make([]bool, len(state))
-	copy(newState, state)
-
-	for _, idx := range buttonIndices {
-		if idx >= 0 && idx < len(newState) {
-			newState[idx] = !newState[idx]
-		}
-	}
-
-	return newState
-}
-
-func slicesEqual(a, b []bool) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
 func FindCombination(machine Machine) int {
+	buttonMasks := make([]uint64, len(machine.Buttons))
+	numBits := len(machine.LightDiagram)
+
+	for i, button := range machine.Buttons {
+		buttonMasks[i] = buttonToBitmask(button, numBits)
+	}
+
+	targetState := boolsToUint64(machine.LightDiagram)
+	initialState := uint64(0)
+
 	buttonIndices := make([]int, len(machine.Buttons))
 	for i := range buttonIndices {
 		buttonIndices[i] = i
 	}
 
-	initialState := make([]bool, len(machine.LightDiagram))
-
 	for pressCount := 0; ; pressCount++ {
 		combinations := CombinationWithRepetition(pressCount, buttonIndices)
 
 		for _, buttonSequence := range combinations {
-			finalState := make([]bool, len(initialState))
-			copy(finalState, initialState)
+			finalState := initialState
 
+			// apply XOR
 			for _, btnIdx := range buttonSequence {
-				finalState = applyButton(finalState, machine.Buttons[btnIdx])
+				finalState ^= buttonMasks[btnIdx]
 			}
 
-			if slicesEqual(finalState, machine.LightDiagram) {
+			if finalState == targetState {
 				return len(buttonSequence)
 			}
 		}
