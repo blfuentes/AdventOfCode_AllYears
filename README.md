@@ -14,10 +14,15 @@ https://adventofcode.com/
 |[2020](#2020-f)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2021](#2021-f)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
 |[2022](#2022-f)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
-|[2023](#2023-fc)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
-|[2024](#2024-fgo)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫					| (50/50)	|
-|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐⭐⭐⭐⭐❄️❄️❄️									| (18/24)	|
-|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜ (98,85%)	| (518/524) |
+|[2023](#2023-fc)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢💫				| (50/50)	|
+|[2024](#2024-fgo)			| ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2025](#2025-fgorust)		| ⭐⭐⭐⭐⭐⭐⭐⭐⭐💢❄️❄️									| (20/24)	|
+|Overall					| 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜ (99,23%)	| (520/524) |
+
+## Cheated list
+- 2023 day 24 part 2: Z3 library
+- 2024 day 13 part 2: Z3 library
+- 2025 day 10 part 2: Z3 library
 
 ## Advent Of Code 2015
 
@@ -26,7 +31,6 @@ https://adventofcode.com/
 https://adventofcode.com/2015
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
-
 
 |Day											| Part 1 | Part 2 |
 |-----------------------------------------------|----|----|
@@ -64,7 +68,6 @@ https://adventofcode.com/2016
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
-
 |Day												| Part 1 | Part 2 |
 |---------------------------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2016/day/1): No Time for a Taxicab						| ✔️ [F#](./AdventOfCode_2016/day01/part01/day01_part01.fs) | ✔️ [F#](./AdventOfCode_2016/day01/part02/day01_part02.fs) |
@@ -100,7 +103,6 @@ https://adventofcode.com/2016
 https://adventofcode.com/2017
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
-
 
 |Day												| Part 1 | Part 2 |
 |---------------------------------------------------|----|----|
@@ -173,7 +175,6 @@ https://adventofcode.com/2019
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
-
 |Day										| Part 1 | Part 2 |
 |-------------------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2019/day/1): The Tyranny of the Rocket Equation	| ✔️ [F#](./AdventOfCode_2019/day01/part01/day01_part01.fs) | ✔️ [F#](./AdventOfCode_2019/day01/part02/day01_part02.fs) |
@@ -207,7 +208,6 @@ https://adventofcode.com/2019
 https://adventofcode.com/2020
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
-
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
@@ -244,7 +244,6 @@ https://adventofcode.com/2021
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
-
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2021/day/1): Sonar Sweep					| ✔️ [F#](./AdventOfCode_2021/day01/part01/day01_part01.fs) | ✔️ [F#](./AdventOfCode_2021/day01/part02/day01_part02.fs) |
@@ -280,7 +279,6 @@ https://adventofcode.com/2022
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
-
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2022/day/1): Calorie Counting			| ✔️ [F#](./AdventOfCode_2022/day01/part01/day01_part01.fs) | ✔️ [F#](./AdventOfCode_2022/day01/part02/day01_part02.fs) |
@@ -315,8 +313,7 @@ https://adventofcode.com/2022
 
 https://adventofcode.com/2023
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
-
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐ (25/25)
 
 |Day										| Part 1 | Part 2 |
 |-------------------------------------------|----|----|
@@ -353,7 +350,7 @@ https://adventofcode.com/2023
 
 https://adventofcode.com/2024
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
@@ -389,7 +386,7 @@ https://adventofcode.com/2024
 
 https://adventofcode.com/2025
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9/12)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐💢 (10/12)
 
 |Day								| Part 1 | Part 2 |
 |-----------------------------------|----|----|
@@ -402,6 +399,6 @@ https://adventofcode.com/2025
 | [Day 7](https://adventofcode.com/2025/day/7):	Laboratories		| ✔️ [F#](./AdventOfCode_2025/day07/day07_part01.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_1.go) | ✔️ [F#](./AdventOfCode_2025/day07/day07_part02.fs) - [Go](./AdventOfCode_2025_Go/day07/day07_2.go) |
 | [Day 8](https://adventofcode.com/2025/day/8):	Playground			| ✔️ [F#](./AdventOfCode_2025/day08/day08_part01.fs) - [Go](./AdventOfCode_2025_Go/day08/day08_1.go) | ✔️ [F#](./AdventOfCode_2025/day08/day08_part02.fs) - [Go](./AdventOfCode_2025_Go/day08/day08_2.go) |
 | [Day 9](https://adventofcode.com/2025/day/9):	Movie Theater		| ✔️ [F#](./AdventOfCode_2025/day09/day09_part01.fs) - [Go](./AdventOfCode_2025_Go/day09/day09_1.go) | ✔️ [F#](./AdventOfCode_2025/day09/day09_part02.fs) - [Go](./AdventOfCode_2025_Go/day09/day09_2.go)|
-| [Day 10](https://adventofcode.com/2025/day/10):					| ❌ | ❌ |
+| [Day 10](https://adventofcode.com/2025/day/10): Factory			| ✔️ [F#](./AdventOfCode_2025/day10/day10_part01.fs) | ✔️ [F#](./AdventOfCode_2025/day10/day10_part02.fs) |
 | [Day 11](https://adventofcode.com/2025/day/11):					| ❌ | ❌ |
 | [Day 12](https://adventofcode.com/2025/day/12):					| ❌ | ❌ |

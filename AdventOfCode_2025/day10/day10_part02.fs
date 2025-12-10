@@ -2,6 +2,7 @@
 
 open AdventOfCode_2025.Modules
 open System.Text.RegularExpressions
+open Microsoft.Z3
 
 type Machine = {
     Id: int;
@@ -36,200 +37,81 @@ let parseContent (lines: string array) =
         }
     )
 
-let rec combinationWithRepetition (num: int) (list: 'a list) : 'a list list = 
-    match num, list with
-    | 0, _ -> [[]]
-    | _, [] -> []
-    | k, (x::xs) -> 
-        List.map ((@) [x]) (combinationWithRepetition (k-1) list) 
-        @ (combinationWithRepetition k xs)
-
-let findCombination (machine: Machine) =
-    let applyButton (state: int array) (buttonIndices: int array) =
-        let newState = Array.copy state
-        for idx in buttonIndices do
-            if idx >= 0 && idx < newState.Length then
-                newState[idx] <- newState[idx] + 1
-        newState
-    
-    let buttonIndices = [0 .. (Seq.length machine.Buttons) - 1]
-    let initialState = Array.zeroCreate<int> machine.Joltages.Length
-    
-    Seq.initInfinite (fun pressCount ->
-        combinationWithRepetition pressCount buttonIndices
-    )
-    |> Seq.concat 
-    |> Seq.map (fun buttonSequence ->
-        let finalState = 
-            buttonSequence 
-            |> List.fold (fun state btnIdx -> 
-                applyButton state (machine.Buttons |> Seq.item btnIdx)
-            ) initialState
-        (buttonSequence.Length, finalState)
-    )
-    |> Seq.find (fun (count, state) -> state = machine.Joltages)
-    |> fst
-
-let findCombinationDP (machine: Machine) =
+let minimumPresses (machine: Machine) =
     let target = machine.Joltages
-    let buttons = machine.Buttons |> Seq.toArray
-    let numPositions = target.Length
-    
-    // BFS to find minimum button presses
-    let queue = System.Collections.Generic.Queue<int array * int>()
-    let visited = System.Collections.Generic.HashSet<string>()
-    
-    let stateKey (state: int array) = 
-        state |> Array.map string |> String.concat ","
-    
-    let initialState = Array.zeroCreate numPositions
-    queue.Enqueue(initialState, 0)
-    visited.Add(stateKey initialState) |> ignore
-    
-    let rec bfs () =
-        if queue.Count = 0 then
-            failwith "No solution found"
-        else
-            let (state, pressCount) = queue.Dequeue()
-            
-            if state = target then
-                printfn "Found solution with %d presses" pressCount
-                pressCount
-            else
-                // Try each button
-                for button in buttons do
-                    let newState = Array.copy state
-                    for idx in button do
-                        if idx >= 0 && idx < numPositions then
-                            newState.[idx] <- newState.[idx] + 1
-                    
-                    let key = stateKey newState
-                    
-                    // Only continue if all values <= target (pruning)
-                    let valid = 
-                        newState 
-                        |> Array.zip target
-                        |> Array.forall (fun (t, s) -> s <= t)
-                    
-                    if valid && not (visited.Contains(key)) then
-                        visited.Add(key) |> ignore
-                        queue.Enqueue(newState, pressCount + 1)
-                
-                bfs()  // Continue BFS - this now properly returns the result
-    
-    bfs()
-
-let rec gcd a b = if b = 0 then a else gcd b (a % b)
-
-let lcm a b = (a * b) / (gcd a b)
-
-// Extended Euclidean Algorithm for solving ax + by = gcd(a,b)
-let rec extendedGcd a b =
-    if b = 0 then (a, 1, 0)
-    else
-        let (g, x1, y1) = extendedGcd b (a % b)
-        (g, y1, x1 - (a / b) * y1)
-
-let findCombinationMath (machine: Machine) =
-    let target = machine.Joltages
-    let buttons = machine.Buttons |> Seq.toArray
-    
-    // Convert button effects to a matrix
-    // Each column represents how button affects each position
-    let buttonMatrix = 
-        buttons 
-        |> Array.map (fun button ->
+    let buttons = 
+        machine.Buttons 
+        |> Seq.map (fun btnIndices ->
             let effects = Array.zeroCreate target.Length
-            for idx in button do
+            for idx in btnIndices do
                 if idx >= 0 && idx < target.Length then
-                    effects.[idx] <- effects.[idx] + 1
+                    effects[idx] <- effects[idx] + 1
             effects
         )
+        |> Seq.toArray
     
-    // For each position, find GCD of all button effects on that position
-    let positionGcds =
-        [| for pos in 0 .. target.Length - 1 do
-            let values = buttonMatrix |> Array.map (fun btn -> btn.[pos]) |> Array.filter ((<>) 0)
-            if values.Length = 0 then
-                yield 1
-            else
-                yield values |> Array.reduce gcd
-        |]
-    
-    // Check if solution is possible
-    let solvable = 
-        target 
-        |> Array.zip positionGcds
-        |> Array.forall (fun (g, t) -> t % g = 0)
-    
-    if not solvable then
-        failwith "No solution possible (GCD constraint violated)"
-    
-    // Reduce the problem by dividing by GCD
-    let reducedTarget = 
-        target 
-        |> Array.zip positionGcds
-        |> Array.map (fun (g, t) -> t / g)
-    
-    let reducedButtons =
-        buttonMatrix
-        |> Array.map (fun btn ->
-            btn 
-            |> Array.zip positionGcds
-            |> Array.map (fun (g, b) -> b / g)
-        )
-    
-    // Now solve with reduced values (smaller state space)
-    let queue = System.Collections.Generic.Queue<int array * int>()
-    let visited = System.Collections.Generic.HashSet<string>()
-    
-    let stateKey (state: int array) = 
-        state |> Array.map string |> String.concat ","
-    
-    let initialState = Array.zeroCreate target.Length
-    queue.Enqueue(initialState, 0)
-    visited.Add(stateKey initialState) |> ignore
-    
-    let rec bfs () =
-        if queue.Count = 0 then
-            failwith "No solution found"
-        else
-            let (state, pressCount) = queue.Dequeue()
-            
-            if state = reducedTarget then
-                printfn "Found solution with %d presses" pressCount
-                pressCount
-            else
-                // Try each button
-                for buttonIdx in 0 .. reducedButtons.Length - 1 do
-                    let newState = Array.copy state
-                    for idx in 0 .. newState.Length - 1 do
-                        newState.[idx] <- newState.[idx] + reducedButtons.[buttonIdx].[idx]
-                    
-                    let key = stateKey newState
-                    
-                    // Pruning with reduced targets
-                    let valid = 
-                        newState 
-                        |> Array.zip reducedTarget
-                        |> Array.forall (fun (t, s) -> s <= t)
-                    
-                    if valid && not (visited.Contains(key)) then
-                        visited.Add(key) |> ignore
-                        queue.Enqueue(newState, pressCount + 1)
-                
-                bfs()
-    
-    bfs()
+    if target |> Array.forall ((=) 0) then
+        0
+    else
+        let cfg = System.Collections.Generic.Dictionary()
+        cfg.Add("model", "true")
+        use ctx = new Context(cfg)
+        use solver = ctx.MkOptimize()
 
-let getButtonPressesMath (machines: Machine array) =
-    machines 
-    |> Array.Parallel.map findCombinationMath  // Parallelize for extra speed
-    |> Array.sum
+        // convert buttons to variables
+        let buttonVars = 
+            buttons 
+            |> Array.mapi (fun idx _ -> 
+                let var = ctx.MkIntConst($"button_{idx}")
+                solver.Add(ctx.MkGe(var, ctx.MkInt(0)))
+                var
+            )
+
+        for posIdx in 0 .. target.Length - 1 do
+            let contributions = 
+                buttonVars 
+                |> Array.mapi (fun btnIdx btnVar ->
+                    let effect = buttons[btnIdx][posIdx]
+                    if effect > 0 then
+                        Some(ctx.MkMul(btnVar, ctx.MkInt(effect)))
+                    else
+                        None
+                )
+                |> Array.choose id
+
+            if contributions.Length > 0 then
+                let sumExpr = ctx.MkAdd(contributions |> Array.map (fun x -> x :> ArithExpr))
+                let targetExpr = ctx.MkInt(target[posIdx])
+                solver.Add(ctx.MkEq(sumExpr, targetExpr))
+            elif target[posIdx] <> 0 then
+                // ?? it shouldn't be possible to reach here.
+                // at least one button should affect each position with non-zero target
+                failwith $"machine {machine.Id} - position {posIdx} cannot be modified"
+
+        let totalPresses = ctx.MkAdd(buttonVars |> Array.map (fun x -> x :> ArithExpr))
+        solver.MkMinimize(totalPresses) |> ignore
+
+        match solver.Check() with
+        | Status.SATISFIABLE ->
+            let model = solver.Model
+            let totalValue = 
+                buttonVars 
+                |> Array.sumBy (fun var -> 
+                    model.Eval(var, true).ToString() |> int
+                )
+            //printfn $"machine {machine.Id} requires {totalValue}"
+            totalValue        
+        |_ ->
+            failwith $"Unexpected solver status for machine {machine.Id}"
 
 let execute() =
     //let path = "day10/test_input_10.txt"
     let path = "day10/day10_input.txt"
     let content = LocalHelper.GetLinesFromFile path
     let machines = parseContent content
-    getButtonPressesMath machines
+    
+    machines 
+    |> Array.Parallel.mapi (fun idx machine ->
+        minimumPresses machine
+    )
+    |> Array.sum

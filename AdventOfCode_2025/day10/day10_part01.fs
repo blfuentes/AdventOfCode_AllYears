@@ -49,7 +49,7 @@ let findCombination (machine: Machine) =
         let newState = Array.copy state
         for idx in buttonIndices do
             if idx >= 0 && idx < newState.Length then
-                newState.[idx] <- not newState.[idx]
+                newState[idx] <- not newState[idx]
         newState
     
     let buttonIndices = [0 .. (Seq.length machine.Buttons) - 1]
