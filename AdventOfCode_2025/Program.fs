@@ -103,6 +103,8 @@ let main argv =
     printfn "Final result Day 10 part 1: %A in %s" resultday10Part1 (Utilities.ms time10_1)
     let (resultday10Part2, timer10_2) = Utilities.duration day10_part02.execute
     printfn "Final result Day 10 part 2: %A in %s" resultday10Part2 (Utilities.ms timer10_2)
+    let (resultday10Part2_alt, timer10_2_alt) = Utilities.duration day10_part02_alt.execute
+    printfn "Final result Day 10 part 2(alt): %A in %s" resultday10Part2 (Utilities.ms timer10_2_alt)
 
     //// DAY 11
     //getInput 2025 11
