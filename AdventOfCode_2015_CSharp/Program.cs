@@ -29,6 +29,6 @@ Console.WriteLine($"{"=".Repeat(50)}");
 if (Utils.DownloadContent(client, 2015, 1))
 {
     //BenchmarkRunner.Run<Day00>();
-    Console.WriteLine((new Day01(isTest: true)).SolvePart1());
-    Console.WriteLine((new Day01(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day01(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day01(isTest: false)).SolvePart2());
 }

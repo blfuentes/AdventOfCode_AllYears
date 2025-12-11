@@ -8,7 +8,12 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     [Benchmark]
     public int RunPart1()
     {
-        return Content.Length;
+        int result = 0;
+        foreach(char c in Content) 
+        {
+            result += c == '(' ? 1 : -1;
+        }
+        return result;
     }
 
     public override string SolvePart1()
@@ -24,7 +29,14 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        int result = 0;
+        foreach(var item in Content.Select((v, i) => new {v, i }))
+        {
+            result += item.v == '(' ? 1 : -1;
+            if (result < 0)
+                return item.i+1;
+        }
+        return result;
     }
 
     public override string SolvePart2()
