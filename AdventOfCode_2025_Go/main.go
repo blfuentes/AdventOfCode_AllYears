@@ -15,12 +15,13 @@ import (
 	"github.com/blfuentes/AdventOfCode_2025_Go/day09"
 	"github.com/blfuentes/AdventOfCode_2025_Go/day10"
 	"github.com/blfuentes/AdventOfCode_2025_Go/day11"
+	"github.com/blfuentes/AdventOfCode_2025_Go/day12"
 	"github.com/blfuentes/AdventOfCode_2025_Go/utilities"
-	// "github.com/blfuentes/AdventOfCode_2025_Go/day12"
 )
 
 func main() {
 	var timer time.Time
+
 	// Day 01
 	utilities.RetrieveContent(2025, 1)
 	timer = time.Now()
@@ -120,12 +121,12 @@ func main() {
 	fmt.Printf("Final result Day 11 part 2: %d", day11.Executepart2())
 	fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
 
-	// // Day 12
-	// utilities.RetrieveContent(2025, 12)
-	// timer = time.Now()
-	// fmt.Printf("Final result Day 12 part 1: %d", day12.Executepart1())
-	// fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
-	// timer = time.Now()
-	// fmt.Printf("Final result Day 12 part 2: %d", day12.Executepart2())
-	// fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
+	// Day 12
+	utilities.RetrieveContent(2025, 12)
+	timer = time.Now()
+	fmt.Printf("Final result Day 12 part 1: %d", day12.Executepart1())
+	fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
+	timer = time.Now()
+	fmt.Printf("Final result Day 12 part 2: %d", day12.Executepart2())
+	fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
 }
