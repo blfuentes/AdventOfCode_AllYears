@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace AdventOfCode_2015_CSharp.day00;
+namespace AdventOfCode_2015_CSharp.day01;
 
 public class Day01(bool isTest = false) : BaseDay("01", isTest)
 {
