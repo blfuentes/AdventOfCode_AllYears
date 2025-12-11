@@ -6,15 +6,6 @@ import (
 	"github.com/blfuentes/AdventOfCode_2025_Go/utilities"
 )
 
-type Key struct {
-	k string
-	p string
-}
-
-func buildP(path utilities.Set[string]) string {
-	return strings.Join(path.Values(), "_")
-}
-
 func Executepart2() int64 {
 	var result int64 = 0
 
@@ -27,48 +18,50 @@ func Executepart2() int64 {
 			devices[from] = Device{Name: from, Outputs: strings.Split(strings.TrimSpace(outputs), " ")}
 		}
 
-		//
-		start, end := "svr", "out"
-		required := utilities.NewSetWithValues("dac", "fft")
-		cache := make(map[Key]int64)
-		var dfs func(visited, requiredVisited utilities.Set[string], current string) int64
-		dfs = func(visited, requiredVisited utilities.Set[string], current string) int64 {
+		var dfs func(cache map[string]int64, current, end string) int64
+		dfs = func(cache map[string]int64, current, end string) int64 {
 			if current == end {
-				if required.Difference(&requiredVisited).IsEmpty() {
-					return 1
-				}
-				return 0
+				return 1
 			}
-
-			key := Key{k: current, p: buildP(requiredVisited)}
-			if v, ok := cache[key]; ok {
+			if v, ok := cache[current]; ok {
 				return v
 			}
 
 			totalCount := int64(0)
 			if device, ok := devices[current]; ok {
 				for _, neighbor := range device.Outputs {
-					if !visited.Contains(neighbor) {
-						newRequired := utilities.NewSet[string]()
-						for _, v := range requiredVisited.Values() {
-							newRequired.Add(v)
-						}
-						if required.Contains(neighbor) {
-							newRequired.Add(neighbor)
-						}
-						newVisited := utilities.NewSet[string]()
-						for _, v := range visited.Values() {
-							newVisited.Add(v)
-						}
-						newVisited.Add(neighbor)
-						totalCount += dfs(*newVisited, *newRequired, neighbor)
-					}
+					totalCount += dfs(cache, neighbor, end)
 				}
 			}
-			cache[key] = totalCount
+			cache[current] = totalCount
 			return totalCount
 		}
-		result = dfs(*utilities.NewSetWithValues(start), *utilities.NewSet[string](), start)
+
+		// svr -> fft
+		start, end := "svr", "fft"
+		svr_fft := dfs(make(map[string]int64), start, end)
+
+		// svr -> dac
+		start, end = "svr", "dac"
+		svr_dac := dfs(make(map[string]int64), start, end)
+
+		// fft -> dac
+		start, end = "fft", "dac"
+		fft_dac := dfs(make(map[string]int64), start, end)
+
+		// dac -> fft
+		start, end = "dac", "fft"
+		dac_fft := dfs(make(map[string]int64), start, end)
+
+		// dac -> out
+		start, end = "dac", "out"
+		dac_out := dfs(make(map[string]int64), start, end)
+
+		// fft -> out
+		start, end = "fft", "out"
+		fft_out := dfs(make(map[string]int64), start, end)
+
+		result = svr_fft*fft_dac*dac_out + svr_dac*dac_fft*fft_out
 	}
 
 	return result

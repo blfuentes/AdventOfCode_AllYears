@@ -20,19 +20,17 @@ func Executepart1() int {
 
 		//
 		start, end := "you", "out"
-		var dfs func(visited map[string]bool, path []Device, current Device)
-		dfs = func(visited map[string]bool, path []Device, current Device) {
+		var dfs func(current Device)
+		dfs = func(current Device) {
 			if utilities.Contains(current.Outputs, end) {
 				result++
 			} else {
 				for _, neighbor := range current.Outputs {
-					if _, ok := visited[neighbor]; !ok {
-						dfs(visited, append(path, devices[neighbor]), devices[neighbor])
-					}
+					dfs(devices[neighbor])
 				}
 			}
 		}
-		dfs(make(map[string]bool, 0), make([]Device, 0), devices[start])
+		dfs(devices[start])
 	}
 
 	return result
