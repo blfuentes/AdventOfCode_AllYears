@@ -103,8 +103,8 @@ let main argv =
     printfn "Final result Day 10 part 1: %A in %s" resultday10Part1 (Utilities.ms time10_1)
     let (resultday10Part2, timer10_2) = Utilities.duration day10_part02.execute
     printfn "Final result Day 10 part 2: %A in %s" resultday10Part2 (Utilities.ms timer10_2)
-    let (resultday10Part2_alt, timer10_2_alt) = Utilities.duration day10_part02_alt.execute
-    printfn "Final result Day 10 part 2(alt): %A in %s" resultday10Part2 (Utilities.ms timer10_2_alt)
+    //let (resultday10Part2_alt, timer10_2_alt) = Utilities.duration day10_part02_alt.execute
+    //printfn "Final result Day 10 part 2(alt): %A in %s" resultday10Part2 (Utilities.ms timer10_2_alt)
 
     // DAY 11
     getInput 2025 11
@@ -113,12 +113,12 @@ let main argv =
     let (resultday11Part2, timer11_2) = Utilities.duration day11_part02.execute
     printfn "Final result Day 11 part 2: %d in %s" resultday11Part2 (Utilities.ms timer11_2)
 
-    //// DAY 12
-    //getInput 2025 12
-    //let (resultday12Part1, time12_1) = Utilities.duration day12_part01.execute
-    //printfn "Final result Day 12 part 1: %A in %s" resultday12Part1 (Utilities.ms time12_1)
-    //let (resultday12Part2, timer12_2) = Utilities.duration day12_part02.execute
-    //printfn "Final result Day 12 part 2: %A in %s" resultday12Part2 (Utilities.ms timer12_2)
+    // DAY 12
+    getInput 2025 12
+    let (resultday12Part1, time12_1) = Utilities.duration day12_part01.execute
+    printfn "Final result Day 12 part 1: %A in %s" resultday12Part1 (Utilities.ms time12_1)
+    let (resultday12Part2, timer12_2) = Utilities.duration day12_part02.execute
+    printfn "Final result Day 12 part 2: %A in %s" resultday12Part2 (Utilities.ms timer12_2)
 
     timer.Stop()
     let timespan = (TimeSpan.FromTicks timer.ElapsedTicks)
