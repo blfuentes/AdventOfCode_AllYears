@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.Concurrent;
 
 namespace AdventOfCode_2015_CSharp.day01;
 
@@ -30,11 +31,11 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     public int RunPart2()
     {
         int result = 0;
-        foreach(var item in Content.Select((v, i) => new {v, i }))
+        foreach (var item in Content.Select((v, i) => new { v, i }))
         {
             result += item.v == '(' ? 1 : -1;
             if (result < 0)
-                return item.i+1;
+                return item.i + 1;
         }
         return result;
     }
