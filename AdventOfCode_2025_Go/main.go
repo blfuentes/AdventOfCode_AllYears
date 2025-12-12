@@ -20,7 +20,9 @@ import (
 )
 
 func main() {
-	var timer time.Time
+	var timer, general time.Time
+
+	general = time.Now()
 
 	// Day 01
 	utilities.RetrieveContent(2025, 1)
@@ -126,7 +128,6 @@ func main() {
 	timer = time.Now()
 	fmt.Printf("Final result Day 12 part 1: %d", day12.Executepart1())
 	fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
-	timer = time.Now()
-	fmt.Printf("Final result Day 12 part 2: %d", day12.Executepart2())
-	fmt.Printf(" in %s\n", utilities.FormatDuration(time.Since(timer)))
+
+	fmt.Printf("Total execution: %s\n", utilities.FormatDuration(time.Since(general)))
 }

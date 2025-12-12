@@ -120,7 +120,7 @@ let main argv =
 
     timer.Stop()
     let timespan = (TimeSpan.FromTicks timer.ElapsedTicks)
-    printfn "Total execution: %02i:%02i.%03i" timespan.Minutes timespan.Seconds timespan.Milliseconds
+    printfn "Total execution: %s" (Utilities.ms timespan.Ticks)
 
     //
     let endprogram = Console.ReadLine()
