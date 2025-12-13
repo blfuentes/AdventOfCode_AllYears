@@ -5,6 +5,7 @@ using AdventOfCode_2015_CSharp.day02;
 using AdventOfCode_2015_CSharp.day03;
 using AdventOfCode_2015_CSharp.day04;
 using AdventOfCode_2015_CSharp.day05;
+using AdventOfCode_2015_CSharp.day06;
 using BenchmarkDotNet.Running;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,14 +22,6 @@ var client = httpClientFactory.CreateClient("AdventOfCodeClient");
 
 Console.WriteLine("Advent of Code 215");
 Console.WriteLine($"{"=".Repeat(50)}");
-
-//// Day 00
-//if (Utils.DownloadContent(client, 2015, 0))
-//{
-//    //BenchmarkRunner.Run<Day00>();
-//    Console.WriteLine((new Day00(isTest: true)).SolvePart1());
-//    Console.WriteLine((new Day00(isTest: true)).SolvePart2());
-//}
 
 // Day 01
 if (Utils.DownloadContent(client, 2015, 1))
@@ -68,4 +61,12 @@ if (Utils.DownloadContent(client, 2015, 5))
     //BenchmarkRunner.Run<Day05>();
     Console.WriteLine((new Day05(isTest: false)).SolvePart1());
     Console.WriteLine((new Day05(isTest: false)).SolvePart2());
+}
+
+// Day 06
+if (Utils.DownloadContent(client, 2015, 6))
+{
+    //BenchmarkRunner.Run<Day06>();
+    Console.WriteLine((new Day06(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day06(isTest: false)).SolvePart2());
 }

@@ -4,17 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode_2015_CSharp.day05;
 
-public class Day05(bool isTest = false) : BaseDay("05", isTest)
+public partial class Day05(bool isTest = false) : BaseDay("05", isTest)
 {
     #region Part 1
+    [GeneratedRegex("[aeiou]")]
+    private static partial Regex ThreeVowelsRegex();
 
-    Regex threeVowels = new Regex("[aeiou]");
+    private readonly Regex threeVowels = ThreeVowelsRegex();
     bool HasThreeVowels(string word)
     {
-        return threeVowels.Matches(word).Count >= 3;
+        return threeVowels.Count(word) >= 3;
     }
 
-    bool HasRepeatedChar(string mov)
+    private static bool HasRepeatedChar(string mov)
     {
         for (int i = 0; i < mov.Length - 1; i++)
         {
@@ -54,7 +56,7 @@ public class Day05(bool isTest = false) : BaseDay("05", isTest)
 
     #region Part 2
 
-    bool TwoNotOverlapped(string word)
+    private static bool TwoNotOverlapped(string word)
     {
         for (int i = 0; i < word.Length - 3; i++)
         {
@@ -68,7 +70,7 @@ public class Day05(bool isTest = false) : BaseDay("05", isTest)
         return false;
     }
 
-    bool RepeatedWithMid(string word)
+    private static bool RepeatedWithMid(string word)
     {
         for (int i = 0; i < word.Length - 2; i++)
         {

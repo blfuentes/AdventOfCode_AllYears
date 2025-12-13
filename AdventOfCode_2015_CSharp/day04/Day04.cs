@@ -51,7 +51,7 @@ public class Day04(bool isTest = false) : BaseDay("04", isTest)
         {
             current++;
             hash = CreateMD5($"{Content}{current}");
-        } while (hash.Take(3).Any(b => b != 0));
+        } while (hash[0] != hash[1] || hash[1] != hash[2] || hash[2] != 0);
         return current;
     }
 
