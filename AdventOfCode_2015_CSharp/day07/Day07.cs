@@ -4,43 +4,36 @@ namespace AdventOfCode_2015_CSharp.day07;
 
 public class Day07(bool isTest = false) : BaseDay("07", isTest)
 {
+    Dictionary<string, ushort> registers = [];
+    Queue<string[]> operations = [];
 
-    #region Part 1
-    [Benchmark]
-    public int RunPart1()
+    bool GetValue(string reg, out ushort value)
     {
-        Dictionary<string, ushort> registers = [];
-        Queue<string[]> operations = [];
-        foreach (var operation in File.ReadAllLines(InputPath))
-        {
-            operations.Enqueue(operation.Split(" "));
-        }
+        bool found = false;
+        value = 0;
 
-        bool GetValue(string reg, out ushort value)
-        {
-            bool found = false;
-            value = 0;
+        found = ushort.TryParse(reg, out value);
+        if (!found)
+            found = registers.TryGetValue(reg, out value);
 
-            found = ushort.TryParse(reg, out value);
-            if (!found)
-                found = registers.TryGetValue(reg, out value);
+        return found;
+    }
 
-            return found;
-        }
-
+    void RunOperations(Dictionary<string, ushort> registers, Queue<string[]> operations)
+    {
         while (operations.Count > 0)
         {
             var parts = operations.Dequeue();
-            Console.WriteLine(string.Join(" ", parts));
+            //Console.WriteLine(string.Join(" ", parts));
             switch (parts.Length)
             {
                 case 3: // assign value to register
-                    if (GetValue(parts[0], out var value))
+                    if (GetValue(parts[0], out var assign))
                     {
                         if (registers.ContainsKey(parts[2]))
-                            registers[parts[2]] = value;
+                            registers[parts[2]] = assign;
                         else
-                            registers.Add(parts[2], value);
+                            registers.Add(parts[2], assign);
                     }
                     else
                     {
@@ -48,21 +41,18 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
                     }
                     break;
                 case 4: // negate value
-                    if (GetValue(parts[1], out ushort v))
+                    if (GetValue(parts[1], out ushort negate))
                     {
-                        if (registers.ContainsKey(parts[1]))
-                            registers[parts[3]] = (ushort)~((int)v);
-                        else
-                            operations.Enqueue(parts);
+                        registers[parts[3]] = (ushort)~((int)negate);
                     }
+                    else
+                        operations.Enqueue(parts);
                     break;
                 case 5: // AND, OR, LSHIFT, RSHIFT
                     switch (parts[1])
                     {
                         case "AND":
-                            if (registers.ContainsKey(parts[0]) && 
-                                registers.ContainsKey(parts[2]) &&
-                                GetValue(parts[0], out ushort a) &&
+                            if (GetValue(parts[0], out ushort a) &&
                                 GetValue(parts[2], out ushort b))
                             {
                                 if (registers.ContainsKey(parts[4]))
@@ -76,9 +66,7 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
                             }
                             break;
                         case "OR":
-                            if (registers.ContainsKey(parts[0]) &&
-                                registers.ContainsKey(parts[2]) &&
-                                GetValue(parts[0], out ushort c) &&
+                            if (GetValue(parts[0], out ushort c) &&
                                 GetValue(parts[2], out ushort d))
                             {
                                 if (registers.ContainsKey(parts[4]))
@@ -120,12 +108,22 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
                             }
                             break;
                     }
-
                     break;
-
             }
         }
-        return registers["a"];
+    }
+
+    #region Part 1
+    [Benchmark]
+    public int RunPart1()
+    {
+        foreach (var operation in File.ReadAllLines(InputPath))
+        {
+            operations.Enqueue(operation.Split(" "));
+        }
+
+        RunOperations(registers, operations);
+        return registers["a"]; 
     }
 
     public override string SolvePart1()
@@ -141,7 +139,17 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        registers = [];
+        registers.Add("b", 956);
+
+        operations.Clear();
+        foreach (var operation in File.ReadAllLines(InputPath))
+        {
+            operations.Enqueue(operation.Split(" "));
+        }
+
+        RunOperations(registers, operations);
+        return registers["a"];
     }
 
     public override string SolvePart2()
