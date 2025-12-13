@@ -1,0 +1,7 @@
+// Day 00
+if (Utils.DownloadContent(client, 2015, 0))
+{
+    //BenchmarkRunner.Run<Day00>();
+    Console.WriteLine((new Day00(isTest: true)).SolvePart1());
+    Console.WriteLine((new Day00(isTest: true)).SolvePart2());
+}

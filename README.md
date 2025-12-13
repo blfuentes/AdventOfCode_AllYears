@@ -6,18 +6,18 @@ https://adventofcode.com/
 
 |Year | Progress | Total |
 |---|---|---|
-|[2015](#2015-fgoc)         | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2016](#2016-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2017](#2017-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2018](#2018-ftypescript)  | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2019](#2019-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2020](#2020-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2021](#2021-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2022](#2022-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2023](#2023-fc)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢💫            | (50/50) |
-|[2024](#2024-fgo)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫            | (50/50) |
-|[2025](#2025-fgorust)      | ⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐💫                                         | (24/24) |
-|Overall                    | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 (100%)     | (524/524) |
+|[2015](#2015-fgoc)         | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2016](#2016-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2017](#2017-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2018](#2018-ftypescript)  | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2019](#2019-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2020](#2020-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2021](#2021-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2022](#2022-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2023](#2023-fc)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢💫			| (50/50)	|
+|[2024](#2024-fgo)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫			| (50/50)	|
+|[2025](#2025-fgorust)      | ⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐💫								| (24/24)	|
+|Overall                    | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 (100%)	| (524/524)	|
 
 ## Languages by Year
 
@@ -45,9 +45,9 @@ https://adventofcode.com/2015
 
 |Day											| F# | Go | C# |
 |-----------------------------------------------|----|----|----|
-| [Day 1](https://adventofcode.com/2015/day/1): Not Quite Lisp							| ✔️ [F# Part 1](./AdventOfCode_2015/day01/part01/day01_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day01/part02/day01_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day01/day01_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day01/day01_2.go) | ✔️ [C# Part 1](./AdventOfCode_2015_CSharp/day01/Day01.cs)<br>✔️ [C# Part 2](./AdventOfCode_2015_CSharp/day01/Day01.cs) |
-| [Day 2](https://adventofcode.com/2015/day/2): I Was Told There Would Be No Math		| ✔️ [F# Part 1](./AdventOfCode_2015/day02/part01/day02_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day02/part02/day02_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day02/day02_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day02/day02_2.go) | ✔️ [C# Part 1](./AdventOfCode_2015_CSharp/day02/Day02.cs)<br>✔️ [C# Part 2](./AdventOfCode_2015_CSharp/day02/Day02.cs) |
-| [Day 3](https://adventofcode.com/2015/day/3): Perfectly Spherical Houses in a Vacuum	| ✔️ [F# Part 1](./AdventOfCode_2015/day03/part01/day03_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day03/part02/day03_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day03/day03_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day03/day03_2.go) | |
+| [Day 1](https://adventofcode.com/2015/day/1): Not Quite Lisp							| ✔️ [F# Part 1](./AdventOfCode_2015/day01/part01/day01_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day01/part02/day01_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day01/day01_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day01/day01_2.go) | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day01/Day01.cs) |
+| [Day 2](https://adventofcode.com/2015/day/2): I Was Told There Would Be No Math		| ✔️ [F# Part 1](./AdventOfCode_2015/day02/part01/day02_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day02/part02/day02_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day02/day02_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day02/day02_2.go) | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day02/Day02.cs) |
+| [Day 3](https://adventofcode.com/2015/day/3): Perfectly Spherical Houses in a Vacuum	| ✔️ [F# Part 1](./AdventOfCode_2015/day03/part01/day03_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day03/part02/day03_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day03/day03_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day03/day03_2.go) | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day03/Day03.cs)|
 | [Day 4](https://adventofcode.com/2015/day/4): The Ideal Stocking Stuffer				| ✔️ [F# Part 1](./AdventOfCode_2015/day04/part01/day04_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day04/part02/day04_part02.fs) | ✔️ [Go Part 1](./AdventOfCode_2015_Go/day04/day04_1.go)<br>✔️ [Go Part 2](./AdventOfCode_2015_Go/day04/day04_2.go) | |
 | [Day 5](https://adventofcode.com/2015/day/5): Doesn't He Have Intern-Elves For This?	| ✔️ [F# Part 1](./AdventOfCode_2015/day05/part01/day05_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day05/part02/day05_part02.fs) | | |
 | [Day 6](https://adventofcode.com/2015/day/6): Probably a Fire Hazard					| ✔️ [F# Part 1](./AdventOfCode_2015/day06/part01/day06_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day06/part02/day06_part02.fs) | | |
