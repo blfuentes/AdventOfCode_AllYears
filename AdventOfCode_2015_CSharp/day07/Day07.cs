@@ -21,37 +21,36 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
         return found;
     }
 
+    void AssignValue(string key, ushort value)
+    {
+        if (!registers.TryAdd(key, value))
+            registers[key] = value;
+    }
 
-    void RunOperations(Dictionary<string, ushort> registers, Queue<string[]> operations, ushort? @override = null)
+    void RunOperations(Queue<string[]> operations, ushort? @override = null)
     {
         while (operations.Count > 0)
         {
             var parts = operations.Dequeue();
+            string resultKey = parts[^1];
             switch (parts.Length)
             {
                 case 3: // assign value to register
-                    if (parts[2] == "b" && @override.HasValue)
+                    if (resultKey == "b" && @override.HasValue)
                     {
-                        registers.TryAdd(parts[2], @override.Value);
+                        AssignValue(resultKey, @override.Value);
                     }
                     else
                     {
-                        if (IsWired(parts[0], out var assign))
-                        {
-                            if (!registers.TryAdd(parts[2], assign))
-                                registers[parts[2]] = assign;
-                        }
+                        if (IsWired(parts[0], out var value))
+                            AssignValue(resultKey, value);
                         else
                             operations.Enqueue(parts);
                     }
                     break;
                 case 4: // negate value
                     if (IsWired(parts[1], out ushort negate))
-                    {
-                        var value = (ushort)~((int)negate);
-                        if (!registers.TryAdd(parts[3], value))
-                            registers[parts[3]] = value;
-                    }
+                        AssignValue(resultKey, (ushort)~((int)negate));
                     else
                         operations.Enqueue(parts);
                     break;
@@ -67,9 +66,7 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
                             "RSHIFT" => RShift,
                             _ => throw new ArgumentException("unexpected!")
                         };
-                        var value = op(a, b);
-                        if (!registers.TryAdd(parts[4], value))
-                            registers[parts[4]] = value;
+                        AssignValue(resultKey, op(a, b));
                     }
                     else
                         operations.Enqueue(parts);
@@ -85,7 +82,7 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
         foreach (var operation in File.ReadAllLines(InputPath))
             operations.Enqueue(operation.Split(" "));
 
-        RunOperations(registers, operations);
+        RunOperations(operations);
         return registers["a"]; 
     }
 
@@ -109,7 +106,7 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
         foreach (var operation in File.ReadAllLines(InputPath))
             operations.Enqueue(operation.Split(" "));
         
-        RunOperations(registers, operations, initialA);
+        RunOperations(operations, initialA);
         return registers["a"];
     }
 
