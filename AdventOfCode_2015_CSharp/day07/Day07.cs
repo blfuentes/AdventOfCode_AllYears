@@ -5,109 +5,74 @@ namespace AdventOfCode_2015_CSharp.day07;
 public class Day07(bool isTest = false) : BaseDay("07", isTest)
 {
     Dictionary<string, ushort> registers = [];
-    Queue<string[]> operations = [];
+    readonly Queue<string[]> operations = new();
 
-    bool GetValue(string reg, out ushort value)
+    readonly Func<ushort, ushort, ushort> And = (a, b) => (ushort)(a & b);
+    readonly Func<ushort, ushort, ushort> Or = (a, b) => (ushort)(a | b);
+    readonly Func<ushort, ushort, ushort> LShift = (a, b) => (ushort)(a << b);
+    readonly Func<ushort, ushort, ushort> RShift = (a, b) => (ushort)(a >> b);
+
+    bool IsWired(string reg, out ushort value)
     {
-        bool found = false;
-        value = 0;
-
-        found = ushort.TryParse(reg, out value);
+        bool found = ushort.TryParse(reg, out value);
         if (!found)
             found = registers.TryGetValue(reg, out value);
 
         return found;
     }
 
-    void RunOperations(Dictionary<string, ushort> registers, Queue<string[]> operations)
+
+    void RunOperations(Dictionary<string, ushort> registers, Queue<string[]> operations, ushort? @override = null)
     {
         while (operations.Count > 0)
         {
             var parts = operations.Dequeue();
-            //Console.WriteLine(string.Join(" ", parts));
             switch (parts.Length)
             {
                 case 3: // assign value to register
-                    if (GetValue(parts[0], out var assign))
+                    if (parts[2] == "b" && @override.HasValue)
                     {
-                        if (registers.ContainsKey(parts[2]))
-                            registers[parts[2]] = assign;
-                        else
-                            registers.Add(parts[2], assign);
+                        registers.TryAdd(parts[2], @override.Value);
                     }
                     else
                     {
-                        operations.Enqueue(parts);
+                        if (IsWired(parts[0], out var assign))
+                        {
+                            if (!registers.TryAdd(parts[2], assign))
+                                registers[parts[2]] = assign;
+                        }
+                        else
+                            operations.Enqueue(parts);
                     }
                     break;
                 case 4: // negate value
-                    if (GetValue(parts[1], out ushort negate))
+                    if (IsWired(parts[1], out ushort negate))
                     {
-                        registers[parts[3]] = (ushort)~((int)negate);
+                        var value = (ushort)~((int)negate);
+                        if (!registers.TryAdd(parts[3], value))
+                            registers[parts[3]] = value;
                     }
                     else
                         operations.Enqueue(parts);
                     break;
                 case 5: // AND, OR, LSHIFT, RSHIFT
-                    switch (parts[1])
+                    if (IsWired(parts[0], out ushort a) &&
+                        IsWired(parts[2], out ushort b))
                     {
-                        case "AND":
-                            if (GetValue(parts[0], out ushort a) &&
-                                GetValue(parts[2], out ushort b))
-                            {
-                                if (registers.ContainsKey(parts[4]))
-                                    registers[parts[4]] = (ushort)(a & b);
-                                else
-                                    registers.Add(parts[4], (ushort)(a & b));
-                            }
-                            else
-                            {
-                                operations.Enqueue(parts);
-                            }
-                            break;
-                        case "OR":
-                            if (GetValue(parts[0], out ushort c) &&
-                                GetValue(parts[2], out ushort d))
-                            {
-                                if (registers.ContainsKey(parts[4]))
-                                    registers[parts[4]] = (ushort)(c | d);
-                                else
-                                    registers.Add(parts[4], (ushort)(c | d));
-                            }
-                            else
-                            {
-                                operations.Enqueue(parts);
-                            }
-                            break;
-                        case "LSHIFT":
-                            if (GetValue(parts[0], out ushort l) &&
-                                GetValue(parts[2], out ushort ls))
-                            {
-                                if (registers.ContainsKey(parts[4]))
-                                    registers[parts[4]] = (ushort)(((int)l) << (int)ls);
-                                else
-                                    registers.Add(parts[4], (ushort)(((int)l) << (int)ls));
-                            }
-                            else
-                            {
-                                operations.Enqueue(parts);
-                            }
-                            break;
-                        case "RSHIFT":
-                            if (GetValue(parts[0], out ushort r) &&
-                                GetValue(parts[2], out ushort rs))
-                            {
-                                if (registers.ContainsKey(parts[4]))
-                                    registers[parts[4]] = (ushort)(((int)r) >> (int)rs);
-                                else
-                                    registers.Add(parts[4], (ushort)(((int)r) >> (int)rs));
-                            }
-                            else
-                            {
-                                operations.Enqueue(parts);
-                            }
-                            break;
+                        var op = parts[1] switch
+                        {
+                            "AND" => And,
+                            "OR" => Or,
+                            "LSHIFT" => LShift,
+                            "RSHIFT" => RShift,
+                            _ => throw new ArgumentException("unexpected!")
+                        };
+                        var value = op(a, b);
+                        if (!registers.TryAdd(parts[4], value))
+                            registers[parts[4]] = value;
                     }
+                    else
+                        operations.Enqueue(parts);
                     break;
             }
         }
@@ -118,9 +83,7 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
     public int RunPart1()
     {
         foreach (var operation in File.ReadAllLines(InputPath))
-        {
             operations.Enqueue(operation.Split(" "));
-        }
 
         RunOperations(registers, operations);
         return registers["a"]; 
@@ -139,16 +102,14 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
     [Benchmark]
     public int RunPart2()
     {
+        ushort initialA = (ushort)RunPart1();
         registers = [];
-        registers.Add("b", 956);
-
         operations.Clear();
+        
         foreach (var operation in File.ReadAllLines(InputPath))
-        {
             operations.Enqueue(operation.Split(" "));
-        }
-
-        RunOperations(registers, operations);
+        
+        RunOperations(registers, operations, initialA);
         return registers["a"];
     }
 
