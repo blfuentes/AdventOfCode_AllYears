@@ -29,9 +29,8 @@ public class Day07(bool isTest = false) : BaseDay("07", isTest)
 
     void RunOperations(Queue<string[]> operations, ushort? @override = null)
     {
-        while (operations.Count > 0)
+        while (operations.TryDequeue(out var parts))
         {
-            var parts = operations.Dequeue();
             string resultKey = parts[^1];
             switch (parts.Length)
             {
