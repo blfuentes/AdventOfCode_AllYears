@@ -93,6 +93,6 @@ if (Utils.DownloadContent(client, 2015, 8))
 if (Utils.DownloadContent(client, 2015, 9))
 {
     //BenchmarkRunner.Run<Day09>();
-    Console.WriteLine((new Day09(isTest: true)).SolvePart1());
-    Console.WriteLine((new Day09(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day09(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day09(isTest: false)).SolvePart2());
 }

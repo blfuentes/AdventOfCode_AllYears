@@ -1,16 +1,22 @@
-using BenchmarkDotNet.Attributes;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace AdventOfCode_2015_CSharp.day09;
+namespace AdventOfCode_AlgoLib.PathFinding;
 
-public class Day09(bool isTest = false) : BaseDay("09", isTest)
+internal class TSP
 {
-    Dictionary<string, int> Cities = [];
-    int[,] Distances;
 
-    #region Part 1
-    private (int minCost, List<int> tour) HeldKarpRouteMinDistance()
+    /// <summary>
+    /// Travelling Salesman problem. 
+    /// This algorithm helps finding the shortest path that visits each node only once.
+    /// </summary>
+    /// <returns>Tuple containing minimum tour cost and the tour path</returns>
+    List<int> Nodes = [];
+    int[,] Distances;
+    private (int minCost, List<int> tour) HeldKarpRoute()
     {
-        int numOfNodes = Cities.Count;
+        int numOfNodes = Nodes.Count;
         int subSetCount = 1 << numOfNodes;
         const int INFINITY = int.MaxValue / 4;
 
@@ -98,47 +104,17 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
         return (minCost, tour);
     }
 
-    [Benchmark]
-    public int RunPart1()
+    /// <summary>
+    /// Held-Karp algorithm starting from a specific node.
+    /// Finds the shortest Hamiltonian path starting from initNode.
+    /// </summary>
+    /// <param name="initNode">The node index to start the path from</param>
+    /// <returns>Tuple containing minimum tour cost and the tour path</returns>
+    private (int minCost, List<int> tour) HeldKarpRoute(int initNode)
     {
-
-        Dictionary<(string, string), int> distances = [];
-        foreach (var line in File.ReadAllLines(InputPath))
-        {
-            var parts = line.Split(' ');
-            var (cityFrom, cityTo, distance) = (parts[0], parts[2], int.Parse(parts[4]));
-            Cities.TryAdd(cityFrom, Cities.Count);
-            Cities.TryAdd(cityTo, Cities.Count);
-            distances.TryAdd((cityFrom, cityTo), distance);
-        }
-        Distances = new int[Cities.Count, Cities.Count];
-        foreach (var kvp in distances)
-        {
-            int i = Cities[kvp.Key.Item1];
-            int j = Cities[kvp.Key.Item2];
-            Distances[i, j] = kvp.Value;
-            Distances[j, i] = kvp.Value;
-        }
-
-        var (minCost, tour) = HeldKarpRouteMinDistance();
-        return minCost;
-    }
-
-    public override string SolvePart1()
-    {
-        StopWatch.Start();
-        var result = RunPart1();
-        StopWatch.Stop();
-        return $"Final result Day {Day} part 1: {result} in {Utils.FormatTime(StopWatch.ElapsedTicks)}.";
-    }
-    #endregion
-
-    #region Part 2
-    private (int maxCost, List<int> tour) HeldKarpRouteMaxDistance()
-    {
-        int numOfNodes = Cities.Count;
+        int numOfNodes = Nodes.Count;
         int subSetCount = 1 << numOfNodes;
-        const int NEG_INFINITY = -1;
+        const int INFINITY = int.MaxValue / 4;
 
         int[,] dp = new int[subSetCount, numOfNodes];
         int[,] parents = new int[subSetCount, numOfNodes];
@@ -147,18 +123,18 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
         {
             for (int j = 0; j < numOfNodes; j++)
             {
-                dp[i, j] = NEG_INFINITY;
+                dp[i, j] = INFINITY;
                 parents[i, j] = -1;
             }
         }
 
-        for (int i = 0; i < numOfNodes; i++)
-        {
-            dp[1 << i, i] = 0;
-        }
+        dp[1 << initNode, initNode] = 0;
 
         for (int mask = 1; mask < subSetCount; mask++)
         {
+            if ((mask & (1 << initNode)) == 0)
+                continue;
+
             for (int j = 0; j < numOfNodes; j++)
             {
                 if ((mask & (1 << j)) == 0)
@@ -174,12 +150,9 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
                     if ((previousMask & (1 << k)) == 0)
                         continue;
 
-                    if (dp[previousMask, k] == NEG_INFINITY)
-                        continue;
-
                     int cost = dp[previousMask, k] + Distances[k, j];
 
-                    if (cost > dp[mask, j])
+                    if (cost < dp[mask, j])
                     {
                         dp[mask, j] = cost;
                         parents[mask, j] = k;
@@ -189,16 +162,17 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
         }
 
         int fullMask = subSetCount - 1;
-        int maxCost = NEG_INFINITY;
-        int lastCity = 0;
-        int firstCity = 0;
+        int minCost = INFINITY;
+        int lastCity = initNode;
 
         for (int j = 0; j < numOfNodes; j++)
         {
+            if (j == initNode) continue; // Don't end where we started (for path, not cycle)
+            
             int cost = dp[fullMask, j];
-            if (cost > maxCost)
+            if (cost < minCost)
             {
-                maxCost = cost;
+                minCost = cost;
                 lastCity = j;
             }
         }
@@ -214,7 +188,6 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
 
             if (prevCity == -1)
             {
-                firstCity = currentCity;
                 break;
             }
 
@@ -224,42 +197,6 @@ public class Day09(bool isTest = false) : BaseDay("09", isTest)
 
         tour.Reverse();
 
-        return (maxCost, tour);
+        return (minCost, tour);
     }
-    [Benchmark]
-    public int RunPart2()
-    {
-        if (Cities.Count == 0)
-        {
-            Dictionary<(string, string), int> distances = [];
-            foreach (var line in File.ReadAllLines(InputPath))
-            {
-                var parts = line.Split(' ');
-                var (cityFrom, cityTo, distance) = (parts[0], parts[2], int.Parse(parts[4]));
-                Cities.TryAdd(cityFrom, Cities.Count);
-                Cities.TryAdd(cityTo, Cities.Count);
-                distances.TryAdd((cityFrom, cityTo), distance);
-            }
-            Distances = new int[Cities.Count, Cities.Count];
-            foreach (var kvp in distances)
-            {
-                int i = Cities[kvp.Key.Item1];
-                int j = Cities[kvp.Key.Item2];
-                Distances[i, j] = kvp.Value;
-                Distances[j, i] = kvp.Value;
-            }
-        }
-        
-        var (maxCost, tour) = HeldKarpRouteMaxDistance();
-        return maxCost;
-    }
-
-    public override string SolvePart2()
-    {
-        StopWatch.Start();
-        var result = RunPart2();
-        StopWatch.Stop();
-        return $"Final result Day {Day} part 2: {result} in {Utils.FormatTime(StopWatch.ElapsedTicks)}.";
-    }
-    #endregion
 }

@@ -25,6 +25,7 @@
   <Project Path="AdventOfCode_2023_cpp\AdventOfCode_2023_cpp.vcxproj" Id="0d5332ea-3ce1-425a-8006-76805bb5641c" />
   <Project Path="AdventOfCode_2024\AdventOfCode_2024.fsproj" />
   <Project Path="AdventOfCode_2025/AdventOfCode_2025.fsproj" />
+  <Project Path="AdventOfCode_AlgoLib/AdventOfCode_AlgoLib.csproj" Id="06f6e773-a1d6-40b8-bb3f-2c3407f87f96" />
   <Project Path="AdventOfCode_Api/AdventOfCode_Api.fsproj" />
   <Project Path="AdventOfCode_Base\AdventOfCode_BASE.fsproj" />
   <Project Path="AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
