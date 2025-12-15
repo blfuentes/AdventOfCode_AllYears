@@ -104,6 +104,94 @@ internal class TSP
         return (minCost, tour);
     }
 
+    private(int minCost, List<int> tour) HeldKarpRouteCycle()
+    {
+        int numOfNodes = Nodes.Count;
+        int subSetCount = 1 << numOfNodes;
+        const int INFINITY = int.MaxValue / 4;
+
+        int[,] dp = new int[subSetCount, numOfNodes];
+        int[,] parents = new int[subSetCount, numOfNodes];
+
+        for (int i = 0; i < subSetCount; i++)
+        {
+            for (int j = 0; j < numOfNodes; j++)
+            {
+                dp[i, j] = INFINITY;
+                parents[i, j] = -1;
+            }
+        }
+
+        dp[1, 0] = 0;
+
+        for (int mask = 1; mask < subSetCount; mask++)
+        {
+            if ((mask & 1) == 0)
+                continue;
+
+            for (int j = 0; j < numOfNodes; j++)
+            {
+                if ((mask & (1 << j)) == 0)
+                    continue;
+
+                if (dp[mask, j] == INFINITY)
+                    continue;
+
+                for (int next = 0; next < numOfNodes; next++)
+                {
+                    if ((mask & (1 << next)) != 0)
+                        continue;
+
+                    int newMask = mask | (1 << next);
+                    int distance = Distances[j, next];
+                    int newCost = dp[mask, j] + distance;
+
+                    if (newCost < dp[newMask, next])
+                    {
+                        dp[newMask, next] = newCost;
+                        parents[newMask, next] = j;
+                    }
+                }
+            }
+        }
+
+        int fullMask = subSetCount - 1;
+        int minCost = INFINITY;
+        int lastNode = -1;
+
+        for (int j = 1; j < numOfNodes; j++)
+        {
+            if (dp[fullMask, j] == INFINITY)
+                continue;
+
+            int totalCost = dp[fullMask, j] + Distances[j, 0];
+
+            if (totalCost < minCost)
+            {
+                minCost = totalCost;
+                lastNode = j;
+            }
+        }
+
+        List<int> tour = [];
+        int currentMask = fullMask;
+        int currentNode = lastNode;
+
+        while (currentNode != 0 && currentNode != -1)
+        {
+            tour.Add(currentNode);
+            int prevPerson = parents[currentMask, currentNode];
+            currentMask ^= (1 << currentNode);
+            currentNode = prevPerson;
+        }
+
+        tour.Add(0);
+        tour.Reverse();
+        tour.Add(0);
+
+        return (minCost, tour);
+    }
+
     /// <summary>
     /// Held-Karp algorithm starting from a specific node.
     /// Finds the shortest Hamiltonian path starting from initNode.

@@ -91,6 +91,7 @@ public class Day13(bool isTest = false) : BaseDay("13", isTest)
 
         tour.Add(0);
         tour.Reverse();
+        tour.Add(0);
 
         return (maxHappiness, tour);
     }
