@@ -30,7 +30,6 @@ public partial class Day12(bool isTest = false) : BaseDay("12", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        dynamic document = JsonDocument.Parse(Content);
         int result = 0;
         void WalkJson(JsonElement expando)
         {
@@ -56,34 +55,17 @@ public partial class Day12(bool isTest = false) : BaseDay("12", isTest)
 
             void ExtractValue(JsonElement nested)
             {
-                if (nested.ValueKind == JsonValueKind.Array)
+                if (nested.ValueKind == JsonValueKind.Array || nested.ValueKind == JsonValueKind.Object)
                 {
-                    foreach (var child in nested.EnumerateArray())
-                    {
-                        if (child.ValueKind == JsonValueKind.Object || child.ValueKind == JsonValueKind.Array)
-                        {
-                            WalkJson(child);
-                        }
-                        else
-                        {
-                            if (child.ValueKind == JsonValueKind.Number)
-                            {
-                                result += (int)child.GetInt32();
-                            }
-                        }
-                    }
+                    WalkJson(nested);
                 }
                 else if (nested.ValueKind == JsonValueKind.Number)
                 {
                     result += (int)nested.GetInt32();
                 }
-                else if (nested.ValueKind == JsonValueKind.Object)
-                {
-                    WalkJson(nested);
-                }
             }
         }
-        WalkJson(document.RootElement);
+        WalkJson(JsonDocument.Parse(Content).RootElement);
         return result;
     }
 
