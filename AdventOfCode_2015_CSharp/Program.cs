@@ -31,122 +31,122 @@ var client = httpClientFactory.CreateClient("AdventOfCodeClient");
 Console.WriteLine("Advent of Code 215");
 Console.WriteLine($"{"=".Repeat(50)}");
 
-//// Day 01
-//if (Utils.DownloadContent(client, 2015, 1))
-//{
-//    //BenchmarkRunner.Run<Day01>();
-//    Console.WriteLine((new Day01(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day01(isTest: false)).SolvePart2());
-//}
+// Day 01
+if (Utils.DownloadContent(client, 2015, 1))
+{
+    //BenchmarkRunner.Run<Day01>();
+    Console.WriteLine((new Day01(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day01(isTest: false)).SolvePart2());
+}
 
-//// Day 02
-//if (Utils.DownloadContent(client, 2015, 2))
-//{
-//    //BenchmarkRunner.Run<Day02>();
-//    Console.WriteLine((new Day02(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day02(isTest: false)).SolvePart2());
-//}
+// Day 02
+if (Utils.DownloadContent(client, 2015, 2))
+{
+    //BenchmarkRunner.Run<Day02>();
+    Console.WriteLine((new Day02(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day02(isTest: false)).SolvePart2());
+}
 
-//// Day 03
-//if (Utils.DownloadContent(client, 2015, 3))
-//{
-//    //BenchmarkRunner.Run<Day03>();
-//    Console.WriteLine((new Day03(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day03(isTest: false)).SolvePart2());
-//}
+// Day 03
+if (Utils.DownloadContent(client, 2015, 3))
+{
+    //BenchmarkRunner.Run<Day03>();
+    Console.WriteLine((new Day03(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day03(isTest: false)).SolvePart2());
+}
 
-//// Day 04
-//if (Utils.DownloadContent(client, 2015, 4))
-//{
-//    //BenchmarkRunner.Run<Day04>();
-//    Console.WriteLine((new Day04(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day04(isTest: false)).SolvePart2());
-//}
+// Day 04
+if (Utils.DownloadContent(client, 2015, 4))
+{
+    //BenchmarkRunner.Run<Day04>();
+    Console.WriteLine((new Day04(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day04(isTest: false)).SolvePart2());
+}
 
-//// Day 05
-//if (Utils.DownloadContent(client, 2015, 5))
-//{
-//    //BenchmarkRunner.Run<Day05>();
-//    Console.WriteLine((new Day05(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day05(isTest: false)).SolvePart2());
-//}
+// Day 05
+if (Utils.DownloadContent(client, 2015, 5))
+{
+    //BenchmarkRunner.Run<Day05>();
+    Console.WriteLine((new Day05(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day05(isTest: false)).SolvePart2());
+}
 
-//// Day 06
-//if (Utils.DownloadContent(client, 2015, 6))
-//{
-//    //BenchmarkRunner.Run<Day06>();
-//    Console.WriteLine((new Day06(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day06(isTest: false)).SolvePart2());
-//}
+// Day 06
+if (Utils.DownloadContent(client, 2015, 6))
+{
+    //BenchmarkRunner.Run<Day06>();
+    Console.WriteLine((new Day06(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day06(isTest: false)).SolvePart2());
+}
 
-//// Day 07
-//if (Utils.DownloadContent(client, 2015, 7))
-//{
-//    //BenchmarkRunner.Run<Day07>();
-//    Console.WriteLine((new Day07(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day07(isTest: false)).SolvePart2());
-//}
+// Day 07
+if (Utils.DownloadContent(client, 2015, 7))
+{
+    //BenchmarkRunner.Run<Day07>();
+    Console.WriteLine((new Day07(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day07(isTest: false)).SolvePart2());
+}
 
-//// Day 08
-//if (Utils.DownloadContent(client, 2015, 8))
-//{
-//    //BenchmarkRunner.Run<Day08>();
-//    Console.WriteLine((new Day08(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day08(isTest: false)).SolvePart2());
-//}
+// Day 08
+if (Utils.DownloadContent(client, 2015, 8))
+{
+    //BenchmarkRunner.Run<Day08>();
+    Console.WriteLine((new Day08(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day08(isTest: false)).SolvePart2());
+}
 
-//// Day 09
-//if (Utils.DownloadContent(client, 2015, 9))
-//{
-//    //BenchmarkRunner.Run<Day09>();
-//    Console.WriteLine((new Day09(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day09(isTest: false)).SolvePart2());
-//}
+// Day 09
+if (Utils.DownloadContent(client, 2015, 9))
+{
+    //BenchmarkRunner.Run<Day09>();
+    Console.WriteLine((new Day09(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day09(isTest: false)).SolvePart2());
+}
 
-//// Day 10
-//if (Utils.DownloadContent(client, 2015, 10))
-//{
-//    //BenchmarkRunner.Run<Day10>();
-//    Console.WriteLine((new Day10(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day10(isTest: false)).SolvePart2());
-//}
+// Day 10
+if (Utils.DownloadContent(client, 2015, 10))
+{
+    //BenchmarkRunner.Run<Day10>();
+    Console.WriteLine((new Day10(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day10(isTest: false)).SolvePart2());
+}
 
-//// Day 11
-//if (Utils.DownloadContent(client, 2015, 11))
-//{
-//    //BenchmarkRunner.Run<Day11>();
-//    Console.WriteLine((new Day11(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day11(isTest: false)).SolvePart2());
-//}
+// Day 11
+if (Utils.DownloadContent(client, 2015, 11))
+{
+    //BenchmarkRunner.Run<Day11>();
+    Console.WriteLine((new Day11(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day11(isTest: false)).SolvePart2());
+}
 
-//// Day 12
-//if (Utils.DownloadContent(client, 2015, 12))
-//{
-//    //BenchmarkRunner.Run<Day12>();
-//    Console.WriteLine((new Day12(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day12(isTest: false)).SolvePart2());
-//}
+// Day 12
+if (Utils.DownloadContent(client, 2015, 12))
+{
+    //BenchmarkRunner.Run<Day12>();
+    Console.WriteLine((new Day12(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day12(isTest: false)).SolvePart2());
+}
 
-//// Day 13
-//if (Utils.DownloadContent(client, 2015, 13))
-//{
-//    //BenchmarkRunner.Run<Day13>();
-//    Console.WriteLine((new Day13(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day13(isTest: false)).SolvePart2());
-//}
+// Day 13
+if (Utils.DownloadContent(client, 2015, 13))
+{
+    //BenchmarkRunner.Run<Day13>();
+    Console.WriteLine((new Day13(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day13(isTest: false)).SolvePart2());
+}
 
-//// Day 14
-//if (Utils.DownloadContent(client, 2015, 14))
-//{
-//    //BenchmarkRunner.Run<Day14>();
-//    Console.WriteLine((new Day14(isTest: false)).SolvePart1());
-//    Console.WriteLine((new Day14(isTest: false)).SolvePart2());
-//}
+// Day 14
+if (Utils.DownloadContent(client, 2015, 14))
+{
+    //BenchmarkRunner.Run<Day14>();
+    Console.WriteLine((new Day14(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day14(isTest: false)).SolvePart2());
+}
 
 // Day 15
 if (Utils.DownloadContent(client, 2015, 15))
 {
     //BenchmarkRunner.Run<Day15>();
-    Console.WriteLine((new Day15(isTest: true)).SolvePart1());
-    Console.WriteLine((new Day15(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day15(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day15(isTest: false)).SolvePart2());
 }

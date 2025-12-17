@@ -22,6 +22,66 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
     }
 
     #region Part 1
+
+    static (int, int) GetCookieScore(IEnumerable<(int amount, Ingredient ingredient)> ingredientShares)
+    {
+        int capacity = Math.Max(0, ingredientShares.Select(a => a.amount * a.ingredient.Capacity).Sum());
+        int durability = Math.Max(0, ingredientShares.Select(a => a.amount * a.ingredient.Durability).Sum());
+        int flavor = Math.Max(0, ingredientShares.Select(a => a.amount * a.ingredient.Flavor).Sum());
+        int texture = Math.Max(0, ingredientShares.Select(a => a.amount * a.ingredient.Texture).Sum());
+        int calories = Math.Max(0, ingredientShares.Select(a => a.amount * a.ingredient.Calories).Sum());
+        return (calories, capacity * durability * flavor * texture);
+    }
+
+    static IEnumerable<List<int>> GetShares(int numOfIngredients)
+    {
+        int totalSpoons = 100;
+
+        IEnumerable<List<int>> FindCombination(List<int> current, int remaining)
+        {
+            if (current.Count == numOfIngredients)
+            {
+                if (remaining == 0)
+                {
+                    //Console.WriteLine($"Share: {string.Join("-", current.Select(c => c.ToString()))}");
+                    yield return current;
+                }
+                yield break;
+            }
+
+            for (int s = 1; s <= remaining; s++)
+            {
+                foreach (var result in FindCombination(
+                    [.. current, s],
+                    remaining - s))
+                {
+                    yield return result;
+                }
+            }
+        }
+
+        return FindCombination([], totalSpoons);
+    }
+
+    // ReallySlow...
+    //static IEnumerable<List<int>> GetShares()
+    //{
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        for (int j = 0; j < 100-i; j++)
+    //        {
+    //            for (int k = 0; k < 100 - i - j; k++)
+    //            {
+    //                for (int l = 0; l < 100 - i - j - k; l++)
+    //                {
+    //                    Console.WriteLine($"Share: {i}-{j}-{k}-{l}");
+    //                    yield return [i, j, k, l];
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
     [Benchmark]
     public int RunPart1()
     {
@@ -40,7 +100,15 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
                     Calories = int.Parse(matches[4].Value)
                 };
             });
-        return ingredients.Count();
+        int bestTotal = 0;
+        var permutations = GetShares(ingredients.Count());
+        foreach(var possible in permutations)
+        {
+            var (_, score) = GetCookieScore(possible.Zip(ingredients));
+            if (score > bestTotal)
+                bestTotal = score;
+        }
+        return bestTotal;
     }
 
     public override string SolvePart1()
@@ -56,7 +124,30 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        var ingredients = File.ReadAllLines(InputPath)
+            .Select((line, i) =>
+            {
+                var matches = numbers.Matches(line);
+                return new Ingredient
+                {
+                    Id = i,
+                    Name = line.Split(":")[0],
+                    Capacity = int.Parse(matches[0].Value),
+                    Durability = int.Parse(matches[1].Value),
+                    Flavor = int.Parse(matches[2].Value),
+                    Texture = int.Parse(matches[3].Value),
+                    Calories = int.Parse(matches[4].Value)
+                };
+            });
+        int bestTotal = 0;
+        var permutations = GetShares(ingredients.Count());
+        foreach (var possible in permutations)
+        {
+            var (calories, score) = GetCookieScore(possible.Zip(ingredients));
+            if (score > bestTotal && calories == 500)
+                bestTotal = score;
+        }
+        return bestTotal;
     }
 
     public override string SolvePart2()
