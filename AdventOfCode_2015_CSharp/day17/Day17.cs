@@ -4,44 +4,50 @@ namespace AdventOfCode_2015_CSharp.day17;
 
 public class Day17(bool isTest = false) : BaseDay("17", isTest)
 {
+    record Container
+    {
+        public int Id { get; set; }
+        public int Size { get; set; }
+    }
     #region Part 1
 
-    static IEnumerable<List<(int, int)>> AllCombinations(List<int> initial)
+    static IEnumerable<HashSet<Container>> AllCombinations(List<Container> initial)
     {
-        int totalSpoons = 25;
+        int totalSize = 150;
 
-        IEnumerable<List<(int, int)>> FindCombination(List<int> available, List<(int, int)> current, int remaining)
+        static IEnumerable<HashSet<Container>> FindCombination(List<Container> available, HashSet<Container> current, int remaining)
         {
             if (remaining == 0)
+            {
+                //Console.WriteLine($"Found: {string.Join("-", current.Select(_ => _.Id.ToString()))}");
                 yield return current;
+            }
             else if (remaining < 0)
                 yield break;
 
 
-            for (int i = 0; i < available.Count(); i++)
+            for (int i = 0; i < available.Count; i++)
             {
                 foreach (var result in FindCombination(
-                    [.. Enumerable.Concat(available[..i], available[(i + 1)..])],
-                    [.. current, (i, available[i])],
-                    remaining - available[i]))
+                    [.. available[(i + 1)..]],
+                    [.. current, available[i]],
+                    remaining - available[i].Size))
                 {
                     yield return result;
                 }
             }
         }
 
-        return FindCombination(initial, [], totalSpoons);
+        return FindCombination(initial, [], totalSize);
     }
 
     [Benchmark]
     public int RunPart1()
     {
-        var containers = File.ReadAllLines(InputPath).Select(int.Parse).ToList();
-        var combinations = AllCombinations(containers);
-        return combinations.DistinctBy(c => {
-            c.Sort();
-            return string.Join("_", c.Select(_ => _.Item1.ToString()));
-        }).Count();
+        var containers = File.ReadAllLines(InputPath)
+            .Select((n, i) => new Container
+            { Id = i, Size = int.Parse(n) }).ToList();
+        return AllCombinations(containers).Count();
     }
 
     public override string SolvePart1()
@@ -57,7 +63,12 @@ public class Day17(bool isTest = false) : BaseDay("17", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        var containers = File.ReadAllLines(InputPath)
+            .Select((n, i) => new Container
+            { Id = i, Size = int.Parse(n) }).ToList();
+        return AllCombinations(containers)
+                .GroupBy(s => s.Count)
+                .MinBy(_ => _.Key)!.Count();
     }
 
     public override string SolvePart2()
