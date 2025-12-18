@@ -4,8 +4,6 @@ namespace AdventOfCode_2015_CSharp.day17;
 
 public class Day17(bool isTest = false) : BaseDay("17", isTest)
 {
-    #region Part 1
-
     static IEnumerable<HashSet<int>> AllCombinations(List<int> initial)
     {
         int totalSize = 150;
@@ -35,6 +33,8 @@ public class Day17(bool isTest = false) : BaseDay("17", isTest)
 
         return FindCombination(initial, [], totalSize);
     }
+
+    #region Part 1
 
     [Benchmark]
     public int RunPart1()
