@@ -4,18 +4,13 @@ namespace AdventOfCode_2015_CSharp.day17;
 
 public class Day17(bool isTest = false) : BaseDay("17", isTest)
 {
-    record Container
-    {
-        public int Id { get; set; }
-        public int Size { get; set; }
-    }
     #region Part 1
 
-    static IEnumerable<HashSet<Container>> AllCombinations(List<Container> initial)
+    static IEnumerable<HashSet<int>> AllCombinations(List<int> initial)
     {
         int totalSize = 150;
 
-        static IEnumerable<HashSet<Container>> FindCombination(List<Container> available, HashSet<Container> current, int remaining)
+        static IEnumerable<HashSet<int>> FindCombination(List<int> available, HashSet<int> current, int remaining)
         {
             if (remaining == 0)
             {
@@ -31,7 +26,7 @@ public class Day17(bool isTest = false) : BaseDay("17", isTest)
                 foreach (var result in FindCombination(
                     [.. available[(i + 1)..]],
                     [.. current, available[i]],
-                    remaining - available[i].Size))
+                    remaining - available[i]))
                 {
                     yield return result;
                 }
@@ -44,10 +39,8 @@ public class Day17(bool isTest = false) : BaseDay("17", isTest)
     [Benchmark]
     public int RunPart1()
     {
-        var containers = File.ReadAllLines(InputPath)
-            .Select((n, i) => new Container
-            { Id = i, Size = int.Parse(n) }).ToList();
-        return AllCombinations(containers).Count();
+        var containers = File.ReadAllLines(InputPath).Select(int.Parse);
+        return AllCombinations([.. containers]).Count();
     }
 
     public override string SolvePart1()
@@ -63,10 +56,8 @@ public class Day17(bool isTest = false) : BaseDay("17", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        var containers = File.ReadAllLines(InputPath)
-            .Select((n, i) => new Container
-            { Id = i, Size = int.Parse(n) }).ToList();
-        return AllCombinations(containers)
+        var containers = File.ReadAllLines(InputPath).Select(int.Parse);
+        return AllCombinations([..containers])
                 .GroupBy(s => s.Count)
                 .MinBy(_ => _.Key)!.Count();
     }
