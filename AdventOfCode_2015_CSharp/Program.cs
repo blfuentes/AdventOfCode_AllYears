@@ -210,6 +210,6 @@ if (Utils.DownloadContent(client, 2015, 21))
 if (Utils.DownloadContent(client, 2015, 22))
 {
     //BenchmarkRunner.Run<Day22>();
-    Console.WriteLine((new Day22(isTest: true)).SolvePart1());
-    Console.WriteLine((new Day22(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day22(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day22(isTest: false)).SolvePart2());
 }
