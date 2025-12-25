@@ -68,7 +68,7 @@ https://adventofcode.com/2015
 | [Day 21](https://adventofcode.com/2015/day/21): RPG Simulator 20XX					| ✔️ [F# Part 1](./AdventOfCode_2015/day21/part01/day21_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day21/part02/day21_part02.fs) | | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day21/Day21.cs) |
 | [Day 22](https://adventofcode.com/2015/day/22): Wizard Simulator 20XX					| ✔️ [F# Part 1](./AdventOfCode_2015/day22/part01/day22_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day22/part02/day22_part02.fs) | | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day22/Day22.cs) |
 | [Day 23](https://adventofcode.com/2015/day/23): Opening the Turing Lock				| ✔️ [F# Part 1](./AdventOfCode_2015/day23/part01/day23_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day23/part02/day23_part02.fs) | | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day23/Day23.cs) |
-| [Day 24](https://adventofcode.com/2015/day/24): It Hangs in the Balance				| ✔️ [F# Part 1](./AdventOfCode_2015/day24/part01/day24_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day24/part02/day24_part02.fs) | | |
+| [Day 24](https://adventofcode.com/2015/day/24): It Hangs in the Balance				| ✔️ [F# Part 1](./AdventOfCode_2015/day24/part01/day24_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2015/day24/part02/day24_part02.fs) | | ✔️ [C# Part 1/2](./AdventOfCode_2015_CSharp/day24/Day24.cs) |
 | [Day 25](https://adventofcode.com/2015/day/25): Let It Snow							| ✔️ [F# Part 1](./AdventOfCode_2015/day25/part01/day25_part01.fs) | | |
 
 
