@@ -38,7 +38,7 @@ var serviceProvider = services.BuildServiceProvider();
 var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
 var client = httpClientFactory.CreateClient("AdventOfCodeClient");
 
-Console.WriteLine("Advent of Code 215");
+Console.WriteLine("Advent of Code 2015");
 Console.WriteLine($"{"=".Repeat(50)}");
 
 // Day 01

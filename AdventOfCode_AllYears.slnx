@@ -11,6 +11,7 @@
   <Project Path="AdventOfCode_2015\AdventOfCode_2015.fsproj" />
   <Project Path="AdventOfCode_2015_CSharp/AdventOfCode_2015_CSharp.csproj" Id="04f576ca-8d9c-49cc-b339-8f3777f14a29" />
   <Project Path="AdventOfCode_2016\AdventOfCode_2016.fsproj" />
+  <Project Path="AdventOfCode_2016_CSharp/AdventOfCode_2016_CSharp.csproj" Id="6cbc711d-32c6-4bdf-849b-2136431a63da" />
   <Project Path="AdventOfCode_2017\AdventOfCode_2017.fsproj" />
   <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018.fsproj" />
   <Project Path="AdventOfCode_2018_Typescript\AdventOfCode_2018_Typescript.esproj">
