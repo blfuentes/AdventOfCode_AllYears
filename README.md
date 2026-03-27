@@ -7,7 +7,7 @@ https://adventofcode.com/
 |Year | Progress | Total |
 |---|---|---|
 |[2015](#2015-fgoc)         | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
-|[2016](#2016-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
+|[2016](#2016-fc)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
 |[2017](#2017-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
 |[2018](#2018-ftypescript)  | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
 |[2019](#2019-f)            | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫				| (50/50)	|
@@ -21,11 +21,11 @@ https://adventofcode.com/
 
 ## Languages by Year
 
-|Language | [2015](#2015-fgoc) | [2016](#2016-f) | [2017](#2017-f) | [2018](#2018-ftypescript) | [2019](#2019-f) | [2020](#2020-f) | [2021](#2021-f) | [2022](#2022-f) | [2023](#2023-fc) | [2024](#2024-fgo) | [2025](#2025-fgorust) |
+|Language | [2015](#2015-fgoc) | [2016](#2016-fc) | [2017](#2017-f) | [2018](#2018-ftypescript) | [2019](#2019-f) | [2020](#2020-f) | [2021](#2021-f) | [2022](#2022-f) | [2023](#2023-fc) | [2024](#2024-fgo) | [2025](#2025-fgorust) |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 |F# | 💫 | 💫 | 💫 | ⭐ | 💫 | 💫 | 💫 | 💫 | 💫 | 💫 | 💫 |
-|Go | ⭐ | | | | | | | | | ⭐ | 💫 |
-|C# | 💫 | | | | | | | | | | |
+|Go | ⭐		| | | | | | | | | ⭐ | 💫 |
+|C# | 💫 | ⭐ | | | | | | | | | |
 |TypeScript | | | | ⭐ | | | | | | | |
 |C++ | | | | | | | | | ⭐ | | |
 |Rust | | | | | | | | | | | ⭐ |
@@ -73,15 +73,15 @@ https://adventofcode.com/2015
 
 
 ## Advent Of Code 2016
-### 2016 F#
+### 2016 F#/C#
 
 https://adventofcode.com/2016
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (25/25)
 
-|Day												| F# |
-|---------------------------------------------------|----|
-| [Day 1](https://adventofcode.com/2016/day/1): No Time for a Taxicab						| ✔️ [F# Part 1](./AdventOfCode_2016/day01/part01/day01_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day01/part02/day01_part02.fs) |
+|Day												| F# | C# |
+|---------------------------------------------------|----|----|
+| [Day 1](https://adventofcode.com/2016/day/1): No Time for a Taxicab						| ✔️ [F# Part 1](./AdventOfCode_2016/day01/part01/day01_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day01/part02/day01_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day01/Day01.cs) |
 | [Day 2](https://adventofcode.com/2016/day/2): Bathroom Security							| ✔️ [F# Part 1](./AdventOfCode_2016/day02/part01/day02_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day02/part02/day02_part02.fs) |
 | [Day 3](https://adventofcode.com/2016/day/3): Squares With Three Sides					| ✔️ [F# Part 1](./AdventOfCode_2016/day03/part01/day03_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day03/part02/day03_part02.fs) |
 | [Day 4](https://adventofcode.com/2016/day/4): Security Through Obscurity					| ✔️ [F# Part 1](./AdventOfCode_2016/day04/part01/day04_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day04/part02/day04_part02.fs) |
