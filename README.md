@@ -83,7 +83,7 @@ https://adventofcode.com/2016
 |---------------------------------------------------|----|----|
 | [Day 1](https://adventofcode.com/2016/day/1): No Time for a Taxicab						| ✔️ [F# Part 1](./AdventOfCode_2016/day01/part01/day01_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day01/part02/day01_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day01/Day01.cs) |
 | [Day 2](https://adventofcode.com/2016/day/2): Bathroom Security							| ✔️ [F# Part 1](./AdventOfCode_2016/day02/part01/day02_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day02/part02/day02_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day02/Day02.cs) |
-| [Day 3](https://adventofcode.com/2016/day/3): Squares With Three Sides					| ✔️ [F# Part 1](./AdventOfCode_2016/day03/part01/day03_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day03/part02/day03_part02.fs) |
+| [Day 3](https://adventofcode.com/2016/day/3): Squares With Three Sides					| ✔️ [F# Part 1](./AdventOfCode_2016/day03/part01/day03_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day03/part02/day03_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day03/Day03.cs) |
 | [Day 4](https://adventofcode.com/2016/day/4): Security Through Obscurity					| ✔️ [F# Part 1](./AdventOfCode_2016/day04/part01/day04_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day04/part02/day04_part02.fs) |
 | [Day 5](https://adventofcode.com/2016/day/5): How About a Nice Game of Chess?				| ✔️ [F# Part 1](./AdventOfCode_2016/day05/part01/day05_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day05/part02/day05_part02.fs) |
 | [Day 6](https://adventofcode.com/2016/day/6): Signals and Noise							| ✔️ [F# Part 1](./AdventOfCode_2016/day06/part01/day06_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day06/part02/day06_part02.fs) |
