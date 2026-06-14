@@ -90,87 +90,8 @@ public class Day10(bool isTest = false) : BaseDay("10", isTest)
         }
     }
 
-    #region Part 1
-    [Benchmark]
-    public int RunPart1()
+    private static void ProcessInstructions(Queue<BaseInstruction> queue, Dictionary<int, Bot> bots, Dictionary<int, int> output)
     {
-        Queue<BaseInstruction> queue = new();
-        Dictionary<int, Bot> bots = [];
-        Dictionary<int, int> output = [];
-
-        foreach (var ins in ParseContent(File.ReadAllLines(InputPath)))
-            queue.Enqueue(ins);
-
-        while (queue.TryDequeue(out var ins))
-        {
-            if (ins is ValueInstruction valueIns)
-            {
-                if (!bots.TryGetValue(valueIns.Bot, out Bot? value))
-                {
-                    value = new Bot() { Id = valueIns.Bot };
-                    bots.Add(valueIns.Bot, value);
-                }
-                value.ReceiveValue(valueIns.Value);
-            }
-            else if (ins is BotInstruction botIns)
-            {                
-                if (bots.TryGetValue(botIns.Bot, out Bot? value) && value.IsComplete)
-                {
-                    if (botIns.Low.Dest == DestType.Bot)
-                    {
-                        if(!bots.TryGetValue(botIns.Low.Value, out Bot? lowBot))
-                        {
-                            bots.Add(botIns.Low.Value, new Bot() { Id = botIns.Low.Value });
-                        }
-                        bots[botIns.Low.Value].ReceiveValue(bots[botIns.Bot].LowValue.Value);
-                    }
-                    else
-                    {
-                        output.TryAdd(botIns.Low.Value, value.LowValue.Value);
-                    }
-                    if (botIns.High.Dest == DestType.Bot)
-                    {
-                        if (!bots.TryGetValue(botIns.High.Value, out Bot? highBot))
-                        {
-                            bots.Add(botIns.High.Value, new Bot() { Id = botIns.High.Value });
-                        }
-                        bots[botIns.High.Value].ReceiveValue(bots[botIns.Bot].HighValue.Value);
-                    }
-                    else
-                    {
-                        output.TryAdd(botIns.High.Value, value.HighValue.Value);
-                    }
-                }
-                else
-                {
-                    queue.Enqueue(botIns);
-                }
-            }
-        }
-
-        return bots.Values.First(bot => bot.LowValue == 17 && bot.HighValue == 61).Id;
-    }
-
-    public override string SolvePart1()
-    {
-        StopWatch.Start();
-        var result = RunPart1();
-        StopWatch.Stop();
-        return $"Final result Day {Day} part 1: {result} in {Utils.FormatTime(StopWatch.ElapsedTicks)}.";
-    }
-    #endregion
-
-    #region Part 2
-    [Benchmark]
-    public int RunPart2()
-    {
-        Queue<BaseInstruction> queue = new();
-        Dictionary<int, Bot> bots = [];
-        Dictionary<int, int> output = [];
-
-        foreach (var ins in ParseContent(File.ReadAllLines(InputPath)))
-            queue.Enqueue(ins);
-
         while (queue.TryDequeue(out var ins))
         {
             if (ins is ValueInstruction valueIns)
@@ -217,6 +138,44 @@ public class Day10(bool isTest = false) : BaseDay("10", isTest)
                 }
             }
         }
+    }
+
+    #region Part 1
+    [Benchmark]
+    public int RunPart1()
+    {
+        Queue<BaseInstruction> queue = new();
+        Dictionary<int, Bot> bots = [];
+        Dictionary<int, int> output = [];
+
+        foreach (var ins in ParseContent(File.ReadAllLines(InputPath)))
+            queue.Enqueue(ins);
+        ProcessInstructions(queue, bots, output);
+
+        return bots.Values.First(bot => bot.LowValue == 17 && bot.HighValue == 61).Id;
+    }    
+
+    public override string SolvePart1()
+    {
+        StopWatch.Start();
+        var result = RunPart1();
+        StopWatch.Stop();
+        return $"Final result Day {Day} part 1: {result} in {Utils.FormatTime(StopWatch.ElapsedTicks)}.";
+    }
+    #endregion
+
+    #region Part 2
+    [Benchmark]
+    public int RunPart2()
+    {
+        Queue<BaseInstruction> queue = new();
+        Dictionary<int, Bot> bots = [];
+        Dictionary<int, int> output = [];
+
+        foreach (var ins in ParseContent(File.ReadAllLines(InputPath)))
+            queue.Enqueue(ins);
+
+        ProcessInstructions(queue, bots, output);
 
         return output[0] * output[1] * output[2];
     }
