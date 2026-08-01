@@ -120,6 +120,6 @@ if (Utils.DownloadContent(client, 2016, 11))
 if (Utils.DownloadContent(client, 2016, 12))
 {
     //BenchmarkRunner.Run<Day12>();
-    Console.WriteLine((new Day12(isTest: true)).SolvePart1());
-    Console.WriteLine((new Day12(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day12(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day12(isTest: false)).SolvePart2());
 }
