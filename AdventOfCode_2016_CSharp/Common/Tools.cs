@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode_2016_CSharp.Common;
+﻿using System.Numerics;
+
+namespace AdventOfCode_2016_CSharp.Common;
 
 internal static class Tools
 {
@@ -43,5 +45,35 @@ internal static class Tools
                 span[i * 2 + 1] = HexDigitsLower[b & 0xF];
             }
         });
+    }
+
+    public static string ToBinary(uint value)
+    {
+        if (value == 0) return "0";
+
+        int len = 32 - BitOperations.LeadingZeroCount(value);
+        Span<char> chars = stackalloc char[len];
+
+        for (int i = len - 1; i >= 0; i--)
+        {
+            chars[i] = (char)('0' + (value & 1));
+            value >>= 1;
+        }
+
+        return new string(chars);
+    }
+
+    public static string ToBinary32(int value)
+    {
+        uint u = (uint)value;
+        Span<char> chars = stackalloc char[32];
+
+        for (int i = 31; i >= 0; i--)
+        {
+            chars[i] = (char)('0' + (u & 1));
+            u >>= 1;
+        }
+
+        return new string(chars);
     }
 }
