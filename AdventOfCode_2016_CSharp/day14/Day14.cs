@@ -102,10 +102,80 @@ public class Day14(bool isTest = false) : BaseDay("14", isTest)
     #endregion
 
     #region Part 2
+
+    static string ComputeHash(string input)
+    {
+        int counter = 0;
+        string hash = input;
+        byte[] hashBytes;
+        do
+        {
+            hashBytes = MD5.HashData(Encoding.UTF8.GetBytes(hash));
+            hash = Convert.ToHexString(hashBytes).ToLowerInvariant();
+            counter++;
+        } while (counter < 2017);
+
+        return hash;
+    }
+
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        string hash = "";
+        bool found = false;
+        int initIdx = 0;
+        int numOfKeys = 0;
+        Dictionary<int, string> computedHashes = [];
+        Dictionary<int, string> threeInRowHashes = [];
+        Dictionary<int, string> keys = [];
+
+        while (numOfKeys < 64)
+        {
+            if (!computedHashes.TryGetValue(initIdx, out hash) &&
+                !threeInRowHashes.TryGetValue(initIdx, out hash))
+            {
+                hash = ComputeHash(Content + initIdx.ToString());
+                computedHashes.Add(initIdx, hash);
+            }
+            (bool foundThree, char value) = ThreeInARow(hash);
+            int nextInitIdx = 0;
+            if (foundThree)
+            {
+                found = false;
+                threeInRowHashes.TryAdd(initIdx, hash);
+                int counter = 1;
+                while (counter <= 1000 && !found)
+                {
+                    int key = initIdx + counter;
+                    if (!computedHashes.TryGetValue(key, out hash) &&
+                        !threeInRowHashes.TryGetValue(key, out hash))
+                    {
+                        hash = ComputeHash(Content + key.ToString());
+                        computedHashes.Add(key, hash);
+                    }
+                    (foundThree, _) = ThreeInARow(hash);
+                    if (foundThree)
+                    {
+                        threeInRowHashes.TryAdd(key, hash);
+                        if (nextInitIdx == 0)
+                        {
+                            nextInitIdx = key;
+                        }
+                        if (FiveInARow(hash, value))
+                        {
+                            // Console.WriteLine($"Adding key {++numOfKeys} at index {initIdx}");
+                            keys.TryAdd(initIdx, hash);
+                            numOfKeys++;
+                            found = true;
+                        }
+                    }
+                    counter++;
+                }
+            }
+            if (numOfKeys < 64)
+                initIdx = nextInitIdx > 0 ? nextInitIdx : (initIdx + 1);
+        }
+        return initIdx;
     }
 
     public override string SolvePart2()

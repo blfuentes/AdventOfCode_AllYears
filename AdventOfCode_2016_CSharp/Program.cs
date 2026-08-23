@@ -139,5 +139,5 @@ if (Utils.DownloadContent(client, 2016, 14))
 {
     //BenchmarkRunner.Run<Day14>();
     Console.WriteLine((new Day14(isTest: false)).SolvePart1());
-    Console.WriteLine((new Day14(isTest: true)).SolvePart2());
+    Console.WriteLine((new Day14(isTest: false)).SolvePart2());
 }
