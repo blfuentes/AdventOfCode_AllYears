@@ -16,6 +16,76 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
         public readonly bool Aligned(int second) => (Position + second + Id) % Size == 0;
     }
 
+    static int SolveByCongruence(IEnumerable<Disc> discs)
+    {
+        int time = 0;
+        int modulus = 1;
+
+        foreach (var disc in discs)
+        {
+            int required = ((-disc.Position - disc.Id) % disc.Size + disc.Size) % disc.Size;
+            int combinedGcd = Gcd(modulus, disc.Size);
+
+            if ((required - time) % combinedGcd != 0)
+                throw new InvalidOperationException("No solution exists for the provided disc collection.");
+
+            int modPart = disc.Size / combinedGcd;
+            int inverse = ModularInverse(modulus / combinedGcd, modPart);
+            int step = (((required - time) / combinedGcd) * inverse) % modPart;
+            if (step < 0)
+                step += modPart;
+
+            time += step * modulus;
+            modulus = (modulus / combinedGcd) * disc.Size;
+            time = ((time % modulus) + modulus) % modulus;
+        }
+
+        return ((time % modulus) + modulus) % modulus;
+    }
+
+    private static int Gcd(int a, int b)
+    {
+        a = Math.Abs(a);
+        b = Math.Abs(b);
+
+        while (b != 0)
+        {
+            int remainder = a % b;
+            a = b;
+            b = remainder;
+        }
+
+        return a;
+    }
+
+    private static int ModularInverse(int value, int modulus)
+    {
+        int oldRemainder = modulus;
+        int remainder = value % modulus;
+        int oldCoefficient = 0;
+        int coefficient = 1;
+
+        while (remainder != 0)
+        {
+            int quotient = oldRemainder / remainder;
+            int nextOld = oldCoefficient - quotient * coefficient;
+            oldCoefficient = coefficient;
+            coefficient = nextOld;
+
+            int nextRemainder = oldRemainder % remainder;
+            oldRemainder = remainder;
+            remainder = nextRemainder;
+        }
+
+        if (oldRemainder != 1)
+            throw new InvalidOperationException("The congruence system does not have a modular inverse.");
+
+        if (oldCoefficient < 0)
+            oldCoefficient += modulus;
+
+        return oldCoefficient;
+    }
+
     #region Part 1
     [Benchmark]
     public int RunPart1()
@@ -35,6 +105,8 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
         while (!discs.All(d => d.Aligned(time))) time++;
 
         return time;
+
+        // return SolveByCongruence(discs);
     }
 
     public override string SolvePart1()
@@ -71,6 +143,7 @@ public partial class Day15(bool isTest = false) : BaseDay("15", isTest)
         while (!discs.All(d => d.Aligned(time))) time++;
 
         return time;
+        // return SolveByCongruence(discs);
     }
 
     public override string SolvePart2()
