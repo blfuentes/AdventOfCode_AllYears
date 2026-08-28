@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="session.txt" />
+    <Compile Include="Modules\LocalHelper.fs" />
+    <Compile Include="day00\part01\day00_part01.fs" />
+    <Compile Include="day00\part02\day00_part02.fs" />
+    <Compile Include="day01\day01_part01.fs" />
+    <Compile Include="day01\day01_part02.fs" />
+    <Compile Include="day02\day02_part01.fs" />
+    <Compile Include="day02\day02_part02.fs" />
+    <Compile Include="day03\day03_part01.fs" />
+    <Compile Include="day03\day03_part02.fs" />
+    <Compile Include="day04\day04_part01.fs" />
+    <Compile Include="day04\day04_part02.fs" />
+    <Compile Include="day05\day05_part01.fs" />
+    <Compile Include="day05\day05_part02.fs" />
+    <Compile Include="day06\day06_part01.fs" />
+    <Compile Include="day06\day06_part02.fs" />
+    <Compile Include="day07\day07_part01.fs" />
+    <Compile Include="day07\day07_part02.fs" />
+    <Compile Include="day08\day08_part01.fs" />
+    <Compile Include="day08\day08_part02.fs" />
+    <Compile Include="day09\day09_part01.fs" />
+    <Compile Include="day09\day09_part02.fs" />
+    <Compile Include="day10\day10_part01.fs" />
+    <Compile Include="day10\day10_part02.fs" />
+    <Compile Include="day11\day11_part01.fs" />
+    <Compile Include="day11\day11_part02.fs" />
+    <Compile Include="day12\day12_part01.fs" />
+    <Compile Include="day12\day12_part02.fs" />
+    <Content Include="day00\day00_input.txt" />
+    <Content Include="day00\test_input_01.txt" />
+    <Content Include="day01\day01_input.txt" />
+    <Content Include="day01\test_input_01.txt" />
+    <Content Include="day02\day02_input.txt" />
+    <Content Include="day02\test_input_02.txt" />
+    <Content Include="day03\day03_input.txt" />
+    <Content Include="day03\test_input_03.txt" />
+    <Content Include="day04\day04_input.txt" />
+    <Content Include="day04\test_input_04.txt" />
+    <Content Include="day05\day05_input.txt" />
+    <Content Include="day05\test_input_05.txt" />
+    <Content Include="day06\day06_input.txt" />
+    <Content Include="day06\test_input_06.txt" />
+    <Content Include="day07\day07_input.txt" />
+    <Content Include="day07\test_input_07.txt" />
+    <Content Include="day08\day08_input.txt" />
+    <Content Include="day08\test_input_08.txt" />
+    <Content Include="day09\day09_input.txt" />
+    <Content Include="day09\test_input_09.txt" />
+    <Content Include="day10\day10_input.txt" />
+    <Content Include="day10\test_input_10.txt" />
+    <Content Include="day11\day11_input.txt" />
+    <Content Include="day11\test_input_11.txt" />
+    <Content Include="day11\test_input_11b.txt" />
+    <Content Include="day12\day12_input.txt" />
+    <Content Include="day12\test_input_12.txt" />
+    <None Include="day00\part01\day00_part01.fsx" />
+    <None Include="day00\part02\day00_part02.fsx" />
+    <None Include="day00\playground.fsx" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
+  </ItemGroup>
+
+</Project>
