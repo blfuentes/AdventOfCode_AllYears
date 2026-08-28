@@ -6,32 +6,32 @@ https://adventofcode.com/
 
 ⭐ = full day (2 stars) | 🌟 = half day (1 star) | 💫 = ending bonus | 💢 = cheated | ❄️ = missing
 
-| Year                      | Progress                                                  | Total     |
-| ------------------------- | --------------------------------------------------------- | --------- |
-| [2015](#2015-fgoc)        | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2016](#2016-fc)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2017](#2017-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2018](#2018-ftypescript) | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2019](#2019-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2020](#2020-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2021](#2021-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2022](#2022-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2023](#2023-fc)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢💫        | (50/50)   |
-| [2024](#2024-fgo)         | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫        | (50/50)   |
-| [2025](#2025-fgorust)     | ⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐💫                                       | (24/24)  |
-| [2026](#2026-f)           | ❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️                                              | (0/24)    |
+| Year                      | Progress                                                    | Total     |
+| ------------------------- | ----------------------------------------------------------- | --------- |
+| [2015](#2015-fgoc)        | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2016](#2016-fc)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2017](#2017-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2018](#2018-ftypescript) | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2019](#2019-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2020](#2020-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2021](#2021-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2022](#2022-f)           | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2023](#2023-fc)          | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢💫          | (50/50)   |
+| [2024](#2024-fgo)         | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐💫          | (50/50)   |
+| [2025](#2025-fgorust)     | ⭐⭐⭐⭐⭐⭐⭐⭐⭐💢⭐💫                                    | (24/24)   |
+| [2026](#2026-f)           | ❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️                                    | (0/24)    |
 | Overall                   | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜ (95,62%) | (524/548) |
 
 ## Languages by Year
 
 | Language   | [2015](#2015-fgoc) | [2016](#2016-fc) | [2017](#2017-f) | [2018](#2018-ftypescript) | [2019](#2019-f) | [2020](#2020-f) | [2021](#2021-f) | [2022](#2022-f) | [2023](#2023-fc) | [2024](#2024-fgo) | [2025](#2025-fgorust) | [2026](#2026-f) |
-| ---------- | ------------------ | ---------------- | --------------- | ------------------------- | --------------- | --------------- | --------------- | --------------- | ---------------- | ----------------- | --------------------- | --------------------- |
-| F#         | 💫                 | 💫               | 💫              | ⭐                        | 💫              | 💫              | 💫              | 💫              | 💫               | 💫                | 💫                    | |
-| Go         | ⭐                 |                  |                 |                           |                 |                 |                 |                 |                  | ⭐                | 💫                    | |
-| C#         | 💫                 | ⭐               |                 |                           |                 |                 |                 |                 |                  |                   |                       | |
-| TypeScript |                    |                  |                 | ⭐                        |                 |                 |                 |                 |                  |                   |                       | |
-| C++        |                    |                  |                 |                           |                 |                 |                 |                 | ⭐               |                   |                       | |
-| Rust       |                    |                  |                 |                           |                 |                 |                 |                 |                  |                   | ⭐                    | |
+| ---------- | ------------------ | ---------------- | --------------- | ------------------------- | --------------- | --------------- | --------------- | --------------- | ---------------- | ----------------- | --------------------- | --------------- |
+| F#         | 💫                 | 💫               | 💫              | ⭐                        | 💫              | 💫              | 💫              | 💫              | 💫               | 💫                | 💫                    |                 |
+| Go         | ⭐                 |                  |                 |                           |                 |                 |                 |                 |                  | ⭐                | 💫                    |                 |
+| C#         | 💫                 | ⭐               |                 |                           |                 |                 |                 |                 |                  |                   |                       |                 |
+| TypeScript |                    |                  |                 | ⭐                        |                 |                 |                 |                 |                  |                   |                       |                 |
+| C++        |                    |                  |                 |                           |                 |                 |                 |                 | ⭐               |                   |                       |                 |
+| Rust       |                    |                  |                 |                           |                 |                 |                 |                 |                  |                   | ⭐                    |                 |
 
 ## Cheated list
 
@@ -99,7 +99,7 @@ https://adventofcode.com/2016
 | [Day 12](https://adventofcode.com/2016/day/12): Leonardo's Monorail                    | ✔️ [F# Part 1](./AdventOfCode_2016/day12/part01/day12_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day12/part02/day12_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day12/Day12.cs) |
 | [Day 13](https://adventofcode.com/2016/day/13): A Maze of Twisty Little Cubicles       | ✔️ [F# Part 1](./AdventOfCode_2016/day13/part01/day13_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day13/part02/day13_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day13/Day13.cs) |
 | [Day 14](https://adventofcode.com/2016/day/14): One-Time Pad                           | ✔️ [F# Part 1](./AdventOfCode_2016/day14/part01/day14_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day14/part02/day14_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day14/Day14.cs) |
-| [Day 15](https://adventofcode.com/2016/day/15): Timing is Everything                   | ✔️ [F# Part 1](./AdventOfCode_2016/day15/part01/day15_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day15/part02/day15_part02.fs) |
+| [Day 15](https://adventofcode.com/2016/day/15): Timing is Everything                   | ✔️ [F# Part 1](./AdventOfCode_2016/day15/part01/day15_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day15/part02/day15_part02.fs) | ✔️ [C# Part 1/2](./AdventOfCode_2016_CSharp/day15/Day15.cs) |
 | [Day 16](https://adventofcode.com/2016/day/16): Dragon Checksum                        | ✔️ [F# Part 1](./AdventOfCode_2016/day16/part01/day16_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day16/part02/day16_part02.fs) |
 | [Day 17](https://adventofcode.com/2016/day/17): Two Steps Forward                      | ✔️ [F# Part 1](./AdventOfCode_2016/day17/part01/day17_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day17/part02/day17_part02.fs) |
 | [Day 18](https://adventofcode.com/2016/day/18): Like a Rogue                           | ✔️ [F# Part 1](./AdventOfCode_2016/day18/part01/day18_part01.fs)<br>✔️ [F# Part 2](./AdventOfCode_2016/day18/part02/day18_part02.fs) |
@@ -430,17 +430,17 @@ https://adventofcode.com/2026
 
 ❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️ (0/12)
 
-| Day                                                                              | F#                                                                                                                                   |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [Day 1](https://adventofcode.com/2026/day/1): ??? | |
-| [Day 2](https://adventofcode.com/2026/day/2): ??? | |
-| [Day 3](https://adventofcode.com/2026/day/3): ??? | |
-| [Day 4](https://adventofcode.com/2026/day/4): ??? | |
-| [Day 5](https://adventofcode.com/2026/day/5): ??? | |
-| [Day 6](https://adventofcode.com/2026/day/6): ??? | |
-| [Day 7](https://adventofcode.com/2026/day/7): ??? | |
-| [Day 8](https://adventofcode.com/2026/day/8): ??? | |
-| [Day 9](https://adventofcode.com/2026/day/9): ??? | |
-| [Day 10](https://adventofcode.com/2026/day/10): ??? | |
-| [Day 11](https://adventofcode.com/2026/day/11): ??? | |
-| [Day 12](https://adventofcode.com/2026/day/12): ??? | |
+| Day                                                 | F#  |
+| --------------------------------------------------- | --- |
+| [Day 1](https://adventofcode.com/2026/day/1): ???   |     |
+| [Day 2](https://adventofcode.com/2026/day/2): ???   |     |
+| [Day 3](https://adventofcode.com/2026/day/3): ???   |     |
+| [Day 4](https://adventofcode.com/2026/day/4): ???   |     |
+| [Day 5](https://adventofcode.com/2026/day/5): ???   |     |
+| [Day 6](https://adventofcode.com/2026/day/6): ???   |     |
+| [Day 7](https://adventofcode.com/2026/day/7): ???   |     |
+| [Day 8](https://adventofcode.com/2026/day/8): ???   |     |
+| [Day 9](https://adventofcode.com/2026/day/9): ???   |     |
+| [Day 10](https://adventofcode.com/2026/day/10): ??? |     |
+| [Day 11](https://adventofcode.com/2026/day/11): ??? |     |
+| [Day 12](https://adventofcode.com/2026/day/12): ??? |     |
