@@ -23,33 +23,36 @@ public class Day16(bool isTest = false) : BaseDay("16", isTest)
 
     static byte[] GenerateData(ReadOnlySpan<byte> data, int required)
     {
-        var generated = Step(data);
-        while (generated.Length < required) generated = Step(generated);
+        var generated = data.ToArray();
+        while (generated.Length < required)
+            generated = Step(generated);
 
         return generated;
     }
 
     static byte[] CalculateCheckSum(string input, int required)
     {
-        byte[] data = GenerateData(
-            [.. input.Select(c => c == '1' ? (byte)1 : (byte)0)],
-            required);
+        var data = new byte[input.Length];
+        for (var i = 0; i < input.Length; i++)
+            data[i] = input[i] == '1' ? (byte)1 : (byte)0;
 
-        byte[] used = [.. data[..required]];
-
-        List<byte> checksum = [];
-        while (checksum.Count % 2 == 0)
+        var used = GenerateData(data, required);
+        if (used.Length > required)
         {
-            // Console.WriteLine($"CheckSum length: {checksum.Count}");
-            checksum.Clear();
-            foreach (var chunk in used.Chunk(2))
-            {
-                checksum.Add(chunk[0] == chunk[1] ? (byte)1 : (byte)0);
-            }
-            used = [.. checksum];
+            var trimmed = new byte[required];
+            Array.Copy(used, trimmed, required);
+            used = trimmed;
         }
 
-        return [.. checksum];
+        while (used.Length % 2 == 0)
+        {
+            var next = new byte[used.Length / 2];
+            for (var i = 0; i < used.Length; i += 2)
+                next[i / 2] = (byte)(used[i] == used[i + 1] ? 1 : 0);
+            used = next;
+        }
+
+        return used;
     }
 
 
