@@ -7,47 +7,47 @@ public class Day18(bool isTest = false) : BaseDay("18", isTest)
 {
     #region Part 1
 
-    static bool IsTrap(char[] tiles)
+    static bool IsTrap(bool[] tiles)
     {
-        if (tiles[0] == '^' && tiles[1] == '^' && tiles[2] != '^')
+        if (tiles[0] && tiles[1] && !tiles[2])
             return true;
-        if (tiles[0] != '^' && tiles[1] == '^' && tiles[2] == '^')
+        if (!tiles[0] && tiles[1] && tiles[2])
             return true;
-        if (tiles[0] == '^' && tiles[1] != '^' && tiles[2] != '^')
+        if (tiles[0] && !tiles[1] && !tiles[2])
             return true;
-        if (tiles[0] != '^' && tiles[1] != '^' && tiles[2] == '^')
+        if (!tiles[0] && !tiles[1] && tiles[2])
             return true;
 
         return false;
     }
 
-    static (char[], int safes) NextRow(char[] currentRow)
+    static (bool[], int safes) NextRow(bool[] currentRow)
     {
-        char[] nextRow = new char[currentRow.Length];
+        bool[] nextRow = new bool[currentRow.Length];
         int safe = 0;
         // most left
-        bool isTrap = IsTrap(['0', currentRow[0], currentRow[1]]);
-        nextRow[0] = '.';
+        bool isTrap = IsTrap([false, currentRow[0], currentRow[1]]);
+        nextRow[0] = false;
         if (isTrap)
-            nextRow[0] = '^';
+            nextRow[0] = true;
         else
             safe++;
 
         for (int idx = 1; idx < currentRow.Length - 1; idx++)
         {
             isTrap = IsTrap([currentRow[idx - 1], currentRow[idx], currentRow[idx + 1]]);
-            nextRow[idx] = '.';
+            nextRow[idx] = false;
             if (isTrap)
-                nextRow[idx] = '^';
+                nextRow[idx] = true;
             else
                 safe++;
         }
 
         // most right
-        isTrap = IsTrap([currentRow[^2], currentRow[^1], '0']);
-        nextRow[currentRow.Length - 1] = '.';
+        isTrap = IsTrap([currentRow[^2], currentRow[^1], false]);
+        nextRow[currentRow.Length - 1] = false;
         if (isTrap)
-            nextRow[currentRow.Length - 1] = '^';
+            nextRow[currentRow.Length - 1] = true;
         else
             safe++;
 
@@ -58,17 +58,15 @@ public class Day18(bool isTest = false) : BaseDay("18", isTest)
     public int RunPart1()
     {
         int maxRows = 40;
-        char[][] tiles = new char[maxRows][];
-        tiles[0] = [.. Content];
-        char[] currentRow = [.. Content];
+        bool[][] tiles = new bool[maxRows][];
+        tiles[0] = [.. Content.Select(c => c == '^')];
+        bool[] currentRow = [.. Content.Select(c => c == '^')];
         int linesCount = 1;
-        int safes = currentRow.Count(c => c == '.');
-        Console.WriteLine($"{string.Join("", currentRow)}");
+        int safes = currentRow.Count(c => !c);
         while (linesCount < maxRows)
         {
             (currentRow, int s) = NextRow(currentRow);
             safes += s;
-            Console.WriteLine($"{string.Join("", currentRow)}");
             tiles[linesCount] = currentRow;
             linesCount++;
         }
@@ -88,22 +86,19 @@ public class Day18(bool isTest = false) : BaseDay("18", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        int maxRows = 400000;
-        char[][] tiles = new char[maxRows][];
-        tiles[0] = [.. Content];
-        char[] currentRow = [.. Content];
-        int linesCount = 1;
-        int safes = currentRow.Count(c => c == '.');
-        // Console.WriteLine($"{string.Join("", currentRow)}");
-        while (linesCount < maxRows)
+        const int maxRows = 400000;
+        int width = Content.Length;
+        UInt128 mask = (UInt128.One << width) - 1;
+
+        UInt128 row = 0;
+        foreach (char c in Content)
+            row = (row << 1) | (c == '^' ? UInt128.One : UInt128.Zero);
+
+        int safes = 0;
+        for (int r = 0; r < maxRows; r++)
         {
-            // if (linesCount % 200 == 0)
-            //     Console.WriteLine($"Creating row... {linesCount}");
-            (currentRow, int s) = NextRow(currentRow);
-            safes += s;
-            // Console.WriteLine($"{string.Join("", currentRow)}");
-            tiles[linesCount] = currentRow;
-            linesCount++;
+            safes += width - (int)UInt128.PopCount(row);
+            row = ((row << 1) ^ (row >> 1)) & mask;
         }
         return safes;
     }
