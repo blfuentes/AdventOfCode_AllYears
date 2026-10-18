@@ -6,28 +6,22 @@ namespace AdventOfCode_2016_CSharp.day19;
 public class Day19(bool isTest = false) : BaseDay("19", isTest)
 {
     #region Part 1
-    struct Elf(int Position, int NumOfPresents)
-    {
-        public int Position { get; set; } = Position;
-        public int NumOfPresents { get; set; } = NumOfPresents;
-    }
 
     [Benchmark]
     public int RunPart1()
     {
-        Queue<Elf> elves = [];
+        Queue<int> elves = [];
         int numOfElves = int.Parse(Content);
         for (int edx = 1; edx <= numOfElves; edx++)
-            elves.Enqueue(new(edx, 1));
+            elves.Enqueue(edx);
 
-        while (elves.Count > 1 && elves.TryDequeue(out Elf current))
+        while (elves.Count > 1 && elves.TryDequeue(out int current))
         {
-            if (elves.TryDequeue(out Elf next))
-                current.NumOfPresents += next.NumOfPresents;
+            elves.TryDequeue(out int next);
             elves.Enqueue(current);
         }
 
-        return elves.Peek().Position;
+        return elves.Peek();
     }
 
     public override string SolvePart1()
