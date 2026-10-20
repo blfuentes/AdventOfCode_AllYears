@@ -53,7 +53,7 @@ public class Day20(bool isTest = false) : BaseDay("20", isTest)
 
     #region Part 2
     [Benchmark]
-    public uint RunPart2()
+    public ulong RunPart2()
     {
         var lines = File.ReadAllLines(InputPath);
         var builder = ImmutableArray.CreateBuilder<BlockedRange>(lines.Length);
@@ -67,18 +67,18 @@ public class Day20(bool isTest = false) : BaseDay("20", isTest)
         builder.Sort(static (a, b) => a.Start.CompareTo(b.Start));
 
         ImmutableArray<BlockedRange> ranges = builder.MoveToImmutable();
-        uint min = 0, free = 0;
+        ulong min = 0, free = 0;
 
         foreach (var r in ranges)
         {
             if (r.Start > min)
                 free += r.Start - min;
 
-            min = Math.Max(min, r.End + 1);
+            min = Math.Max(min, (ulong)r.End + 1);
         }
 
-        if (min <= 4294967295)
-            free += MaxValue - min + 1;
+        if (min <= MaxValue)
+            free += (ulong)MaxValue - min + 1;
 
         return free;
     }
