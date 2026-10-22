@@ -65,12 +65,41 @@ public partial class Day22 : BaseDay
     [Benchmark]
     public int RunPart2()
     {
-        int maxX = _files.Max(f => f.X);
-        Dictionary<(int X, int Y), GridFile> disk = [];
-        foreach (var file in _files)
-            disk.Add((file.X, file.Y), file);
+        var empty = _files.Single(file => file.Used == 0);
+        var movable = _files.Where(file => file.Used <= empty.Size).ToArray();
+        var minSize = movable.Min(file => file.Size);
+        var maxSize = movable.Max(file => file.Size);
 
-        return Content.Length;
+        if (movable.Any(file => file.Used > minSize)
+            || _files.Any(file => file.Used > empty.Size && file.Used <= maxSize))
+            throw new InvalidOperationException("The grid cannot be modeled as a sliding puzzle.");
+
+        var positions = movable.Select(file => (file.X, file.Y)).ToHashSet();
+        var goal = (_files.Where(file => file.Y == 0).Max(file => file.X), 0);
+        var start = (Empty: (empty.X, empty.Y), Goal: goal);
+        var visited = new HashSet<((int X, int Y) Empty, (int X, int Y) Goal)> { start };
+        var queue = new Queue<((int X, int Y) Empty, (int X, int Y) Goal, int Steps)>();
+        queue.Enqueue((start.Empty, start.Goal, 0));
+        (int X, int Y)[] directions = [(0, -1), (1, 0), (0, 1), (-1, 0)];
+
+        while (queue.TryDequeue(out var state))
+        {
+            if (state.Goal == (0, 0))
+                return state.Steps;
+
+            foreach (var (X, Y) in directions)
+            {
+                var nextEmpty = (state.Empty.X + X, state.Empty.Y + Y);
+                if (!positions.Contains(nextEmpty))
+                    continue;
+
+                var nextGoal = nextEmpty == state.Goal ? state.Empty : state.Goal;
+                if (visited.Add((nextEmpty, nextGoal)))
+                    queue.Enqueue((nextEmpty, nextGoal, state.Steps + 1));
+            }
+        }
+
+        throw new InvalidOperationException("The goal data cannot reach node (0, 0).");
     }
 
     public override string SolvePart2()
