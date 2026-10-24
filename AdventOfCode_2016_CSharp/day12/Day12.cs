@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using AdventOfCode_2016_CSharp.Common.AssembunnyCode;
 using BenchmarkDotNet.Attributes;
 using Gee.External.Capstone;
 
@@ -6,73 +7,6 @@ namespace AdventOfCode_2016_CSharp.day12;
 
 public class Day12(bool isTest = false) : BaseDay("12", isTest)
 {
-    sealed class Registers
-    {
-        public Dictionary<char, int> Register { get; set; }
-        public int Get(char r) => Register[r];
-        public void Set(char r, int value) => _ = Register.TryAdd(r, value);
-    }
-
-    record RegisterValue
-    {
-        public RegisterValue(string value)
-        {
-            if (int.TryParse(value, out int v))
-            {
-                Value = v;
-            }
-            else
-            {
-                Registry = value[0];
-            }
-        }
-
-        public int? Value;
-        public char Registry;
-    }
-
-    interface IOperation
-    {
-        int Execute(Registers registers);
-    }
-
-    record CopyOp(RegisterValue Source, char Target) : IOperation
-    {
-        public int Execute(Registers registers)
-        {
-            registers.Register[Target] = Source.Value ?? registers.Register[Source.Registry];
-            return 1;
-        }
-    }
-
-    record IncOp(char Source) : IOperation
-    {
-        public int Execute(Registers registers)
-        {
-            registers.Register[Source]++;
-            return 1;
-        }
-    }
-
-    record DecOp(char Source) : IOperation
-    {
-        public int Execute(Registers registers)
-        {
-            registers.Register[Source]--;
-            return 1;
-        }
-    }
-
-    record JnzOp(RegisterValue Source, RegisterValue OffSet) : IOperation
-    {
-        public int Execute(Registers registers)
-        {
-            return (Source.Value ?? registers.Register[Source.Registry]) != 0 ?
-                OffSet.Value ?? registers.Register[OffSet.Registry] :
-                1;
-        }
-    }
-
     #region Part 1
     [Benchmark]
     public int RunPart1()
