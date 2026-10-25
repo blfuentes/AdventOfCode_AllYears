@@ -8,7 +8,14 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     [Benchmark]
     public int RunPart1()
     {
-        return Content.Length;
+        int counter = 0;
+        int step = Content.Length / 2;
+        for (int cIdx = 0; cIdx < Content.Length; cIdx++)
+        {
+            if (Content[cIdx] == Content[(cIdx + 1) % Content.Length])
+                counter += Content[cIdx] - 48;
+        }
+        return counter;
     }
 
     public override string SolvePart1()
@@ -25,7 +32,14 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        int counter = 0;
+        int step = Content.Length / 2;
+        for (int cIdx = 0; cIdx < Content.Length; cIdx++)
+        {
+            if (Content[cIdx] == Content[(cIdx + step) % Content.Length])
+                counter += Content[cIdx] - 48;
+        }
+        return counter;
     }
 
     public override string SolvePart2()
