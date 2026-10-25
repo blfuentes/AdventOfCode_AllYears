@@ -9,12 +9,15 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     public int RunPart1()
     {
         int counter = 0;
-        int step = Content.Length / 2;
-        for (int cIdx = 0; cIdx < Content.Length; cIdx++)
+        for (int cIdx = 0; cIdx < Content.Length - 1; cIdx++)
         {
-            if (Content[cIdx] == Content[(cIdx + 1) % Content.Length])
+            if (Content[cIdx] == Content[cIdx + 1])
                 counter += Content[cIdx] - 48;
         }
+
+        if (Content.Length > 0 && Content[^1] == Content[0])
+            counter += Content[^1] - 48;
+
         return counter;
     }
 
@@ -33,12 +36,16 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     public int RunPart2()
     {
         int counter = 0;
-        int step = Content.Length / 2;
-        for (int cIdx = 0; cIdx < Content.Length; cIdx++)
+        int length = Content.Length;
+        int step = length / 2;
+
+        for (int cIdx = 0; cIdx < step; cIdx++)
         {
-            if (Content[cIdx] == Content[(cIdx + step) % Content.Length])
-                counter += Content[cIdx] - 48;
+            if (Content[cIdx] == Content[cIdx + step])
+                counter += (Content[cIdx] - 48) * 2;
         }
+
+
         return counter;
     }
 
