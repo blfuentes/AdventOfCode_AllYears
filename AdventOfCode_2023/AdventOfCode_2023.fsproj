@@ -169,13 +169,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FParsec" Version="1.1.1" />
-		<PackageReference Include="FSharpx.Collections" Version="3.1.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100">
+		<PackageReference Include="FParsec" />
+		<PackageReference Include="FSharpx.Collections" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Z3" Version="4.12.2" />
+		<PackageReference Include="Microsoft.Z3" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -7,6 +7,8 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
     <File Path="README.md" />
   </Folder>
   <Project Path="AdventOfCode_2015\AdventOfCode_2015.fsproj" />
@@ -14,6 +16,7 @@
   <Project Path="AdventOfCode_2016\AdventOfCode_2016.fsproj" />
   <Project Path="AdventOfCode_2016_CSharp/AdventOfCode_2016_CSharp.csproj" Id="6cbc711d-32c6-4bdf-849b-2136431a63da" />
   <Project Path="AdventOfCode_2017\AdventOfCode_2017.fsproj" />
+  <Project Path="AdventOfCode_2017_CSharp/AdventOfCode_2017_CSharp.csproj" />
   <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018.fsproj" />
   <Project Path="AdventOfCode_2018_Typescript\AdventOfCode_2018_Typescript.esproj">
     <Platform Project="AnyCPU" />

@@ -185,10 +185,10 @@
 		<None Include="day25\part01\day25_part01.fsx" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="FParsec" Version="1.1.1" />
-		<PackageReference Include="FSharp.Collections.ParallelSeq" Version="1.2.0" />
-		<PackageReference Include="FSharp.Text.RegexProvider" Version="2.1.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100">
+		<PackageReference Include="FParsec" />
+		<PackageReference Include="FSharp.Collections.ParallelSeq" />
+		<PackageReference Include="FSharp.Text.RegexProvider" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

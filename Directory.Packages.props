@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageVersion Include="BenchmarkDotNet.Annotations" Version="0.15.8" />
+    <PackageVersion Include="FParsec" Version="1.1.1" />
+    <PackageVersion Include="FSharp.Collections.ParallelSeq" Version="1.2.0" />
+    <PackageVersion Include="FSharp.Data" Version="8.2.0" />
+    <PackageVersion Include="FSharp.Text.RegexProvider" Version="2.1.0" />
+    <PackageVersion Include="FSharpPlus" Version="1.9.1" />
+    <PackageVersion Include="FSharpx.Collections" Version="3.1.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.402" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Z3" Version="4.12.2" />
+    <PackageVersion Include="System.Drawing.Common" Version="10.0.14" />
+  </ItemGroup>
+</Project>

@@ -158,9 +158,9 @@
 		<Content Include="day22\test_input_22.txt" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="FSharp.Data" Version="6.6.0" />
-		<PackageReference Include="FSharpx.Collections" Version="3.1.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100">
+		<PackageReference Include="FSharp.Data" />
+		<PackageReference Include="FSharpx.Collections" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

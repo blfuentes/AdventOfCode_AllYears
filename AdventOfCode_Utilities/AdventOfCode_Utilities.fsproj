@@ -18,8 +18,8 @@
 		<Compile Include="Modules\Utilities.fs" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="FSharpPlus" Version="1.8.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100">
+		<PackageReference Include="FSharpPlus" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
