@@ -39,6 +39,11 @@ public interface IToggle
     int Toggle { get; set; }
 }
 
+public interface IOutput
+{
+    int Output { get; set; }
+}
+
 public record CopyOp(RegisterValue Source, char Target) : IOperation
 {
     public int Execute(Registers registers)
@@ -132,6 +137,27 @@ public record TglOp(char Source) : IOperation, IToggle
     }
 
     IOperation IOperation.Toggle()
+    {
+        return new IncOp(Source);
+    }
+}
+
+public record OutOp(char Source) : IOperation, IOutput
+{
+    public int Output { get; set; }
+
+    public string Display(Registers registers)
+    {
+        return $"out {Source}";
+    }
+
+    public int Execute(Registers registers)
+    {
+        Output = registers.Register[Source];
+        return 1;
+    }
+
+    public IOperation Toggle()
     {
         return new IncOp(Source);
     }
