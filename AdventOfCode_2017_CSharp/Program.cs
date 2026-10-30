@@ -39,6 +39,6 @@ if (Utils.DownloadContent(client, 2017, 2))
 if (Utils.DownloadContent(client, 2017, 3))
 {
     //BenchmarkRunner.Run<Day03>();
-    Console.WriteLine((new Day03(isTest: true)).SolvePart1());
+    Console.WriteLine((new Day03(isTest: false)).SolvePart1());
     Console.WriteLine((new Day03(isTest: true)).SolvePart2());
 }
