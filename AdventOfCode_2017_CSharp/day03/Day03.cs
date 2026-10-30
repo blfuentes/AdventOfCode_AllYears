@@ -34,54 +34,53 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
         else
         {
             // bottom side
-            for (int column = ring; column >= -ring; ring--)
+            for (int column = ring; column >= -ring; column--)
             {
-                spiral[mid + ring, mid + column] = valueToAdd;
-                if (valueToAdd == input)
-                {
-                    currentPos.X = mid + ring;
-                    currentPos.Y = mid + column;
-                }
-                valueToAdd--;
+                int xvalue = mid + ring;
+                int yvalue = mid + column;
+
+                UpdateSpiral(input, ref currentPos, spiral, ref valueToAdd, xvalue, yvalue);
             }
             // left side
             for (int row = ring - 1; row >= (-ring + 1); row--)
             {
-                spiral[mid + row, mid - ring] = valueToAdd;
-                if (valueToAdd == input)
-                {
-                    currentPos.X = mid + row;
-                    currentPos.Y = mid - ring;
-                }
-                valueToAdd--;
+                int xvalue = mid + row;
+                int yvalue = mid - ring;
+
+                UpdateSpiral(input, ref currentPos, spiral, ref valueToAdd, xvalue, yvalue);
             }
 
             // top side
             for (int column = -ring; column <= ring; column++)
             {
-                spiral[mid - ring, mid + column] = valueToAdd;
-                if (valueToAdd == input)
-                {
-                    currentPos.X = mid - ring;
-                    currentPos.Y = mid + column;
-                }
-                valueToAdd--;
+                int xvalue = mid - ring;
+                int yvalue = mid + column;
+
+                UpdateSpiral(input, ref currentPos, spiral, ref valueToAdd, xvalue, yvalue);
             }
 
             // right side
             for (int row = -ring + 1; row <= ring - 1; row++)
             {
-                spiral[mid + row, mid + ring] = valueToAdd;
-                if (valueToAdd == input)
-                {
-                    currentPos.X = mid + row;
-                    currentPos.Y = mid + ring;
-                }
-                valueToAdd--;
+                int xvalue = mid + row;
+                int yvalue = mid + ring;
+
+                UpdateSpiral(input, ref currentPos, spiral, ref valueToAdd, xvalue, yvalue);
             }
         }
 
         return BuildSpiral(mid, input, maxValue, currentPos, ring + 1, spiral);
+    }
+
+    private static void UpdateSpiral(int input, ref Location currentPos, int[,] spiral, ref int valueToAdd, int xvalue, int yvalue)
+    {
+        spiral[xvalue, yvalue] = valueToAdd;
+        if (valueToAdd == input)
+        {
+            currentPos.X = xvalue;
+            currentPos.Y = yvalue;
+        }
+        valueToAdd--;
     }
 
     #region Part 1
