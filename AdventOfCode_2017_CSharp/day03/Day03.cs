@@ -16,6 +16,24 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
     static int ManhattanDistance(Location a, Location b) =>
         Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
 
+    static int ManhattanDistanceFromValue(int n)
+    {
+        if (n == 1) return 0;
+
+        int ring = (int)Math.Ceiling((Math.Sqrt(n) - 1) / 2); // ring radius
+        int sideLen = ring * 2;
+        int maxInRing = (2 * ring + 1) * (2 * ring + 1);
+
+        // Midpoints of the 4 sides in this ring
+        int d1 = Math.Abs(n - (maxInRing - ring));
+        int d2 = Math.Abs(n - (maxInRing - 3 * ring));
+        int d3 = Math.Abs(n - (maxInRing - 5 * ring));
+        int d4 = Math.Abs(n - (maxInRing - 7 * ring));
+
+        int minToAxis = Math.Min(Math.Min(d1, d2), Math.Min(d3, d4));
+        return ring + minToAxis;
+    }
+
     #region Part 1
     static (int[,] spiral, Location pos) BuildSpiral(int mid, int input, int result, Location currentPos, int ring, int[,] spiral)
     {
@@ -86,13 +104,14 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
     [Benchmark]
     public int RunPart1()
     {
-        int length = 1000;
-        var spiral = new int[length, length];
-        int mid = length / 2;
-        Location init = new() { X = mid, Y = mid };
-        (_, Location pos) = BuildSpiral(mid, int.Parse(Content), 0, new() { X = 0, Y = 0 }, 0, spiral);
+        //int length = 1000;
+        //var spiral = new int[length, length];
+        //int mid = length / 2;
+        //Location init = new() { X = mid, Y = mid };
+        //(_, Location pos) = BuildSpiral(mid, int.Parse(Content), 0, new() { X = 0, Y = 0 }, 0, spiral);
 
-        return ManhattanDistance(init, pos);
+        //return ManhattanDistance(init, pos);
+        return ManhattanDistanceFromValue(int.Parse(Content));
     }
 
     public override string SolvePart1()
