@@ -16,13 +16,14 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
     static int ManhattanDistance(Location a, Location b) =>
         Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
 
-    static (int[,] spiral, Location pos) BuildSpiral(int mid, int input, int current, Location currentPos, int ring, int[,] spiral)
+    #region Part 1
+    static (int[,] spiral, Location pos) BuildSpiral(int mid, int input, int result, Location currentPos, int ring, int[,] spiral)
     {
-        if (current > input)
+        if (result > input)
             return (spiral, currentPos);
 
         int numberOfElements = ring * 8;
-        int maxValue = current + numberOfElements;
+        int maxValue = result + numberOfElements;
         int valueToAdd = maxValue + 1;
 
         if (ring == 0)
@@ -82,16 +83,14 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
         }
         valueToAdd--;
     }
-
-    #region Part 1
     [Benchmark]
     public int RunPart1()
     {
         int length = 1000;
-        var spiral = new int[2000, 2000];
+        var spiral = new int[length, length];
         int mid = length / 2;
         Location init = new() { X = mid, Y = mid };
-        (int[,] memospiral, Location pos) = BuildSpiral(mid, int.Parse(Content), 0, new() { X = 0, Y = 0 }, 0, spiral);
+        (_, Location pos) = BuildSpiral(mid, int.Parse(Content), 0, new() { X = 0, Y = 0 }, 0, spiral);
 
         return ManhattanDistance(init, pos);
     }
@@ -106,10 +105,85 @@ public class Day03(bool isTest = false) : BaseDay("03", isTest)
     #endregion
 
     #region Part 2
+    static int ValueOfLocation(Location pos, int[,] spiral)
+    {
+        int value = 0;
+        for (int row = -1; row <= 1; row++)
+        {
+            for (int col = -1; col <= 1; col++)
+            {
+                value += spiral[row + pos.X, col + pos.Y];
+            }
+        }
+        return value;
+    }
+
+    static int BuildSpiralInc(int mid, int input, int result, int ring, int[,] spiral)
+    {
+        if (result > input)
+            return result;
+
+        if (ring == 0)
+            spiral[mid, mid] = 1;
+        else
+        {
+            // right side
+            for (int row = ring - 1; row >= (-ring + 1); row--)
+            {
+                int xvalue = mid + row;
+                int yvalue = mid + ring;
+
+                UpdateSpiral(input, ref result, spiral, xvalue, yvalue);
+            }
+
+            // top side
+            for (int column = ring; column >= -ring; column--)
+            {
+                int xvalue = mid - ring;
+                int yvalue = mid + column;
+
+                UpdateSpiral(input, ref result, spiral, xvalue, yvalue);
+            }
+
+            // left side
+            for (int row = -ring + 1; row <= (ring - 1); row++)
+            {
+                int xvalue = mid + row;
+                int yvalue = mid - ring;
+
+                UpdateSpiral(input, ref result, spiral, xvalue, yvalue);
+            }
+
+            // bottom side
+            for (int column = -ring; column <= ring; column++)
+            {
+                int xvalue = mid + ring;
+                int yvalue = mid + column;
+
+                UpdateSpiral(input, ref result, spiral, xvalue, yvalue);
+            }
+        }
+
+        return BuildSpiralInc(mid, input, result, ring + 1, spiral);
+    }
+
+    private static void UpdateSpiral(int input, ref int result, int[,] spiral, int xvalue, int yvalue)
+    {
+        int valueToAdd = ValueOfLocation(new() { X = xvalue, Y = yvalue }, spiral);
+        spiral[xvalue, yvalue] = valueToAdd;
+        if (valueToAdd > input && result == 0)
+            result = valueToAdd;
+    }
+
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        int length = 1000;
+        var spiral = new int[length, length];
+        int mid = length / 2;
+        int result = BuildSpiralInc(mid, int.Parse(Content), 0, 0, spiral);
+
+        return result;
     }
 
     public override string SolvePart2()
