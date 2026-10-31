@@ -22,5 +22,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "dotnet.defaultSolution": "AdventOfCode_AllYears.slnx"
+  "editor.fontFamily": "'Monaspace Neon', monospace",
+  "dotnet.defaultSolution": "AdventOfCode_AllYears.slnx",
+  "terminal.integrated.env.windows": {
+    "DOTNET_CLI_UI_LANGUAGE": "en"
+  }
 }
