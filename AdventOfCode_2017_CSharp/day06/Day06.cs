@@ -5,6 +5,23 @@ namespace AdventOfCode_2017_CSharp.day06;
 
 public partial class Day06(bool isTest = false) : BaseDay("06", isTest)
 {
+    private sealed class MemoryBlocksComparer : IEqualityComparer<int[]>
+    {
+        public bool Equals(int[]? x, int[]? y) =>
+            ReferenceEquals(x, y) ||
+            (x is not null && y is not null && x.AsSpan().SequenceEqual(y));
+
+        public int GetHashCode(int[] values)
+        {
+            var hash = new HashCode();
+            foreach (var value in values)
+                hash.Add(value);
+            return hash.ToHashCode();
+        }
+    }
+
+    private static readonly MemoryBlocksComparer Comparer = new();
+
     private int[] memoryBlocks = [];
     (int value, int idx) FindMaxValueIndex()
     {
@@ -44,14 +61,12 @@ public partial class Day06(bool isTest = false) : BaseDay("06", isTest)
     public int RunPart1()
     {
         memoryBlocks = [.. NumbersRegex().Matches(Content).Select(m => int.Parse(m.Value))];
-        HashSet<string> seen = [];
-        string key = String.Join("-", memoryBlocks.Select(m => $"{m}"));
+        HashSet<int[]> seen = new(Comparer);
+
         int count = 0;
-        while (!seen.Contains(key))
+        while (seen.Add((int[])memoryBlocks.Clone()))
         {
-            seen.Add(key);
             Cycle();
-            key = String.Join("-", memoryBlocks.Select(m => $"{m}"));
             count++;
         }
 
@@ -72,18 +87,16 @@ public partial class Day06(bool isTest = false) : BaseDay("06", isTest)
     public int RunPart2()
     {
         memoryBlocks = [.. NumbersRegex().Matches(Content).Select(m => int.Parse(m.Value))];
-        HashSet<string> seen = [];
+        HashSet<int[]> seen = new(Comparer); ;
 
-        string key = String.Join("-", memoryBlocks.Select(m => $"{m}"));
         int count = 0;
         int times = 0;
         while (times < 2)
         {
-            seen.Add(key);
+            seen.Add((int[])memoryBlocks.Clone());
             Cycle();
-            key = String.Join("-", memoryBlocks.Select(m => $"{m}"));
             count++;
-            if (seen.Contains(key))
+            if (seen.Contains(memoryBlocks))
             {
                 if (times < 1)
                 {
