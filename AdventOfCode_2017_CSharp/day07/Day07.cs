@@ -3,8 +3,14 @@ using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode_2017_CSharp.day07;
 
-public partial class Day07(bool isTest = false) : BaseDay("07", isTest)
+public partial class Day07 : BaseDay
 {
+    private readonly List<Disc> _discs;
+    public Day07(bool isTest) : base("07", isTest)
+    {
+        _discs = BuildDiscTower();
+    }
+
     class Disc(string name, int weight)
     {
         public string Name = name;
@@ -60,8 +66,7 @@ public partial class Day07(bool isTest = false) : BaseDay("07", isTest)
     [Benchmark]
     public string RunPart1()
     {
-        List<Disc> discs = BuildDiscTower();
-        return discs.First(d => d.Parent is null).Name;
+        return _discs.First(d => d.Parent is null).Name;
     }
 
     public override string SolvePart1()
@@ -77,32 +82,30 @@ public partial class Day07(bool isTest = false) : BaseDay("07", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        List<Disc> discs = BuildDiscTower();
-        var init = discs.Find(d => d.Parent is null);
-        bool found = false;
+        var init = _discs.Find(d => d.Parent is null);
 
         var children = init.Children;
-        while (!found)
+        bool sameWeight = children.Count <= 1 ||
+                children.All(c => c.TotalWeight == children[0].TotalWeight);
+        Disc? unbalanced = null;
+        int diff = 0;
+        while (!sameWeight)
         {
-            // bool sameWeight = children.Count <= 1 ||
-            //     children.All(c => c.TotalWeight == children[0].TotalWeight);
             var groupOfWeights = children.GroupBy(c => c.TotalWeight);
-            var unbalanced = groupOfWeights
+            unbalanced = groupOfWeights
                 .Single(g => g.Count() == 1)
                 .Single();
             var other = groupOfWeights
                 .First(g => g.Count() > 1)
                 .First();
 
-            if (unbalanced.Children is [])
-            {
-                found = true;
-                return other.TotalWeight;
-            }
             children = unbalanced.Children;
+            sameWeight = children.Count <= 1 ||
+                children.All(c => c.TotalWeight == children[0].TotalWeight);
+            diff = other.TotalWeight - unbalanced.TotalWeight;
         }
 
-        return 0;
+        return unbalanced!.Weight + diff;
     }
 
     public override string SolvePart2()
