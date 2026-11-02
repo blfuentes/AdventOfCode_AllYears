@@ -21,7 +21,7 @@ public class Day08 : BaseDay
     class Instruction
     {
         public string Register { get; set; }
-        public Action Operation { get; set; }
+        public Func<int> Operation { get; set; }
 
         public Func<bool> Condition { get; set; }
     }
@@ -59,7 +59,11 @@ public class Day08 : BaseDay
             _instructions[idx] = new()
             {
                 Register = reg1,
-                Operation = () => op(reg1, val1),
+                Operation = () =>
+                {
+                    op(reg1, val1);
+                    return _registryValues[reg1];
+                },
                 Condition = () => cond(reg2, val2)
             };
         }
@@ -94,10 +98,7 @@ public class Day08 : BaseDay
         foreach (var ins in _instructions)
         {
             if (ins.Condition())
-                ins.Operation();
-            int currentMax = _registryValues.Values.Max();
-            if (currentMax > maxValue)
-                maxValue = currentMax;
+                maxValue = Math.Max(maxValue, ins.Operation());
         }
         return maxValue;
     }
