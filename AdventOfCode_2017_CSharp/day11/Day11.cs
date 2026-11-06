@@ -48,18 +48,27 @@ public class Day11(bool isTest = false) : BaseDay("11", isTest)
     [Benchmark]
     public int RunPart2()
     {
-        int maxDistance = 0;
-        (int x, int y, int z) = Content.Split(",")
+        var result = Content.Split(",")
             .Select(m => _offsets[m])
-            .Aggregate((0, 0, 0), ((int x, int y, int z) a, (int x, int y, int z) b)
-                =>
+            .Aggregate(
+                (position: (x: 0, y: 0, z: 0), maxDistance: 0),
+                (state, offset) =>
                 {
-                    (int x, int y, int z) = (a.x + b.x, a.y + b.y, a.z + b.z);
-                    int distance = Distance((0, 0, 0), (x, y, z));
-                    maxDistance = Math.Max(maxDistance, distance);
-                    return (x, y, z);
+                    var position = (
+                        x: state.position.x + offset.x,
+                        y: state.position.y + offset.y,
+                        z: state.position.z + offset.z
+                    );
+
+                    return (
+                        position: position,
+                        maxDistance: Math.Max(
+                            state.maxDistance,
+                            Distance((0, 0, 0), position))
+                    );
                 });
-        return maxDistance;
+
+        return result.maxDistance;
     }
 
     public override string SolvePart2()
