@@ -32,7 +32,7 @@ internal static class Utils
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Add("Cookie", $"session={sessionKey}");
 
-                content = httpClient.GetStringAsync(url).Result;
+                content = httpClient.GetStringAsync(url).Result.TrimEnd('\r', '\n');
                 File.WriteAllText(inputPath, content);
             }
         }
