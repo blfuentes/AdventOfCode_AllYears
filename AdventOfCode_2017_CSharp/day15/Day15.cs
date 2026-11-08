@@ -8,39 +8,75 @@ public class Day15 : BaseDay
     private const int FactorB = 48271;
     private const int Divider = 2147483647;
 
-    private static long _valueA;
-    private static long _valueB;
+    private static long _seedA;
+    private static long _seedB;
 
     public Day15(bool isTest = false) : base("15", isTest)
     {
         var lines = File.ReadLines(InputPath);
-        _valueA = long.Parse(lines.ElementAt(0).Split(" ")[4]);
-        _valueB = long.Parse(lines.ElementAt(1).Split(" ")[4]);
+        _seedA = long.Parse(lines.ElementAt(0).Split(" ")[4]);
+        _seedB = long.Parse(lines.ElementAt(1).Split(" ")[4]);
     }
 
 
     #region Part 1
     static long NextValue(int factor, long value)
     {
-        return value * factor % Divider;
+        long product = value * factor;
+
+        // Since 2^31 ≡ 1 (mod Divider), fold the high bits down.
+        long result = (product & Divider) + (product >> 31);
+        result = (result & Divider) + (result >> 31);
+
+        return result == Divider ? 0 : result;
+    }
+
+    static long Advance(int factor, long seed, int steps)
+    {
+        long multiplier = factor;
+        long result = seed;
+
+        while (steps > 0)
+        {
+            if ((steps & 1) != 0)
+                result = result * multiplier % Divider;
+
+            multiplier = multiplier * multiplier % Divider;
+            steps >>= 1;
+        }
+
+        return result;
     }
 
     [Benchmark]
     public static int RunPart1()
     {
-        int times = 40_000_000;
-        int counter = 0;
-        int matches = 0;
+        const int times = 40_000_000;
+        const int chunkSize = 1_000_000;
+        int[] matches = new int[(times + chunkSize - 1) / chunkSize];
+        long seedA = _seedA;
+        long seedB = _seedB;
 
-        while (counter < times)
+        Parallel.For(0, matches.Length, chunk =>
         {
-            _valueA = NextValue(FactorA, _valueA);
-            _valueB = NextValue(FactorB, _valueB);
-            if ((_valueA & 0xFFFF) == (_valueB & 0xFFFF))
-                matches++;
-            counter++;
-        }
-        return matches;
+            int start = chunk * chunkSize;
+            int end = Math.Min(start + chunkSize, times);
+            long valueA = Advance(FactorA, seedA, start);
+            long valueB = Advance(FactorB, seedB, start);
+            int count = 0;
+
+            for (int i = start; i < end; i++)
+            {
+                valueA = NextValue(FactorA, valueA);
+                valueB = NextValue(FactorB, valueB);
+                if ((valueA & 0xFFFF) == (valueB & 0xFFFF))
+                    count++;
+            }
+
+            matches[chunk] = count;
+        });
+
+        return matches.Sum();
     }
 
     public override string SolvePart1()
@@ -57,30 +93,41 @@ public class Day15 : BaseDay
     {
         do
         {
-            value = (value * factor) % Divider;
+            value = NextValue(factor, value);
         }
-        while (value % remainder != 0);
+        while ((value & (remainder - 1)) != 0);
 
         return value;
+    }
+
+    static void GenerateFiltered(int factor, int remainder, long seed, ushort[] values)
+    {
+        long value = seed;
+        for (int i = 0; i < values.Length; i++)
+        {
+            value = NextValue(factor, remainder, value);
+            values[i] = (ushort)(value & 0xFFFF);
+        }
     }
 
     [Benchmark]
     public static int RunPart2()
     {
-        int times = 5_000_000;
-        (int remainderA, int remainderB) = (4, 8);
+        const int times = 5_000_000;
+        ushort[] valuesA = new ushort[times];
+        ushort[] valuesB = new ushort[times];
+        long seedA = _seedA;
+        long seedB = _seedB;
 
-        int counter = 0;
+        Parallel.Invoke(
+            () => GenerateFiltered(FactorA, 4, seedA, valuesA),
+            () => GenerateFiltered(FactorB, 8, seedB, valuesB));
+
         int matches = 0;
-
-        while (counter < times)
+        for (int i = 0; i < times; i++)
         {
-            _valueA = NextValue(FactorA, remainderA, _valueA);
-            _valueB = NextValue(FactorB, remainderB, _valueB);
-
-            if ((_valueA & 0xFFFF) == (_valueB & 0xFFFF))
+            if (valuesA[i] == valuesB[i])
                 matches++;
-            counter++;
         }
         return matches;
     }
