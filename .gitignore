@@ -19,3 +19,4 @@ x64
 *.user
 *.aps
 *.rc
+__pycache__
