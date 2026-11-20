@@ -1,6 +1,6 @@
 ﻿module day18_part02
 
-open AdventOfCode_2018.Modules
+open AdventOfCode_2018_FSharp.Modules
 
 type Acre = 
     | Open 

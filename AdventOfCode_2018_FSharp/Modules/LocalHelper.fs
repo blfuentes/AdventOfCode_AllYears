@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode_2018.Modules
+﻿namespace AdventOfCode_2018_FSharp.Modules
 
 open System.IO
 

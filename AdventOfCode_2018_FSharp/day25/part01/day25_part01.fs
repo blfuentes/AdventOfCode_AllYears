@@ -1,7 +1,7 @@
 ﻿module day25_part01
 
-open AdventOfCode_Utilities
-open AdventOfCode_2018.Modules
+open AdventOfCode_Utilities_FSharp
+open AdventOfCode_2018_FSharp.Modules
 
 let manhattan p0 p1 = Array.zip p0 p1 |> Array.sumBy (fun (c0, c1) -> abs (c0 - c1))
 

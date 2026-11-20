@@ -1,7 +1,7 @@
 ﻿module day21_part02
 
-open AdventOfCode_Utilities
-open AdventOfCode_2018.Modules
+open AdventOfCode_Utilities_FSharp
+open AdventOfCode_2018_FSharp.Modules
 
 let getSeed =
     // after comparing many inputs, the only lines that was different was line 8 

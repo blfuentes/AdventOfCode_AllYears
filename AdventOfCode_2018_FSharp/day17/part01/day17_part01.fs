@@ -1,7 +1,7 @@
 ﻿module day17_part01
 
-open AdventOfCode_2018.Modules
-open AdventOfCode_Utilities
+open AdventOfCode_2018_FSharp.Modules
+open AdventOfCode_Utilities_FSharp
 
 let parseContent(lines: string array) =
     let asScan (str : string) =

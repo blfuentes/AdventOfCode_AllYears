@@ -11,29 +11,29 @@
     <File Path="Directory.Packages.props" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="AdventOfCode_2015\AdventOfCode_2015.fsproj" />
+  <Project Path="AdventOfCode_2015_FSharp\AdventOfCode_2015_FSharp.fsproj" />
   <Project Path="AdventOfCode_2015_CSharp/AdventOfCode_2015_CSharp.csproj" Id="04f576ca-8d9c-49cc-b339-8f3777f14a29" />
-  <Project Path="AdventOfCode_2016\AdventOfCode_2016.fsproj" />
+  <Project Path="AdventOfCode_2016_FSharp\AdventOfCode_2016_FSharp.fsproj" />
   <Project Path="AdventOfCode_2016_CSharp/AdventOfCode_2016_CSharp.csproj" Id="6cbc711d-32c6-4bdf-849b-2136431a63da" />
-  <Project Path="AdventOfCode_2017\AdventOfCode_2017.fsproj" />
+  <Project Path="AdventOfCode_2017_FSharp\AdventOfCode_2017_FSharp.fsproj" />
   <Project Path="AdventOfCode_2017_CSharp/AdventOfCode_2017_CSharp.csproj" />
-  <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018.fsproj" />
+  <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018_FSharp.fsproj" />
   <Project Path="AdventOfCode_2018_Typescript\AdventOfCode_2018_Typescript.esproj">
     <Platform Project="AnyCPU" />
     <Deploy />
   </Project>
-  <Project Path="AdventOfCode_2019\AdventOfCode_2019.fsproj" />
-  <Project Path="AdventOfCode_2020\AdventOfCode_2020.fsproj" />
-  <Project Path="AdventOfCode_2021\AdventOfCode_2021.fsproj" />
-  <Project Path="AdventOfCode_2022\AdventOfCode_2022.fsproj" />
-  <Project Path="AdventOfCode_2023\AdventOfCode_2023.fsproj" />
-  <Project Path="AdventOfCode_2023_cpp\AdventOfCode_2023_cpp.vcxproj" Id="0d5332ea-3ce1-425a-8006-76805bb5641c" />
-  <Project Path="AdventOfCode_2024\AdventOfCode_2024.fsproj" />
-  <Project Path="AdventOfCode_2025/AdventOfCode_2025.fsproj" />
-  <Project Path="AdventOfCode_2026/AdventOfCode_2026.fsproj" Id="9587ba1b-3810-416b-8aa9-194f9205dc49" />
-  <Project Path="AdventOfCode_AlgoLib/AdventOfCode_AlgoLib.csproj" Id="06f6e773-a1d6-40b8-bb3f-2c3407f87f96" />
-  <Project Path="AdventOfCode_Api/AdventOfCode_Api.fsproj" />
-  <Project Path="AdventOfCode_Base\AdventOfCode_BASE.fsproj" />
-  <Project Path="AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
-  <Project Path="AoC_Debugger\AoC_Debugger.fsproj" />
+  <Project Path="AdventOfCode_2019_FSharp\AdventOfCode_2019_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2020_FSharp\AdventOfCode_2020_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2021_FSharp\AdventOfCode_2021_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2022_FSharp\AdventOfCode_2022_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2023_FSharp\AdventOfCode_2023_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2023_Cpp\AdventOfCode_2023_Cpp.vcxproj" Id="0d5332ea-3ce1-425a-8006-76805bb5641c" />
+  <Project Path="AdventOfCode_2024_FSharp\AdventOfCode_2024_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2025_FSharp\AdventOfCode_2025_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2026_FSharp\AdventOfCode_2026_FSharp.fsproj" Id="9587ba1b-3810-416b-8aa9-194f9205dc49" />
+  <Project Path="AdventOfCode_AlgoLib_CSharp/AdventOfCode_AlgoLib_CSharp.csproj" Id="06f6e773-a1d6-40b8-bb3f-2c3407f87f96" />
+  <Project Path="AdventOfCode_Api_FSharp\AdventOfCode_Api_FSharp.fsproj" />
+  <Project Path="AdventOfCode_Base_FSharp\AdventOfCode_Base_FSharp.fsproj" />
+  <Project Path="AdventOfCode_Utilities_FSharp\AdventOfCode_Utilities_FSharp.fsproj" />
+  <Project Path="AoC_Debugger_FSharp\AoC_Debugger_FSharp.fsproj" />
 </Solution>

@@ -1,6 +1,6 @@
 ﻿module day20_part02
 
-open AdventOfCode_2018.Modules
+open AdventOfCode_2018_FSharp.Modules
 
 type Direction = North | South | East | West
 type Term = Start | End | Move of Direction | StartGroup | EndGroup | Alternative

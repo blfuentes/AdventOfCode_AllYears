@@ -6,8 +6,8 @@ BenchmarkDotNet.Artifacts
 *.js
 day*.txt
 *.map
-!/AdventOfCode_BASE/day*/**
-!/AoC_Debugger/day*.txt
+!/AdventOfCode_Base_FSharp/day*/**
+!/AoC_Debugger_FSharp/day*.txt
 node_modules
 obj
 bin

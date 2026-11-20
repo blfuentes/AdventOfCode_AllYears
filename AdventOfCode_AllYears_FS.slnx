@@ -8,19 +8,19 @@
     <File Path=".gitignore" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="AdventOfCode_2015\AdventOfCode_2015.fsproj" />
-  <Project Path="AdventOfCode_2016\AdventOfCode_2016.fsproj" />
-  <Project Path="AdventOfCode_2017\AdventOfCode_2017.fsproj" />
-  <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018.fsproj" />
-  <Project Path="AdventOfCode_2019\AdventOfCode_2019.fsproj" />
-  <Project Path="AdventOfCode_2020\AdventOfCode_2020.fsproj" />
-  <Project Path="AdventOfCode_2021\AdventOfCode_2021.fsproj" />
-  <Project Path="AdventOfCode_2022\AdventOfCode_2022.fsproj" />
-  <Project Path="AdventOfCode_2023\AdventOfCode_2023.fsproj" />
-  <Project Path="AdventOfCode_2024\AdventOfCode_2024.fsproj" />
-  <Project Path="AdventOfCode_2025/AdventOfCode_2025.fsproj" Id="d8814704-29cb-4634-b143-e6438cacd251" />
-  <Project Path="AdventOfCode_Api/AdventOfCode_Api.fsproj" Id="6b5cae24-ee95-428b-98a6-38d90b6cd4af" />
-  <Project Path="AdventOfCode_Base\AdventOfCode_BASE.fsproj" />
-  <Project Path="AdventOfCode_Utilities\AdventOfCode_Utilities.fsproj" />
-  <Project Path="AoC_Debugger\AoC_Debugger.fsproj" />
+  <Project Path="AdventOfCode_2015_FSharp\AdventOfCode_2015_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2016_FSharp\AdventOfCode_2016_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2017_FSharp\AdventOfCode_2017_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2018_FSharp\AdventOfCode_2018_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2019_FSharp\AdventOfCode_2019_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2020_FSharp\AdventOfCode_2020_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2021_FSharp\AdventOfCode_2021_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2022_FSharp\AdventOfCode_2022_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2023_FSharp\AdventOfCode_2023_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2024_FSharp\AdventOfCode_2024_FSharp.fsproj" />
+  <Project Path="AdventOfCode_2025_FSharp\AdventOfCode_2025_FSharp.fsproj" Id="d8814704-29cb-4634-b143-e6438cacd251" />
+  <Project Path="AdventOfCode_Api_FSharp\AdventOfCode_Api_FSharp.fsproj" Id="6b5cae24-ee95-428b-98a6-38d90b6cd4af" />
+  <Project Path="AdventOfCode_Base_FSharp\AdventOfCode_Base_FSharp.fsproj" />
+  <Project Path="AdventOfCode_Utilities_FSharp\AdventOfCode_Utilities_FSharp.fsproj" />
+  <Project Path="AoC_Debugger_FSharp\AoC_Debugger_FSharp.fsproj" />
 </Solution>

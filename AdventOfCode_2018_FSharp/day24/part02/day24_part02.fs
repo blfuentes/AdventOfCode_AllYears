@@ -1,7 +1,7 @@
 ﻿module day24_part02
 
-open AdventOfCode_Utilities
-open AdventOfCode_2018.Modules
+open AdventOfCode_Utilities_FSharp
+open AdventOfCode_2018_FSharp.Modules
 
 open System.Text.RegularExpressions
 

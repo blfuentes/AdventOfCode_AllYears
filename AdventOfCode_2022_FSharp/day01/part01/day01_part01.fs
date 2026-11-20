@@ -1,0 +1,11 @@
+﻿module day01_part01
+
+open AdventOfCode_Utilities_FSharp
+open AdventOfCode_2022_FSharp.Modules.LocalHelper
+
+let path = "day01/day01_input.txt"
+
+let execute =
+    let inputLines = GetLinesFromFile(path) |> Seq.toList
+    let elvesCalories = getLinesGroupBySeparatorWithEmptySpaceFixReplace inputLines "" |> List.map(fun l -> l |> (List.map int) |> List.sum)
+    elvesCalories |> List.max

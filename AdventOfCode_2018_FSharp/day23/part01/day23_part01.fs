@@ -1,7 +1,7 @@
 ﻿module day23_part01
 
-open AdventOfCode_2018.Modules
-open AdventOfCode_Utilities
+open AdventOfCode_2018_FSharp.Modules
+open AdventOfCode_Utilities_FSharp
 
 
 type Vec3 =

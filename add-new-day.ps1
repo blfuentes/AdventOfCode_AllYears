@@ -22,6 +22,17 @@ function Get-Extension {
     }
 }
 
+function Get-LanguageSuffix {
+    param($lang)
+    switch ($lang.ToLower()) {
+        { $_ -in "fsharp", "fs", "fsx" } { "FSharp" }
+        { $_ -in "csharp", "cs" }        { "CSharp" }
+        { $_ -in "python", "py" }        { "Python" }
+        { $_ -in "powershell", "ps1" }   { "PowerShell" }
+        default                          { "Text" }
+    }
+}
+
 # Resolve script directory (works when run via script or dot-sourced)
 $scriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Definition }
 
@@ -41,7 +52,8 @@ if ($PSBoundParameters.ContainsKey('Root') -and $Root -ne ".") {
 # normalize values
 $dayPad = $Day.ToString("D2")
 $ext = Get-Extension $Language
-$yearDir = Join-Path -Path $rootResolved -ChildPath ("AdventOfCode_{0}" -f $Year)
+$suffix = Get-LanguageSuffix $Language
+$yearDir = Join-Path -Path $rootResolved -ChildPath ("AdventOfCode_{0}_{1}" -f $Year, $suffix)
 $dayDir  = Join-Path -Path $yearDir -ChildPath ("day{0}" -f $dayPad)
 $part01Dir = Join-Path -Path $dayDir -ChildPath "part01"
 $part02Dir = Join-Path -Path $dayDir -ChildPath "part02"

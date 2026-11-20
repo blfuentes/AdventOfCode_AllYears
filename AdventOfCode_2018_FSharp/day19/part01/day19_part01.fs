@@ -1,7 +1,7 @@
 ﻿module day19_part01
 
-open AdventOfCode_2018.Modules
-open AdventOfCode_Utilities
+open AdventOfCode_2018_FSharp.Modules
+open AdventOfCode_Utilities_FSharp
 
 let getUniqueVals lines =
     let lines = lines |> Seq.toArray
