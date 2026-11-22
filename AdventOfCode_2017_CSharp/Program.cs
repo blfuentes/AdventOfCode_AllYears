@@ -21,6 +21,7 @@ using AdventOfCode_2017_CSharp.day19;
 using AdventOfCode_2017_CSharp.day20;
 using AdventOfCode_2017_CSharp.day21;
 using AdventOfCode_2017_CSharp.day22;
+using AdventOfCode_2017_CSharp.day23;
 using BenchmarkDotNet.Running;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -212,4 +213,12 @@ if (Utils.DownloadContent(client, 2017, 22))
     //BenchmarkRunner.Run<Day22>();
     Console.WriteLine((new Day22(isTest: false)).SolvePart1());
     Console.WriteLine((new Day22(isTest: false)).SolvePart2());
+}
+
+// Day 23
+if (Utils.DownloadContent(client, 2017, 23))
+{
+    //BenchmarkRunner.Run<Day23>();
+    Console.WriteLine((new Day23(isTest: false)).SolvePart1());
+    Console.WriteLine((new Day23(isTest: false)).SolvePart2());
 }
