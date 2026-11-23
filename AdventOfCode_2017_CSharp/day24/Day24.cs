@@ -1,3 +1,4 @@
+using System.Data;
 using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode_2017_CSharp.day24;
@@ -11,6 +12,17 @@ public class Day24 : BaseDay
             return
                 conn.PortA == this.PortA || conn.PortB == this.PortA ||
                 conn.PortA == this.PortB || conn.PortB == this.PortB;
+        }
+
+        public (bool connects, int? output) CanConnect(int input)
+        {
+            (bool c, int? o) = input switch
+            {
+                _ when (input == this.PortA) => (true, this.PortB),
+                _ when (input == this.PortB) => (true, this.PortA),
+                _ => (false, (int?)null)
+            };
+            return (c, o);
         }
     }
 
@@ -42,12 +54,22 @@ public class Day24 : BaseDay
 
         while (toVisit.TryPop(out (int ePort, HashSet<Connection> currentBridge) t))
         {
-            var connectors = _connections.Where(c => c.PortA == t.ePort || c.PortB == t.ePort);
+            var connectors = _connections
+                .Select(c => (c, c.CanConnect(t.ePort)))
+                .Where(c => c.Item2.connects);
+
             if (connectors.Any())
             {
                 foreach (var conn in connectors)
                 {
-                    toVisit.Push()
+
+                    if (!t.currentBridge.Contains(conn.c))
+                    {
+                        HashSet<Connection> newBridge = [.. t.currentBridge];
+                        _ = newBridge.Add(conn.c);
+                        bridges.Add([.. newBridge]);
+                        toVisit.Push((conn.Item2.output!.Value, newBridge));
+                    }
                 }
             }
             else
@@ -56,7 +78,7 @@ public class Day24 : BaseDay
             }
         }
 
-        return Content.Length;
+        return bridges.Max(b => b.Sum(bb => bb.PortA + bb.PortB));
     }
 
     public override string SolvePart1()
@@ -72,7 +94,43 @@ public class Day24 : BaseDay
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        List<List<Connection>> bridges = [];
+        int startingPort = 0;
+        Stack<(int endingPort, HashSet<Connection> bridge)> toVisit = [];
+        toVisit.Push((startingPort, []));
+
+        while (toVisit.TryPop(out (int ePort, HashSet<Connection> currentBridge) t))
+        {
+            var connectors = _connections
+                .Select(c => (c, c.CanConnect(t.ePort)))
+                .Where(c => c.Item2.connects);
+
+            if (connectors.Any())
+            {
+                foreach (var conn in connectors)
+                {
+
+                    if (!t.currentBridge.Contains(conn.c))
+                    {
+                        HashSet<Connection> newBridge = [.. t.currentBridge];
+                        _ = newBridge.Add(conn.c);
+                        bridges.Add([.. newBridge]);
+                        toVisit.Push((conn.Item2.output!.Value, newBridge));
+                    }
+                }
+            }
+            else
+            {
+                bridges.Add([.. t.currentBridge]);
+            }
+        }
+
+        return
+            bridges
+            .GroupBy(b => b.Count)
+            .OrderByDescending(g => g.Key)
+            .First()
+            .Max(b => b.Sum(bb => bb.PortA + bb.PortB));
     }
 
     public override string SolvePart2()
