@@ -5,15 +5,14 @@ namespace AdventOfCode_2018_CSharp.day04;
 
 public partial class Day04 : BaseDay
 {
-    public record Shift
+    public record Sleep
     {
         public DateTime Start;
         public DateTime End;
     }
     public record Guard(int Id)
     {
-        public DateTime BeginShift;
-        public List<Shift> Shifts = [];
+        public List<Sleep> Sleeps = [];
     }
 
     static DateTime BuildShiftTime(int[] numbers)
@@ -43,40 +42,26 @@ public partial class Day04 : BaseDay
             if (numbers.Length > 5)
             {
                 currentGuard = numbers[5];
-                if (_guards.TryAdd(currentGuard, new Guard(currentGuard)))
-                {
-                    _guards[currentGuard].BeginShift = BuildShiftTime(numbers);
-                    _guards[currentGuard].Shifts = [
-                        new Shift(){
-                            Start = _guards[currentGuard].BeginShift
-                        }];
-                }
-                else
-                {
-                    var newShift = new Shift()
-                    {
-                        Start = BuildShiftTime(numbers)
-                    };
-                    _guards[currentGuard].Shifts.Add(newShift);
+                _ = _guards.TryAdd(currentGuard, new Guard(currentGuard));
 
-                }
                 isAwake = true;
             }
             else
             {
                 if (isAwake)
                 {
-                    var lastShift = _guards[currentGuard].Shifts.Last();
-                    lastShift.End = BuildShiftTime(numbers);
+                    var newShift = new Sleep()
+                    {
+                        Start = BuildShiftTime(numbers)
+                    };
+                    _guards[currentGuard].Sleeps.Add(newShift);
+
                     isAwake = false;
                 }
                 else
                 {
-                    var newShift = new Shift()
-                    {
-                        Start = BuildShiftTime(numbers)
-                    };
-                    _guards[currentGuard].Shifts.Add(newShift);
+                    var lastSleep = _guards[currentGuard].Sleeps.Last();
+                    lastSleep.End = BuildShiftTime(numbers);
 
                     isAwake = true;
                 }
@@ -92,14 +77,14 @@ public partial class Day04 : BaseDay
         foreach (var guard in _guards)
         {
             times.Add(guard.Key, 0);
-            foreach (var shift in guard.Value.Shifts.Where(s => s.End > s.Start))
+            foreach (var shift in guard.Value.Sleeps.Where(s => s.End > s.Start))
             {
                 times[guard.Key] += (shift.End - shift.Start).Minutes;
             }
         }
         var mostSleep = times.MaxBy(t => t.Value);
         var minutesCounter = new int[60];
-        foreach (var shift in _guards[mostSleep.Key].Shifts.Where(s => s.End > s.Start))
+        foreach (var shift in _guards[mostSleep.Key].Sleeps.Where(s => s.End > s.Start))
         {
             var minutes = (shift.End - shift.Start).Minutes;
             var hours = minutes / 60;
@@ -116,7 +101,8 @@ public partial class Day04 : BaseDay
                 minutesCounter[shift.Start.Minute + i % 60]++;
             }
         }
-        var maxMinute = minutesCounter.Max();
+
+        var maxMinute = minutesCounter.IndexOf(minutesCounter.Max());
         return mostSleep.Key * maxMinute;
     }
 
@@ -133,7 +119,32 @@ public partial class Day04 : BaseDay
     [Benchmark]
     public int RunPart2()
     {
-        return Content.Length;
+        Dictionary<int, int[]> minutesByGuard = [];
+        foreach (var guard in _guards)
+        {
+            var minutesCounter = new int[60];
+            minutesByGuard.Add(guard.Key, minutesCounter);
+            foreach (var shift in guard.Value.Sleeps.Where(s => s.End > s.Start))
+            {
+                var minutes = (shift.End - shift.Start).Minutes;
+                var hours = minutes / 60;
+                var restminutes = minutes - (hours * 60);
+
+                for (int i = 0; i < restminutes; i++)
+                    minutesCounter[shift.Start.Minute + i % 60]++;
+            }
+        }
+        var (id, times, minute) =
+            minutesByGuard.Select(g =>
+            {
+                var maxMinuteCount = g.Value.Max();
+                var maxMinute = g.Value.IndexOf(maxMinuteCount);
+                (int id, int times, int minute) mbg = (g.Key, maxMinuteCount, maxMinute);
+                return mbg;
+            })
+            .MaxBy(mbg => mbg.times);
+
+        return id * minute;
     }
 
     public override string SolvePart2()
