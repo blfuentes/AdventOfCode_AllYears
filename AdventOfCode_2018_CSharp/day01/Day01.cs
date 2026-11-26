@@ -9,7 +9,7 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
     [Benchmark]
     public int RunPart1()
     {
-        return Content.Split(System.Environment.NewLine).Sum(v => int.Parse(v));
+        return File.ReadAllLines(InputPath).Sum(v => int.Parse(v));
     }
 
     public override string SolvePart1()
@@ -29,7 +29,7 @@ public class Day01(bool isTest = false) : BaseDay("01", isTest)
         HashSet<int> visited = [];
         int current = 0;
         int idx = 0;
-        string[] values = Content.Split(Environment.NewLine);
+        string[] values = File.ReadAllLines(InputPath);
         while (!visited.Contains(current))
         {
             visited.Add(current);
