@@ -87,62 +87,35 @@ public class Day07 : BaseDay
     [Benchmark]
     public int RunPart2()
     {
-        var roots = _nodes.Where(n => !_connections.Any(c => c.ToNode == n));
-        PriorityQueue<(char, int), int> toVisit = new();
-        int availableWorkers = 2;
+        const int maxWorkers = 5;
+        const int normalizer = 4;
+        HashSet<char> completed = [];
+        Dictionary<char, int> inProgress = [];
+        var time = 0;
 
-        foreach (var root in roots)
+        while (completed.Count < _nodes.Count)
         {
-            toVisit.Enqueue((root, root - 64), root);
-            availableWorkers--;
-        }
+            var ready = _nodes
+                .Where(node => !completed.Contains(node) && !inProgress.ContainsKey(node))
+                .Where(node => _connections
+                    .Where(connection => connection.ToNode == node)
+                    .All(connection => completed.Contains(connection.FromNode)))
+                .OrderBy(node => node)
+                .Take(maxWorkers - inProgress.Count);
 
-        List<char> visited = [];
-        int time = 0;
-        while (toVisit.TryDequeue(out (char c, int r) current, out _))
-        {
-            if (availableWorkers > 0)
+            foreach (var node in ready)
+                inProgress.Add(node, node - normalizer);
+
+            foreach (var node in inProgress.Keys.ToArray())
             {
-                if (current.r == 0)
+                inProgress[node]--;
+                if (inProgress[node] == 0)
                 {
-                    availableWorkers++;
-                    visited.Add(current.c);
-                    if (_paths.ContainsKey(current.c))
-                    {
-                        foreach (var next in _paths[current.c])
-                        {
-                            if (_connections
-                                .Where(c => c.ToNode == next)
-                                .All(c =>
-                                    visited.Contains(c.FromNode)
-                                ))
-                            {
-                                if (!visited.Contains(next) && availableWorkers > 0)
-                                {
-                                    availableWorkers--;
-                                    toVisit.Enqueue((next, next - 64), next);
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    toVisit.Enqueue((current.c, current.r - 1), current.c);
+                    inProgress.Remove(node);
+                    completed.Add(node);
                 }
             }
-            else
-            {
-                if (current.r > 0)
-                {
-                    toVisit.Enqueue((current.c, current.r - 1), current.c);
-                }
-                else
-                {
-                    visited.Add(current.c);
-                    availableWorkers++;
-                }
-            }
+
             time++;
         }
 
