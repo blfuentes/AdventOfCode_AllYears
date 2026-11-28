@@ -42,7 +42,7 @@ public class Day07 : BaseDay
         }
     }
 
-    #region stPart 1
+    #region Part 1
     [Benchmark]
     public string RunPart1()
     {
